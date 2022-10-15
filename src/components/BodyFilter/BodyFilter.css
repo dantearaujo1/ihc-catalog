@@ -1,0 +1,72 @@
+.title-container{
+  color:#000000;
+  padding: 40px 0 0 40px;
+  font-family: nunito;
+}
+.title-container h3{
+  font-size:24px;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+.title-container h1{
+  margin: 0;
+  padding: 0;
+}
+.body-container{
+  background:#BB80AA;
+  height: 100vh;
+}
+.filter-container{
+  display:flex;
+  width: 100%;
+  align-items:center;
+  justify-content: space-evenly;
+  padding: 10vh 0 0 0;
+}
+.filter-category{
+  width:100%;
+}
+.filter-buttons{
+  display:flex;
+  width:100%;
+  justify-content: center;
+  padding: 10vh 0 0 0;
+}
+
+select {
+  font-family:nunito;
+  font-size:1.2rem;
+  background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+  -moz-appearance:none;
+  -webkit-appearance: none;
+  appearance:none;
+  background-color: #FFFFFF;
+  background-position: calc(100% - 2rem) center !important;
+  width: 20rem;
+  height: 3rem;
+  margin: 0 10px 0 22px;
+  border-color: transparent;
+  border-radius: 100px;
+  text-indent: 20px;
+}
+
+button {
+  width: 18rem;
+  height: 4rem;
+  background-color:#000000;
+  border-radius: 100px;
+  color: #FFFFFF;
+}
+button div {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  padding-right: 2rem;
+}
+button p {
+  font-family: nunito;
+  margin-left: 02rem;
+  font-size: 1.2rem;
+  text-align:center;
+}
