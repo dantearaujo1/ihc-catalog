@@ -1,31 +1,30 @@
+.body-container{
+  background:#BB80AA;
+  width: auto;
+  height: 100vh;
+}
 .title-container{
   color:#000000;
-  padding: 40px 0 0 40px;
+  padding: 40px 0 2rem 8rem;
   font-family: nunito;
-}
-.title-container h3{
-  font-size:24px;
-  color: #333333;
-  margin: 0;
-  padding: 0;
 }
 .title-container h1{
   margin: 0;
   padding: 0;
 }
-.body-container{
-  background:#BB80AA;
-  height: 100vh;
+.title-container h3{
+  font-size:24px;
+  color: #333333;
+  margin: 0;
 }
 .filter-container{
   display:flex;
-  width: 100%;
+  width: auto;
   align-items:center;
   justify-content: space-evenly;
-  padding: 10vh 0 0 0;
 }
 .filter-category{
-  width:100%;
+  width:auto;
 }
 .filter-buttons{
   display:flex;

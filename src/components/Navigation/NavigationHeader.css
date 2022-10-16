@@ -1,10 +1,6 @@
-body {
-  background-color:#000000;
-  width:auto;
-}
 .nav-container{
   display:flex;
-  width:100vw;
+  width:auto;
   height:100px;
   margin: 0;
   font-family: nunito;
@@ -20,7 +16,7 @@ body {
   justify-content:space-between;
 }
 .nav-title{
-  padding: 0 0 0 20px;
+  padding-left: 05rem;
 }
 .nav-right-container{
   display:flex;
