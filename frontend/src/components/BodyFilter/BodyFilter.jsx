@@ -1,11 +1,12 @@
+import { useState, useEffect } from 'react'
 import './BodyFilter.css'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 
 function CategoryFilter(props){
   return (
-    <select id="public" name="public" size="1">
-      <option value="" disabled selected hidden>{props.placeholder}</option>
+    <select id="public" defaultValue={props.placeholder} name="public" size="1">
+      <option value="" hidden>{props.placeholder}</option>
       <option value="">Velho</option>
       <option value="">Criança</option>
       <option value="">Jornalistas</option>
@@ -13,6 +14,19 @@ function CategoryFilter(props){
   )
 }
 function BodyFilter() {
+
+  const [data, setData] = useState([]);
+
+  useEffect( ()=>{
+
+    const fetch_data = async() => {
+      const data = await fetch('/api/v1');
+      const json = await data.json();
+      setData(json);
+    }
+    fetch_data().catch(console.error);
+
+  }, []);
 
   return (
     <div className="body-container">
@@ -36,6 +50,9 @@ function BodyFilter() {
             <p>Filter</p>
           </div>
         </button>
+      </div>
+      <div className="list-container">
+        {(data.map(art=><li className="article-li" tabindex={art.id} key={art.id}>{art.name}</li>))}
       </div>
     </div>
   )

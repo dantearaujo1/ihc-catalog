@@ -69,3 +69,32 @@ button p {
   font-size: 1.2rem;
   text-align:center;
 }
+
+.list-container{
+  background-color: #000000;
+  text-align: center;
+  border: 5px solid rgb(100,0,200);
+  border-radius: 10px;
+  box-shadow: 10px 10px #888888;
+  width: 75%;
+  margin: 40px auto;
+}
+.article-li{
+  display: flex;
+  width:100%;
+  align-items:center;
+  justify-content:center;
+  background-color:#AA00FF;
+  list-style-type: none;
+  border: 1px solid rgb(0,0,0);
+}
+.article-li:hover{
+  background-color:#FF0000;
+  border: 1px solid rgb(200,200,0);
+}
+.article-li:focus{
+  background-color:#CC00CC;
+  border: 1px solid rgb(200,200,0);
+  border-radius: 5px;
+  height:100px;
+}
