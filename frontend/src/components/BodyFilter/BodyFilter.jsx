@@ -13,20 +13,8 @@ function CategoryFilter(props){
     </select>
   )
 }
-function BodyFilter() {
+function BodyFilter({articles}) {
 
-  const [data, setData] = useState([]);
-
-  useEffect( ()=>{
-
-    const fetch_data = async() => {
-      const data = await fetch('/api/v1');
-      const json = await data.json();
-      setData(json.complete_detailed_list);
-    }
-    fetch_data().catch(console.error);
-
-  }, []);
 
   return (
     <div className="body-container">
@@ -44,7 +32,7 @@ function BodyFilter() {
         </div>
       </div>
       <div className="filter-buttons">
-        <button>
+        <button onClick={e=> {console.log("Clicked")}}>
           <div>
             <FontAwesomeIcon icon={ faFilter }/>
             <p>Filter</p>
@@ -52,7 +40,7 @@ function BodyFilter() {
         </button>
       </div>
       <div className="list-container">
-      {data.map( (art,index) => <li className="article-li" tabIndex={index} key={index}> {art.ux_instruments} </li>)}
+      {articles.map( (art,index) => <li className="article-li" tabIndex={index} key={index}> {index} 👉 {art.ux_instruments} </li>)}
       </div>
     </div>
   )
