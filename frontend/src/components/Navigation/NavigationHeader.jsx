@@ -1,4 +1,5 @@
 import "./NavigationHeader.css"
+import {Link} from 'react-router-dom'
 
 function NavigationHeader({Filter}) {
 
@@ -19,7 +20,7 @@ function NavigationHeader({Filter}) {
             />
           </div>
           <div className="adm-container">
-            <h3><a href="#">Admin</a></h3>
+            <Link to="/dboard_admin">Admin</Link>
           </div>
         </div>
       </div>
