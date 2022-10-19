@@ -22,7 +22,7 @@ function BodyFilter() {
     const fetch_data = async() => {
       const data = await fetch('/api/v1');
       const json = await data.json();
-      setData(json);
+      setData(json.complete_detailed_list);
     }
     fetch_data().catch(console.error);
 
@@ -52,7 +52,7 @@ function BodyFilter() {
         </button>
       </div>
       <div className="list-container">
-        {(data.map(art=><li className="article-li" tabindex={art.id} key={art.id}>{art.name}</li>))}
+      {data.map( (art,index) => <li className="article-li" tabIndex={index} key={index}> {art.ux_instruments} </li>)}
       </div>
     </div>
   )
