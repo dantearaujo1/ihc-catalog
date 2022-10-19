@@ -1,6 +1,7 @@
 import "./NavigationHeader.css"
 
-function NavigationHeader() {
+function NavigationHeader({Filter}) {
+
 
   return (
     <div className="nav-container">
@@ -10,11 +11,15 @@ function NavigationHeader() {
         </div>
         <div className="nav-right-container">
           <div className="search-container">
-            <input type="text" id="instrument" name="instrument" placeholder="Buscar" />
+            <input type="text"
+              id="instrument"
+              name="instrument"
+              placeholder="Buscar"
+              onChange={(e) =>Filter(e.target.value)}
+            />
           </div>
           <div className="adm-container">
             <h3><a href="#">Admin</a></h3>
-
           </div>
         </div>
       </div>
