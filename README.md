@@ -58,6 +58,14 @@ Web Application Catalog for IHC Avaliation Instruments with additional features.
 
 #### Instructions
 
+1. Git clone this project into a directory of your preference
+
+```git
+git clone https://github.com/dantearaujo1/ihc-catalog && cd ihc-catalog
+```
+
+2. Follow one of the following options
+
 ##### Using Docker
 
 > **You will have to have Docker installed in you machine**
