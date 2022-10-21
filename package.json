@@ -4,7 +4,8 @@
   "description": "Web Application Catalog for IHC Avaliation Instruments with additional features. Project for Human-Computer Interaction (IHC) course of  Digital Media Systems (SMD)  program at Universidade Federal do Ceará (UFC)",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd backend && npm start\" \"cd frontend && npm run dev\" "
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\" "
+    ;wa
   },
   "repository": {
     "type": "git",
