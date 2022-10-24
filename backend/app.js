@@ -2,16 +2,17 @@ const express = require ("express");
 const app = express();
 
 const PORT = 3000;
-const URL_PROXY = "/api/v1"
+const API_URL_PATH = "/api/v1"
 
 const json = require('./dataa.json')
 
 // I Have the ability to create routes
 // ROUTES
-app.get(URL_PROXY, (req,res) => {
+app.get(API_URL_PATH, (req,res) => {
   res.json(json);
 });
-app.get(URL_PROXY + '/posts', (req,res) => {
+
+app.get(API_URL_PATH + '/posts', (req,res) => {
   res.send("We are on posts");
 });
 
