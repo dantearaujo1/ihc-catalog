@@ -1,7 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import BodyFilter from '../components/BodyFilter/BodyFilter'
+import TagSelect from '../components/Filter/TagSelect.jsx'
 import NavigationHeader from '../components/Navigation/NavigationHeader'
+
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
 import { useState, useEffect } from 'react'
 
@@ -11,7 +17,9 @@ function Home() {
   const [filtered, setFiltered] = useState('');
   const [data_filtered, setDataFiltered] = useState();
 
+
   // Getting data from the backend
+  // WARN: we should use useQuery hook for this
   useEffect( ()=>{
 
     const fetch_data = async() => {
@@ -48,10 +56,32 @@ function Home() {
   */
   return(
     <div>
-      <NavigationHeader Filter={setFiltered}>
+      <NavigationHeader Filter={setFiltered} data={data_filtered?data_filtered:data} isAdmin={false}>
       </NavigationHeader>
-      <BodyFilter articles={data_filtered?data_filtered:data}>
-      </BodyFilter>
+      <div className="title-container">
+        <Typography variant="h1">
+          This is Human Computer Interaction - TIHCI
+        </Typography>
+        <Typography variant="h3">
+          Find the better Instrument for you project
+        </Typography>
+      </div>
+      <Stack direction="row" sx={{flexWrap: "wrap", justifyContent:"center", marginTop: 5}}>
+          <TagSelect data={["Children", "Older", "All type of Users", "Jornalists", "Consumers","People with disabilities", "Role-Specific"].sort()} placeHolder={"Target"}></TagSelect>
+          <TagSelect data={["Application-independent", "Online Plataform", "Mobile","Audiovisual"].sort()} placeHolder={"Domain"}></TagSelect>
+          <TagSelect data={["Questionary", "Two-dimensional Diagrams/Graphs area","Scale","Pshychophysiology","Post-test Picture/Object",].sort()} placeHolder={"Type"}></TagSelect>
+          <TagSelect data={["Qualitative", "Quantitative", "Quali-Quantitative"].sort()} placeHolder={"Approach"}></TagSelect>
+          <TagSelect data={["Aesthetics", "Affect", "Appreaisal","Aspects of Game Experience"].sort()} placeHolder={"Quality UX"}></TagSelect>
+      </Stack>
+      <Stack sx={{alignItems:"center", marginTop: 5}}>
+        <Button
+        color='secondary'
+        variant="contained"
+        sx={{width:0.2, height: "3rem", borderRadius: 50}}
+        startIcon={<FontAwesomeIcon icon={faMagnifyingGlass}/>}>
+          Filter
+        </Button>
+      </Stack>
     </div>
   );
 }
