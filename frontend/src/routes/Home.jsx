@@ -59,10 +59,10 @@ function Home() {
       <NavigationHeader Filter={setFiltered} data={data_filtered?data_filtered:data} isAdmin={false}>
       </NavigationHeader>
       <div className="title-container">
-        <Typography variant="h1">
-          This is Human Computer Interaction - TIHCI
+        <Typography variant="h1" sx={{marginLeft: 30, marginTop: 10}}>
+          This is Human Computer Interaction
         </Typography>
-        <Typography variant="h3">
+        <Typography variant="h3" color='#505050' sx={{marginLeft: 30, marginTop: 2}}>
           Find the better Instrument for you project
         </Typography>
       </div>

@@ -18,9 +18,9 @@ const theme = createTheme({
       main: '#000000',
       dark: '#00ggff',
     },
-    typography: {
-      fontFamily: "Nunito",
-    },
+  },
+  typography: {
+    fontFamily: "Nunito",
   },
 })
 
