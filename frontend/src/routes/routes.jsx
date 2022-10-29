@@ -10,19 +10,77 @@ const theme = createTheme({
   palette : {
     primary : {
       main: '#7f56ff',
-      light: '#ffggff',
-      dark: '#00ggff',
+      light: '#a48eff',
+      dark: '#7700c0',
     },
     secondary : {
-      light: '#ffggff',
-      main: '#000000',
-      dark: '#00ggff',
+      light: '#ffeeff',
+      main: '#808080',
+      dark: '#111111',
     },
+    button: {
+        text:{
+          main: '#303030',
+        },
+        background:{
+          dark: '#000000',
+        main: '#505050',
+          light: '#aaaaaa',
+        },
+        hover:{
+          main: '#00ffff',
+          dark: '#ffffff',
+          light: '#8000ff',
+        },
+    },
+    textField:{
+      background:{
+        light: '#ffggff',
+        main: '#ffffff',
+        dark: '#00ggff',
+      },
+      outline: {
+        main: '#000000',
+      },
+
+    }
   },
   typography: {
     fontFamily: "Nunito",
+    h1:{
+      fontSize:56,
+    },
+    h2:{
+      fontSize:52,
+    },
+    h3:{
+      fontSize:42,
+    },
   },
 })
+
+theme.components = {
+  MuiOutlinedInput: {
+    styleOverrides:{
+      root: ({theme}) => ({
+        backgroundColor: theme.palette.textField.background.main,
+        borderRadius: "50px",
+      }),
+      "&:hover": ({theme}) => ({
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: "50px",
+      }),
+    },
+  },
+  MuiButton:{
+    styleOverrides:{
+      root:({theme})=>({
+        backgroundColor: theme.palette.secondary.main
+      }),
+    }
+  },
+};
+
 
 function AppRoutes(){
    return(
