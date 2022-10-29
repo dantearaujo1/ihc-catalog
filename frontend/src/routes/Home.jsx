@@ -6,10 +6,16 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
+import InstrumentAddModal from "../components/Modals/InstrumentAdd"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faQuestion,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
+
 
 function Home() {
   const [data, setData] = useState([]);
@@ -61,18 +67,22 @@ function Home() {
         data={data_filtered ? data_filtered : data}
         isAdmin={false}
       ></NavigationHeader>
-      <div className="title-container">
-        <Typography variant="h1" sx={{ marginLeft: 30, marginTop: 10 }}>
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        ml={28}
+      >
+        <Typography variant="h1" sx={{marginTop: 10 }}>
           This is Human Computer Interaction
         </Typography>
         <Typography
           variant="h3"
-          color="#505050"
-          sx={{ marginLeft: 30, marginTop: 2 }}
+          color="primary"
+          sx={{ marginTop: 2 }}
         >
-          Find the better Instrument for you project
+          Find the better Instrument for your project
         </Typography>
-      </div>
+      </Stack>
       <Stack
         direction="row"
         sx={{ flexWrap: "wrap", justifyContent: "center", marginTop: 5 }}
@@ -124,14 +134,15 @@ function Home() {
       </Stack>
       <Stack sx={{ alignItems: "center", marginTop: 5 }}>
         <Button
-          color="secondary"
+          color="primary"
           variant="contained"
           sx={{ width: 0.2, height: "3rem", borderRadius: 50 }}
-          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+          startIcon={<FontAwesomeIcon color="#000000" icon={faMagnifyingGlass} />}
         >
-          Filter
+          <Typography color="secondary.dark">Filter</Typography>
         </Button>
       </Stack>
+      <InstrumentAddModal></InstrumentAddModal>
     </div>
   );
 }
