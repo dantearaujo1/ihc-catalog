@@ -5,13 +5,13 @@ import NavigationHeader from "../components/Navigation/NavigationHeader";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 import InstrumentAddModal from "../components/Modals/InstrumentAdd"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
-  faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
@@ -61,7 +61,7 @@ function Home() {
                       Everytime that filtered is diferrent;
   */
   return (
-    <div>
+    <Box style={{height:"100vh"}}>
       <NavigationHeader
         Filter={setFiltered}
         data={data_filtered ? data_filtered : data}
@@ -70,14 +70,13 @@ function Home() {
       <Stack
         justifyContent="center"
         alignItems="center"
-        ml={28}
       >
         <Typography variant="h1" sx={{marginTop: 10 }}>
           This is Human Computer Interaction
         </Typography>
         <Typography
           variant="h3"
-          color="primary"
+          color="secondary.light"
           sx={{ marginTop: 2 }}
         >
           Find the better Instrument for your project
@@ -143,7 +142,7 @@ function Home() {
         </Button>
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
-    </div>
+    </Box>
   );
 }
 

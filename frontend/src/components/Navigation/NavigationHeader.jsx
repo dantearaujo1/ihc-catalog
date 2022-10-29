@@ -12,12 +12,24 @@ import { Typography } from "@mui/material";
 
 function NavigationHeader({Filter, data, isAdmin}) {
 
-
   return (
-    <Box className="nav-container">
-        <Stack direction="row" spacing={2} marginLeft={3} marginRight={ 10 } justifyContent="space-between" className="nav-items" >
-          <Typography variant="h1">
-              TIHCI
+    <Box
+      className="nav-container"
+      backgroundColor="page.background.primary.main"
+      alignItems="center"
+      justifyContent="space-around"
+    >
+        <Stack
+          direction="row"
+          spacing={2}
+          marginLeft={3}
+          marginRight={ 10 }
+          justifyContent="space-between"
+          alignItems="center"
+          className="nav-items"
+        >
+          <Typography color="primary" variant="h1">
+              IHC-Catalog
           </Typography>
         <Box
           sx={{width: 0.3 }}
@@ -32,10 +44,8 @@ function NavigationHeader({Filter, data, isAdmin}) {
           renderInput={(params) => (
             <TextField
               {...params}
-              variant='standard'
-              sx={{width: 0.9, left:20, borderRadius:50}}
               label="Search"
-              placeholder="Instrument UX"
+              sx={{"& .MuiOutlinedInput-root":{borderRadius:"50px"}}}
             />
           )}/>:null}
         </Box>

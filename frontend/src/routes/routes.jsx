@@ -18,6 +18,13 @@ const theme = createTheme({
       main: '#808080',
       dark: '#111111',
     },
+    page : {
+      background:{
+        primary:{
+          main:"#000000",
+        },
+      },
+    },
     button: {
         text:{
           main: '#303030',
