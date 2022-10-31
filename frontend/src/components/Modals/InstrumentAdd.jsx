@@ -33,13 +33,14 @@ function InstrumentAddModal() {
             position: "absolute",
             width: "4%",
             aspectRatio: "1/1",
-            right: 20,
+            right: 30,
+            bottom: 30,
             borderTopLeftRadius: 50,
             borderBottomLeftRadius: 50,
             borderTopRightRadius: 50,
           }}
         >
-          <Typography color="secondary.dark">
+          <Typography color="text.content.dark">
             <FontAwesomeIcon size="lg" icon={faQuestion} />
           </Typography>
         </Button>
