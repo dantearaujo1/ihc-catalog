@@ -14,15 +14,44 @@ const theme = createTheme({
       dark: '#7700c0',
     },
     secondary : {
-      light: '#ffeeff',
-      main: '#808080',
-      dark: '#111111',
+      light: '#00ECF4',
+      main: '#00C7CE',
+      dark: '#00959B',
     },
     page : {
       background:{
         primary:{
-          main:"#000000",
+          light:"#808080",
+          main:"#606060",
+          dark:"#202020",
         },
+        secondary:{
+          light:"#aaaaaa",
+          main:"#808080",
+          dark:"#606060",
+        },
+      },
+    },
+    text: {
+      header :{
+
+      },
+      content :{
+        light: "#606060",
+        main: "#303030",
+        dark: "#000000",
+      },
+    },
+    status : {
+      success: {
+        light: "#00aa00",
+        main: "#008000",
+        dark: "#006000"
+      },
+      error: {
+        light: "#bb0000",
+        main: "#990000",
+        dark: "#700000"
       },
     },
     button: {
@@ -30,9 +59,9 @@ const theme = createTheme({
           main: '#303030',
         },
         background:{
-          dark: '#000000',
-        main: '#505050',
-          light: '#aaaaaa',
+          light: '#808080',
+          main: "#505050",
+          dark: '#202020',
         },
         hover:{
           main: '#00ffff',
@@ -82,7 +111,7 @@ theme.components = {
   MuiButton:{
     styleOverrides:{
       root:({theme})=>({
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.button.background.light
       }),
     }
   },

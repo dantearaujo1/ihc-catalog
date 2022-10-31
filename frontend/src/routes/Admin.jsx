@@ -59,15 +59,15 @@ function Admin() {
       <div className="menu-container">
         <Box sx={{
           width: '100%',
-          backgroundColor: '#303030',
+          backgroundColor: 'page.background.primary.main',
         }} >
           <Tabs value={value} onChange={handleChange}
             sx={{
               '& .MuiTab-textColorPrimary.Mui-selected': {
-                color:'#7f56ff',
+                color:'primary.light',
               },
               '& .MuiTab-textColorPrimary': {
-                color:'#808080',
+                color:'text.content.main',
               },
 
             }}

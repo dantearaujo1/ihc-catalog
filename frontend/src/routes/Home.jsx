@@ -76,7 +76,7 @@ function Home() {
         </Typography>
         <Typography
           variant="h3"
-          color="secondary.light"
+          color="text.content.light"
           sx={{ marginTop: 2 }}
         >
           Find the better Instrument for your project
@@ -138,7 +138,7 @@ function Home() {
           sx={{ width: 0.2, height: "3rem", borderRadius: 50 }}
           startIcon={<FontAwesomeIcon color="#000000" icon={faMagnifyingGlass} />}
         >
-          <Typography color="secondary.dark">Filter</Typography>
+          <Typography color="text.content.dark">Filter</Typography>
         </Button>
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
