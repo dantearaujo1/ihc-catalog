@@ -15,7 +15,7 @@ function NavigationHeader({Filter, data, isAdmin}) {
   return (
     <Box
       className="nav-container"
-      backgroundColor="page.background.primary.main"
+      backgroundColor="page.background.primary.dark"
       alignItems="center"
       justifyContent="space-around"
     >
