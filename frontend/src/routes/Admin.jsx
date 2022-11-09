@@ -10,6 +10,7 @@ import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 
 import SuggestionList from '../components/Navigation/SuggestionList'
+import InstrumentManager from '../components/Navigation/InstrumentManager'
 
 // Copied code from mui.com ==========================
 function TabPanel(props) {
@@ -84,8 +85,8 @@ function Admin() {
           </Tabs>
           </Box>
         <TabPanel value={value} index={0}><SuggestionList></SuggestionList></TabPanel>
-        <TabPanel value={value} index={1}>Hallooo</TabPanel>
-        <TabPanel value={value} index={2}>Hallo</TabPanel>
+        <TabPanel value={value} index={1}></TabPanel>
+        <TabPanel value={value} index={2}><InstrumentManager></InstrumentManager></TabPanel>
       </div>
     </div>
   );
