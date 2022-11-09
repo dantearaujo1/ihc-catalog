@@ -9,8 +9,8 @@ import TextField from "@mui/material/TextField";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faQuestion,
-} from "@fortawesome/free-solid-svg-icons";
+  faLightbulb,
+} from "@fortawesome/free-regular-svg-icons";
 
 import { useState, useEffect } from "react";
 
@@ -31,8 +31,8 @@ function InstrumentAddModal() {
             justifyContent: "center",
             alignItems: "center",
             position: "absolute",
-            width: "4%",
-            aspectRatio: "1/1",
+            textTransform: "none",
+            width: "auto",
             right: 30,
             bottom: 30,
             borderTopLeftRadius: 50,
@@ -40,8 +40,9 @@ function InstrumentAddModal() {
             borderTopRightRadius: 50,
           }}
         >
-          <Typography color="text.content.dark">
-            <FontAwesomeIcon size="lg" icon={faQuestion} />
+          <Typography color="text.content.white" variant="h7">
+            <FontAwesomeIcon size="1x" icon={ faLightbulb } beatFade />
+            <Typography color="text.content.white" variant="h7"> Leave a Suggestion </Typography>
           </Typography>
         </Button>
       </Box>
@@ -126,22 +127,22 @@ function InstrumentAddModal() {
                 variant="contained"
                 sx={{
                   width:"40%",
-                  borderRadius:"5px",
+                  borderRadius:"50px",
                   margin: "10px",
                 }}
               >
-              <Typography color="button.text.main">Ok</Typography>
+              <Typography color="button.text.light">Ok</Typography>
               </Button>
               <Button
                 onClick={handleClose}
                 variant="contained"
                 sx={{
-                  borderRadius:"5px",
+                  borderRadius:"50px",
                   width:"40%",
                   margin: "10px"
                 }}
               >
-              <Typography color="button.text.main">Cancel</Typography>
+              <Typography color="button.text.light">Cancel</Typography>
               </Button>
             </Box>
           </Box>
