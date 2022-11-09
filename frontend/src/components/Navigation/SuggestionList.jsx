@@ -1,4 +1,4 @@
-import React, { useState, Item } from 'react'
+import React, { useState, useEffect, Item } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Checkbox from '@mui/material/Checkbox'
@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 // TODO: tooltip should show categories from the groups
-function Suggestion({ info }) {
+function Suggestion({ info, value, onChange }) {
   return (
     <Stack
       direction="row"
@@ -20,7 +20,11 @@ function Suggestion({ info }) {
       justifyContent="center"
       mb={1}
     >
-      <Checkbox></Checkbox>
+      <Checkbox
+        checked={value}
+        onChange={onChange}
+      >
+      </Checkbox>
       <Stack
         direction="row"
         alignItems="center"
@@ -46,12 +50,12 @@ function Suggestion({ info }) {
           )
         })}
       </Stack>
-      <Typography color="text.content.dark" width="75%" textAlign="left" ml={2} > {info.message}</Typography>
+      <Typography color="text.content.dark" width="75%" textAlign="left" ml={2} >{info.message}</Typography>
       <Button variant='contained' size="small"  sx={{minWidth: 0 ,width:"20px",minHeight: 0 ,height:"20px", borderRadius:"50px", marginRight:"10px"}}>
-        <Typography color="status.success.main" m={2}> <FontAwesomeIcon icon={faCheck}></FontAwesomeIcon></Typography>
+        <Typography color="status.success.main" m={2}><FontAwesomeIcon icon={faCheck}></FontAwesomeIcon></Typography>
       </Button>
       <Button variant='contained' color="primary" size="small"  sx={{minWidth: 0 ,width:"20px",minHeight: 0 ,height:"20px", borderRadius:"50px", marginRight:"10px"}}>
-        <Typography color="status.error.main" m={2}> <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon></Typography>
+        <Typography color="status.error.main" m={2}><FontAwesomeIcon icon={faXmark}></FontAwesomeIcon></Typography>
       </Button>
     </Stack>
   )
@@ -107,13 +111,25 @@ export default function SuggestionList() {
         }]
     }
   ]);
+  const [ isChecked, setCheckedState ] = useState(new Array(data.length).fill(false));
+
+  useEffect(() => { console.log(isChecked) }, [isChecked]);
+
+  const handleSelected = ( position ) => {
+    const updateCheckedState = isChecked.map( (item, index) => {
+      return (index === position ? !item : item);
+    } );
+
+    setCheckedState(updateCheckedState);
+  }
 
   return (
     <Stack backgroundColor="transparent"  alignItems="center">
-      {data.map((item) => {
-        return <Suggestion info={item}></Suggestion>
+      {data.map((item, index) => {
+        return <Suggestion info={item} value={isChecked[index]} onChange={() => handleSelected(index)}></Suggestion>
       })}
     </Stack>
   )
+
 };
 
