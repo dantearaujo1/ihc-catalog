@@ -40,7 +40,7 @@ function Login() {
       >
         <Avatar sx={{ m: 2, bgcolor: "#000000" }} />
         <Typography component="h1" variant="h5">
-          Sign in
+          ADM Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -64,27 +64,22 @@ function Login() {
             autoComplete="current-password"
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox value="remember" sx={{ ml:0.3 , borderRadius:50 }} color="primary" />}
             label="Remember me"
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, borderRadius: 50}}
             onClick={() => navigate("/dboard_admin")}
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
+          <Grid container >
+            <Grid item xs={12} textAlign="center" >
+              <Link href="#"  variant="body2">
                 Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
