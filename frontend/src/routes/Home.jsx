@@ -20,7 +20,7 @@ import { useState, useEffect } from "react";
 function Home() {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState("");
-  const [data_filtered, setDataFiltered] = useState();
+  const [data_filtered, setDataFiltered] = useState([]);
 
   // Getting data from the backend
   // WARN: we should use useQuery hook for this
@@ -32,7 +32,7 @@ function Home() {
       setData(json.complete_detailed_list);
     };
     fetch_data().catch(console.error);
-  }, [filtered]);
+  }, []);
 
   // This will work as our searchBar filter
   useEffect(() => {
@@ -43,6 +43,7 @@ function Home() {
       setDataFiltered(
         data.filter((article) => {
           if (article.ux_instruments) {
+            console.log(filtered);
             return article.ux_instruments
               .toLowerCase()
               .includes(filtered.toLowerCase());
@@ -53,9 +54,7 @@ function Home() {
     // if searchBar is empty we should set our full data to the list
     else {
       // checking if we already have some data
-      if (data.lenght !== 0) {
-        setDataFiltered([]);
-      }
+      setDataFiltered([]);
     }
   }, [filtered]); /* This last parameters means that we gonna call useEffect
                       Everytime that filtered is diferrent;
@@ -64,27 +63,35 @@ function Home() {
     <Box style={{height:"100vh"}}>
       <NavigationHeader
         Filter={setFiltered}
-        data={data_filtered ? data_filtered : data}
+        data={( data_filtered.length > 0 ) ? data_filtered : data }
         isAdmin={false}
       ></NavigationHeader>
       <Stack
         justifyContent="center"
+        width="100%"
         alignItems="center"
+        sx={{ m: "auto"}}
       >
-        <Typography variant="h1" sx={{marginTop: 10 }}>
-          This is Human Computer Interaction
+        <Typography
+          variant="h1"
+          sx={{marginTop: 10 }}
+        >
+          UX Instruments Catalog
         </Typography>
         <Typography
-          variant="h3"
+          variant="h4"
           color="text.content.light"
-          sx={{ marginTop: 2 }}
         >
-          Find the better Instrument for your project
+          Combine categories and find the best UX Evaluation Methods for your project
         </Typography>
+      </Stack>
+      <Stack>
+
       </Stack>
       <Stack
         direction="row"
-        sx={{ flexWrap: "wrap", justifyContent: "center", marginTop: 5 }}
+        justifyContent="center"
+        sx={{ width: '100', flexWrap: "wrap",  alignItems: "center", marginTop: 10, paddingLeft: 14, paddingRight: 14  }}
       >
         <TagSelect
           data={[
@@ -105,7 +112,7 @@ function Home() {
             "Mobile",
             "Audiovisual",
           ].sort()}
-          placeHolder={"Domain"}
+          placeHolder={"Application Domain"}
         ></TagSelect>
         <TagSelect
           data={[
@@ -131,14 +138,14 @@ function Home() {
           placeHolder={"Quality UX"}
         ></TagSelect>
       </Stack>
-      <Stack sx={{ alignItems: "center", marginTop: 5 }}>
+      <Stack sx={{ alignItems: "center", marginTop: 6 }}>
         <Button
           color="primary"
           variant="contained"
-          sx={{ width: 0.2, height: "3rem", borderRadius: 50 }}
-          startIcon={<FontAwesomeIcon color="#000000" icon={faMagnifyingGlass} />}
+          sx={{ backgroundColor: "#000000", minWidth: 160, height: "3rem", borderRadius: 50 }}
+          startIcon={<FontAwesomeIcon color="text.content.white" icon={faMagnifyingGlass} />}
         >
-          <Typography color="text.content.dark">Filter</Typography>
+          <Typography color="text.content.white" sx={{textTransform:'none'}}>Search</Typography>
         </Button>
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
