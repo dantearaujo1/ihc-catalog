@@ -79,7 +79,7 @@ function Admin() {
             }
 
           }}>
-            <Tab component="a" label="Suggestions"  {...a11yProps(0)}/>
+            <Tab sx={{ml:12}} component="a" label="Suggestions"  {...a11yProps(0)}/>
             <Tab component="a" label="Group Manager"  {...a11yProps(1)}/>
             <Tab component="a" label="Instrument Manager"  {...a11yProps(2)}/>
           </Tabs>
