@@ -1,0 +1,80 @@
+* Project
+
+  Name: IHC-CATALOG
+  [Github]{https://github.com/dantearaujo1/ihc-catalog}
+  [Local Database]{@ backend/dataa.json }
+
+
+* Questions
+
+  Collections
+  We need to know how we gonna handle collections
+  Should Articles be one Collection with Groups embedded or separate things?
+  Should Groups have Categorys inside or they should be separated?
+
+* Bugs
+
+  - [ ] Correct TAG inside Select [HomePage]. It should increase our select size with multiple options
+  - [ ] Correct Search Bar Select [HomePage]. It should not work as a Tag Selection
+
+* Tasks
+
+** Frontend Tasks
+   - [-] Create Components
+   -- [ ] Create Screen Components
+   --- [ ] Create List Results Screen
+   --- [ ] Create Article Description Screen
+   -- [ ] Create Modal Components
+   -- [-] Create Tab Components
+   --- [ ] Instrument Manager
+   --- [ ] Group Manager
+   --- [-] Suggestion List
+   ---- [x] Create ListItem Component
+   ---- [ ] Handle rejection and approval of an item
+   ---- [ ] Handle more than one rejection and approval
+   ---- [ ] Create a Component that can be used by other tabs
+
+
+
+** Backend Tasks
+   - [ ] Create API
+   -- [ ] Define Models
+   --- [ ] Article Model
+   --- [ ] Groups Model
+   --- [ ] Categories Model
+   --- [ ] Admin Model
+   - [ ] Create Routes
+
+
+ * Models
+** Article:
+
+   @code javascript
+   const article = {
+     name: "",
+     year: 2015,
+     framework: "",
+     main_idea: "",
+     general_procedure: "",
+     categories: [{},{}],
+   }
+   @end
+
+** Groups:
+
+   @code javascript
+   const group = {
+     name: "",
+     color: "",
+     categories: [{},{}],
+   }
+   @end
+
+** Categories:
+
+   @code javascript
+   const categories = {
+     name: "",
+     group: {}
+   }
+   @end
