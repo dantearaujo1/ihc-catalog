@@ -35,19 +35,23 @@ function NavigationHeader({Filter, data, isAdmin}) {
         <Box
           sx={{width: 0.3 }}
         >
-          {data?<Autocomplete
-          size='small'
-          id="search-by-instrument"
-          options={data}
-          getOptionLabel={(option) => option.ux_instruments.toString()}
-          onInputChange={(e) => Filter(e.target.value)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search"
-              sx={{"& .MuiOutlinedInput-root":{borderRadius:"50px"}}}
-            />
-          )}/>:null}
+          {data?
+          <Autocomplete
+            freeSolo
+            size='small'
+            id="search-by-instrument"
+            options={data}
+            getOptionLabel={(option) => option.ux_instruments.toString()}
+            onInputChange={(e) => Filter(e.target.value)}
+            renderOption={(props,option,state) => {props.key = props.id; return <li {...props}>{option.ux_instruments}</li>;}}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search"
+                sx={{"& .MuiOutlinedInput-root":{borderRadius:"50px"}}}
+              />
+            )}/>
+          :null}
         </Box>
         <Box className="adm-button">
           {isAdmin?<Link to="/"><FontAwesomeIcon icon={ faRightToBracket } size="sm"></FontAwesomeIcon></Link>:<Link to="/Login"><FontAwesomeIcon icon={ faLock } size="sm"></FontAwesomeIcon></Link>}
