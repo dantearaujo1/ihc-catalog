@@ -22,20 +22,20 @@ function NavigationHeader({Filter, data, isAdmin}) {
         <Stack
           direction="row"
           spacing={2}
+          height="10vh"
           marginLeft={3}
           marginRight={ 10 }
           justifyContent="space-between"
           alignItems="center"
           className="nav-items"
         >
-          <Typography color="primary" variant="h1">
+          <Typography sx={{paddingLeft:11}} color="primary" variant="h4">
               IHC-Catalog
           </Typography>
         <Box
           sx={{width: 0.3 }}
         >
           {data?<Autocomplete
-          multiple
           size='small'
           id="search-by-instrument"
           options={data}
