@@ -1611,6 +1611,7 @@
             "general_procedure": "Visitors to sites complete the standard WAMMI questionnaire plus any additional questions the owner care to ask. The WAMMI team will assist the selecting additional questions to suit the business needs. When there are sufficient responses, usually after about two weeks, the evaluation is terminated. Owner receive an electronic report within two working days. The report benchmarks how well your site performs. Visitor reactions to the site are compared with values in our reference database and are shown in the WAMMI profile results and the Global Usability Score (GUS). More detailed analysis can be made by statement analysis and from visitor feedback about the changes and improvements made. The questionnaire can be used to evaluate intranet, using testing and educational purposes."
         },
         {
+            "ux_instruments": "NO NAME INFORMED",
             "reference": "Chiew, Thiam Kian, and Siti Salwa Salim. \"Webuse: Website usability evaluation tool.\" Malaysian Journal of Computer Science 16.1 (2003): 47-57.",
             "year": "2003",
             "type_of_instrument": "Scale / Questionnaire",
