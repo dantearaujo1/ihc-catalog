@@ -21,9 +21,10 @@ export default function TagSelect(props) {
   };
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl size="medium" sx={{minWidth:190, mr: 2, mt: 2}}>
         <InputLabel id="multi-label">{props.placeHolder}</InputLabel>
           <Select
+          size="lg"
           labelId="multi-label"
           id="multi-select"
           multiple
