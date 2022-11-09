@@ -111,7 +111,7 @@ theme.components = {
   MuiButton:{
     styleOverrides:{
       root:({theme})=>({
-        backgroundColor: theme.palette.button.background.light
+        backgroundColor: theme.palette.button.background.main
       }),
     }
   },
