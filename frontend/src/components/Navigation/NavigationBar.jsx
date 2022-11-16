@@ -23,16 +23,17 @@ export default function NavigationBar() {
 
   return (
     <Stack
-      height={100}
+      height={"7%"}
       direction="row"
       alignItems="center"
       justifyContent="center"
-      backgroundColor="primary.dark"
+      // TODO: Correct this color
+      backgroundColor="#373737"
     >
       {buttons.map((value) => {
         return(
         <Stack>
-          <Button variant="text" sx={{ml:2}}onClick={handleClick}>
+          <Button color="primary" variant="text" sx={{ml:2}}onClick={handleClick}>
             <Typography>
                 {value}
             </Typography>
