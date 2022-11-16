@@ -48,7 +48,6 @@ function Login() {
       body: JSON.stringify(result)
     };
     const okay = await fetch('/api/v1/login/signin',options);
-    console.log(okay.ok);
     if(okay.ok === true){
       navigate("/dboard_admin");
     }
