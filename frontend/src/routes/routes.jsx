@@ -110,8 +110,11 @@ theme.components = {
   },
   MuiButton:{
     styleOverrides:{
-      root:({theme})=>({
+      contained:({theme})=>({
         backgroundColor: theme.palette.button.background.main
+      }),
+      text:({theme})=>({
+        backgroundColor: "transparent"
       }),
     }
   },
