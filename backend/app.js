@@ -18,26 +18,21 @@ const DB_PASS = encodeURIComponent(process.env.DB_PASSWORD);
 const json = require('./dataa.json');
 
 // Connection between database and the server application
-mongoose
-  .connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster-00.8nwrqdh.mongodb.net/?retryWrites=true&w=majority`)
-  .then(() => {
-    console.log("Conectamos ao MongoDB!");
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster-00.8nwrqdh.mongodb.net/ihc-catalog?retryWrites=true&w=majority`) .then(() => {
+    console.log("Connected to MongoDB!");
   })
   .catch((err) => {
     console.log(err);
   });
 
 
-// I Have the ability to create routes
+// Creating api routes
 // ROUTES
 const articleRoutes = require('./routes/articleRoutes');
 app.use(API_URL_PATH.concat('/','article'), articleRoutes);
 
-// TODO: Remove this! Is for testing purpose only
-app.get(API_URL_PATH, (req,res) => {
-  res.json(json);
-});
-
+const loginRoutes = require('./routes/loginRoutes');
+app.use(API_URL_PATH.concat('/','login'), loginRoutes);
 
 // How do we start listening to the server
 app.listen(PORT);
