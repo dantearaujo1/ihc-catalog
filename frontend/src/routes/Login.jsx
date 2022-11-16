@@ -1,10 +1,16 @@
-import React from "react";
+import React , {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
+
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -15,17 +21,56 @@ import Container from "@mui/material/Container";
 function Login() {
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  // Alert Dialog state
+  const [open, setOpen] = useState(true);
+
+  const handleClickClose = () => {
+    setOpen(false);
+  }
+  const handleClickBack = () => {
+    navigate("/");
+  }
+  // ==
+
+  // Login Button handler
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
+    const result = {
+      identifier: data.get("email"),
       password: data.get("password"),
-    });
+    }
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(result)
+    };
+    const okay = await fetch('/api/v1/login/signin',options);
+    if(okay.ok === true){
+      navigate("/dboard_admin");
+    }
   };
 
   return (
     <Container component="main" maxWidth="xs">
+      <Dialog
+        open={open}
+      >
+        <DialogTitle>
+          {"This area is restrict to administrator"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            If you're not an administrator you should go back.
+          </DialogContentText>
+          <DialogActions>
+            <Button onClick={handleClickBack}>Back</Button>
+            <Button onClick={handleClickClose}>Im Admin</Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
       <CssBaseline />
       <Box
         sx={{
@@ -40,7 +85,7 @@ function Login() {
       >
         <Avatar sx={{ m: 2, bgcolor: "#000000" }} />
         <Typography component="h1" variant="h5">
-          ADM Sign in
+          Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -72,7 +117,6 @@ function Login() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, borderRadius: 50}}
-            onClick={() => navigate("/dboard_admin")}
           >
             Sign In
           </Button>

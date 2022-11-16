@@ -1,13 +1,14 @@
 import React from "react";
-import TagSelect from "../components/Filter/TagSelect.jsx";
-import NavigationHeader from "../components/Navigation/NavigationHeader";
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
+import NavigationHeader from "../components/Navigation/NavigationHeader";
+import NavigationBar from "../components/Navigation/NavigationBar"
 import InstrumentAddModal from "../components/Modals/InstrumentAdd"
+import TagSelect from "../components/Filter/TagSelect.jsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +16,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
+
+
 
 
 function Home() {
@@ -65,7 +68,9 @@ function Home() {
         Filter={setFiltered}
         data={( data_filtered.length > 0 ) ? data_filtered : data }
         isAdmin={false}
-      ></NavigationHeader>
+      >
+      </NavigationHeader>
+      <NavigationBar></NavigationBar>
       <Stack
         justifyContent="center"
         width="100%"
@@ -84,9 +89,6 @@ function Home() {
         >
           Combine categories and find the best UX Evaluation Methods for your project
         </Typography>
-      </Stack>
-      <Stack>
-
       </Stack>
       <Stack
         direction="row"
