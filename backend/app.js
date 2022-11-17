@@ -18,8 +18,10 @@ const DB_USER = process.env.DB_USER; // You should have a .env file with these i
 const DB_PASS = encodeURIComponent(process.env.DB_PASSWORD);
 
 // Local data
-const json = require('./dataa.json');
-app.get(API_URL_PATH, (req, res) => { res.json(json);});
+// already in the database
+// const json = require('./dataa.json');
+// app.get(API_URL_PATH, (req, res) => { res.json(json);});
+
 
 // Connection between database and the server application
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster-00.8nwrqdh.mongodb.net/ihc-catalog?retryWrites=true&w=majority`) .then(() => {
