@@ -7,61 +7,19 @@ Web Application Catalog for IHC Avaliation Instruments with additional features.
 
 * Create a web application that is capable of filter a set of combinations of caracteristics of an Instrument and show to the user a list with compatibles instruments;
 * Create a system of suggestion for the user send to the admin know what instruments are missing;
-* Create a blog post system for the admin post varied subjects of IHC Avaliation of User Experience (UX)
 
 ***
 
-### Folder Structure
-
-```bash
-.root
-|-- .dockerignore
-|-- .gitignore
-|-- Dockerfile
-|-- README.md
-|-- backend
-|   |-- app.js
-|   |-- dataa.json
-|   |-- package-lock.json
-|   `-- package.json
-|-- frontend
-|   |-- index.html
-|   |-- package-lock.json
-|   |-- package.json
-|   |-- public
-|   |   `-- vite.svg
-|   |-- src
-|   |   |-- App.css
-|   |   |-- App.jsx
-|   |   |-- assets
-|   |   |   `-- react.svg
-|   |   |-- components
-|   |   |   |-- BodyFilter
-|   |   |   |   |-- BodyFilter.css
-|   |   |   |   `-- BodyFilter.jsx
-|   |   |   `-- Navigation
-|   |   |       |-- NavigationHeader.css
-|   |   |       `-- NavigationHeader.jsx
-|   |   |-- index.css
-|   |   |-- main.jsx
-|   |   `-- routes
-|   |       |-- Admin.jsx
-|   |       |-- Home.jsx
-|   |       `-- routes.jsx
-|   `-- vite.config.js
-|-- package-lock.json
-`-- package.json
-```
-
-
-***
 
 #### Instructions
 
-1. Git clone this project into a directory of your preference
+1. Git clone this project into a directory of your preference.
+2. For now we only have files inside develop branch
 
 ```git
 git clone https://github.com/dantearaujo1/ihc-catalog && cd ihc-catalog
+git checkout develop
+
 ```
 
 2. Follow one of the following options
@@ -93,10 +51,76 @@ docker run -dp 3000:5173 ihc-tihci
 
 ```NodeJS
 npm install
-npm install --prefix ./frontend
-npm install --prefix ./backend
+```
+
+* Wait for the installation end and after that run the commnd:
+
+```NodeJS
 npm run dev
 ```
+
 * Go to you we browser and see the application running at:
 
  &ensp; &ensp; &ensp; [TIHCI - Web Application](http://localhost:5173)
+
+***
+
+### Folder Structure
+
+```bash.
+|-- .dockerignore
+|-- .gitignore
+|-- Dockerfile
+|-- README.md
+|-- backend
+|   |-- app.js
+|   |-- controllers
+|   |   `-- userController.js
+|   |-- dataa.json
+|   |-- models
+|   |   |-- Article.js
+|   |   |-- Groups.js
+|   |   `-- User.js
+|   |-- package-lock.json
+|   |-- package.json
+|   `-- routes
+|       |-- articleRoutes.js
+|       `-- loginRoutes.js
+|-- frontend
+|   |-- index.html
+|   |-- package-lock.json
+|   |-- package.json
+|   |-- public
+|   |   `-- vite.svg
+|   |-- src
+|   |   |-- App.css
+|   |   |-- App.jsx
+|   |   |-- assets
+|   |   |   `-- react.svg
+|   |   |-- components
+|   |   |   |-- Filter
+|   |   |   |   `-- TagSelect.jsx
+|   |   |   |-- Modals
+|   |   |   |   `-- InstrumentAdd.jsx
+|   |   |   `-- Navigation
+|   |   |       |-- InstrumentManager.jsx
+|   |   |       |-- NavigationBar.jsx
+|   |   |       |-- NavigationHeader.css
+|   |   |       |-- NavigationHeader.jsx
+|   |   |       `-- SuggestionList.jsx
+|   |   |-- index.css
+|   |   |-- main.jsx
+|   |   `-- routes
+|   |       |-- Admin.jsx
+|   |       |-- Home.jsx
+|   |       |-- Login.jsx
+|   |       `-- routes.jsx
+|   `-- vite.config.js
+|-- package-lock.json
+|-- package.json
+`-- todo.norg
+
+```
+
+
+***
