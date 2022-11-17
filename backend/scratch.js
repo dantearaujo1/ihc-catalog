@@ -16,11 +16,11 @@ const getDistinctValues = (data , category) => {
   return uniqueArray;
 }
 
-const createObject = (groupName, list) => {
-  return list.map( (subgroupName) => {
+const createObject = (categoryName, list) => {
+  return list.map( (subCategoryName) => {
     jobj = {
-      groupName: groupName,
-      name: subgroupName,
+      categoryName: categoryName,
+      name: subCategoryName,
     }
     return jobj;
   })
