@@ -18,8 +18,10 @@ const DB_USER = process.env.DB_USER; // You should have a .env file with these i
 const DB_PASS = encodeURIComponent(process.env.DB_PASSWORD);
 
 // Local data
-const json = require('./dataa.json');
-app.get(API_URL_PATH, (req, res) => { res.json(json);});
+// already in the database
+// const json = require('./dataa.json');
+// app.get(API_URL_PATH, (req, res) => { res.json(json);});
+
 
 // Connection between database and the server application
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@cluster-00.8nwrqdh.mongodb.net/ihc-catalog?retryWrites=true&w=majority`) .then(() => {
@@ -36,6 +38,9 @@ app.use(API_URL_PATH.concat('/','article'), articleRoutes);
 
 const loginRoutes = require('./routes/loginRoutes');
 app.use(API_URL_PATH.concat('/','login'), loginRoutes);
+
+const categoryRoutes = require('./routes/categoryRoutes');
+app.use(API_URL_PATH.concat('/','article'), categoryRoutes);
 
 // How do we start listening to the server
 app.listen(PORT);

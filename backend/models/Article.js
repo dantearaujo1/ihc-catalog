@@ -8,23 +8,21 @@ const articleSchema = new mongoose.Schema({
   },
   reference: {
     type:String,
-    trim:true,
-  },
-  type: {
-    type:String,
     required:true,
+    trim:true,
   },
   year: {
     type:Number,
+    required:true,
   },
-  groups: {
+  main: {
     type:String,
   },
-  contents: {
+  general: {
     type:String,
   },
 })
 
-const Article = mongoose.model('Articles', articleSchema)
+const Article = mongoose.model('Article', articleSchema)
 
 module.exports = Article

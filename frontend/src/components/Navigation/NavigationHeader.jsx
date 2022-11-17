@@ -37,13 +37,13 @@ function NavigationHeader({Filter, data, isAdmin}) {
         >
           {data?
           <Autocomplete
-            freeSolo
             size='small'
             id="search-by-instrument"
             options={data}
-            getOptionLabel={(option) => option.ux_instruments.toString()}
+            getOptionLabel={(option) => option.name.toString()}
+            onChange={(e,value) => {if(value !== null) console.log(value._id);}}
             onInputChange={(e) => Filter(e.target.value)}
-            renderOption={(props,option,state) => {props.key = props.id; return <li {...props}>{option.ux_instruments}</li>;}}
+            renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
             renderInput={(params) => (
               <TextField
                 {...params}
