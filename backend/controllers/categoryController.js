@@ -143,13 +143,26 @@ const createCategory = async (req,res) => {
 }
 
 const getCategories = async (req, res) => {
- try {
-  const categories = await Category.find();
-  res.status(200).json(categories);
- } catch (error) {
-  res.status(500).json({error:error});
- }
+  try {
+    const categories = await Category.find();
+    res.status(200).json(categories);
+  } catch (error) {
+    res.status(500).json({error:error});
+  }
+}
+const getCategoryByName = async (req, res) => {
+  const categoryName = req.params.name;
+  try {
+    const category = await Category.find({name:categoryName});
+    if(category.length === 0){
+      return res.status(422).json({message:"Could not find any category with this name!"})
+    }
+    res.status(200).json(category);
+  } catch (error) {
+    res.status(500).json({error:error});
+  }
 }
 
 module.exports.createCategory = createCategory;
 module.exports.getCategories = getCategories;
+module.exports.getCategoryByName = getCategoryByName;
