@@ -115,6 +115,7 @@ const deleteArticle = async (req,res) => {
 //
 //   });
 // }
+// module.exports.sendToDatabase = sendToDatabase;
 
 
 module.exports.createArticle = createArticle;
@@ -122,4 +123,3 @@ module.exports.getArticleById = getArticleById;
 module.exports.getArticles = getArticles;
 module.exports.patchArticle = patchArticle;
 module.exports.deleteArticle = deleteArticle;
-module.exports.sendToDatabase = sendToDatabase;
