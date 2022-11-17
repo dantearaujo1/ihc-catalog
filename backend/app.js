@@ -39,5 +39,8 @@ app.use(API_URL_PATH.concat('/','article'), articleRoutes);
 const loginRoutes = require('./routes/loginRoutes');
 app.use(API_URL_PATH.concat('/','login'), loginRoutes);
 
+const categoryRoutes = require('./routes/categoryRoutes');
+app.use(API_URL_PATH.concat('/','article'), categoryRoutes);
+
 // How do we start listening to the server
 app.listen(PORT);
