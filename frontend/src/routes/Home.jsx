@@ -10,6 +10,7 @@ import NavigationBar from "../components/Navigation/NavigationBar"
 import InstrumentAddModal from "../components/Modals/InstrumentAdd"
 import TagSelect from "../components/Filter/TagSelect.jsx";
 
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -29,10 +30,10 @@ function Home() {
   // WARN: we should use useQuery hook for this
   useEffect(() => {
     const fetch_data = async () => {
-      const data = await fetch("/api/v1");
+      const data = await fetch("/api/v1/article/");
       const json = await data.json();
       // Setting data to data using useState
-      setData(json.complete_detailed_list);
+      setData(json);
     };
     fetch_data().catch(console.error);
   }, []);
@@ -152,6 +153,7 @@ function Home() {
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
     </Box>
+
   );
 }
 
