@@ -8,10 +8,12 @@ const articleSchema = new mongoose.Schema({
   },
   reference: {
     type:String,
+    required:true,
     trim:true,
   },
   year: {
     type:Number,
+    required:true,
   },
   main: {
     type:String,
