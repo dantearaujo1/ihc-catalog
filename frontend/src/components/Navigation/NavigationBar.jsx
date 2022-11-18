@@ -26,6 +26,7 @@ export default function NavigationBar() {
       height={"7%"}
       direction="row"
       alignItems="center"
+      sx={{mb:4}}
       justifyContent="center"
       // TODO: Correct this color
       backgroundColor="#373737"
