@@ -6,6 +6,7 @@ import Home from "./Home";
 import Admin from "./Admin";
 import Login from "./Login";
 import ResultList from "./ResultList";
+import InstrumentDetail from "./InstrumentDetail";
 
 const theme = createTheme({
   palette : {
@@ -127,10 +128,11 @@ function AppRoutes(){
        <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Routes>
-            <Route element={ <Login/> }  path="/login" exact />
+            <Route element={ <Login/> }  path="/admin" exact />
             <Route element={ <Home/> }  path="/" exact />
-            <Route element={ <Admin/> }  path="/dboard_admin" exact />
+            <Route element={ <Admin/> }  path="/admin_dboard" exact />
             <Route element={ <ResultList/> }  path="/result" exact />
+            <Route element={ <InstrumentDetail/> }  path="/instrument_detail" exact />
           </Routes>
         </ThemeProvider>
        </BrowserRouter>
