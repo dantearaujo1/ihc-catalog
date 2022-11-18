@@ -44,7 +44,8 @@ const InstrumentDetail = () => {
             </Stack>
           <Button  variant='contained' sx={{mt: 5, mb: 6, borderRadius: 10}}>
             <FontAwesomeIcon  icon={faArrowLeftLong}/>
-            <Typography ml={2}>Back</Typography></Button>
+            <Typography ml={2}>Back</Typography>
+          </Button>
           <Stack height="40%" spacing={3}>
                 <Typography variant="h4">You may also be Interessed in ...</Typography>
                 <Stack direction="row"  spacing={2}>
