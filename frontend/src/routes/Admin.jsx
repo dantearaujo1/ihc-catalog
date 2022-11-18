@@ -89,19 +89,19 @@ function Admin() {
 
   return(
     <div>
-      <NavigationHeader isAdmin={true}></NavigationHeader>
+      <NavigationHeader show={false}></NavigationHeader>
       <div className="menu-container">
         <Box sx={{
           width: '100%',
-          backgroundColor: 'page.background.primary.main',
+          backgroundColor: 'page.background.primary.dark',
         }} >
           <Tabs value={value} onChange={handleChange}
             sx={{
               '& .MuiTab-textColorPrimary.Mui-selected': {
-                color:'primary.light',
+                color:'secondary.light',
               },
               '& .MuiTab-textColorPrimary': {
-                color:'text.content.main',
+                color:'white',
               },
 
             }}

@@ -20,7 +20,7 @@ const InstrumentDetail = () => {
     <Box>
       <NavigationHeader/>
       <NavigationBar/>
-      <Stack  height="auto" backgroundColor="page.background.primary.main" alignItems="center">
+      <Stack  height="auto" backgroundColor="page.background.secondary.light" alignItems="center">
           <Stack width="70%" height="100%" sx={{mt:8}}  alignItems="flex-start">
             <Typography variant="h2">Title</Typography>
             <Stack  direction='row' width="100%" height="100%">
