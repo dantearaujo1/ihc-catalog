@@ -2,13 +2,14 @@ import "./NavigationHeader.css"
 import {Link} from 'react-router-dom'
 
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightToBracket, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import { Typography } from "@mui/material";
+import InputAdornment from '@mui/material/InputAdornment';
+import Typography from "@mui/material/Typography";
 
 function NavigationHeader({Filter, data, show}) {
 
@@ -49,6 +50,14 @@ function NavigationHeader({Filter, data, show}) {
               <TextField
                 {...params}
                 label="Search"
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+                      </InputAdornment>
+                    )
+                  }}
                 sx={{"& .MuiOutlinedInput-root":{borderRadius:"50px"}}}
               />
             )}/>
