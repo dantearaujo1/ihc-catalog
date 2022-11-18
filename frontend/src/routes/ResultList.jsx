@@ -12,7 +12,7 @@ import Pagination from "@mui/material/Pagination"
 
 import NavigationHeader from "../components/Navigation/NavigationHeader"
 import NavigationBar from "../components/Navigation/NavigationBar"
-const ArticleList = () => {
+const ArticleCard = () => {
   const [data, setData] = useState({});
   return (
     <Box>
@@ -47,8 +47,8 @@ const ResultList = () => {
       <NavigationHeader></NavigationHeader>
       <NavigationBar></NavigationBar>
       <Stack sx={{mt:"auto"}} justifyContent="center" alignItems="center">
-        <ArticleList></ArticleList>
-        <ArticleList></ArticleList>
+        <ArticleCard></ArticleCard>
+        <ArticleCard></ArticleCard>
         <Pagination sx={{mt:4}}  count={page}></Pagination>
       </Stack>
     </Stack>
