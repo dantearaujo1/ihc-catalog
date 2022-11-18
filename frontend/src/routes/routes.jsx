@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Home from "./Home";
 import Admin from "./Admin";
 import Login from "./Login";
+import ResultList from "./ResultList";
 
 const theme = createTheme({
   palette : {
@@ -129,6 +130,7 @@ function AppRoutes(){
             <Route element={ <Login/> }  path="/login" exact />
             <Route element={ <Home/> }  path="/" exact />
             <Route element={ <Admin/> }  path="/dboard_admin" exact />
+            <Route element={ <ResultList/> }  path="/result" exact />
           </Routes>
         </ThemeProvider>
        </BrowserRouter>
