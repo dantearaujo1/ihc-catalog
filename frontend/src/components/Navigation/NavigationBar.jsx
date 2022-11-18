@@ -1,6 +1,7 @@
 import React , {useState} from 'react'
 
 import Stack from "@mui/material/Stack"
+import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Paper from "@mui/material/Paper"
@@ -23,39 +24,55 @@ export default function NavigationBar() {
 
   return (
     <Stack
-      height={"7%"}
+      height={56} // WARN: PUT MAGIC NUMBER IS A GOOD IDEA?
       direction="row"
+      width="100%"
       alignItems="center"
-      sx={{mb:4}}
-      justifyContent="center"
+      justifyContent="space-evenly"
       // TODO: Correct this color
-      backgroundColor="#373737"
+      backgroundColor="page.background.primary.dark"
     >
-      {buttons.map((value) => {
+      {buttons.map((value,index) => {
         return(
-        <Stack>
-          <Button color="primary" variant="text" sx={{ml:2}}onClick={handleClick}>
+        <Stack width="25%" alignItems="center">
+          <Button color="secondary" variant="text"  onClick={handleClick}>
             <Typography>
                 {value}
             </Typography>
           </Button>
-        </Stack>
-        )
-      })}
-      <Stack>
         <Menu
           variant="menu"
           anchorEl={anchorEl}
+          elevation={0}
+          PaperProps={{
+            sx: {
+              backgroundColor: "page.background.primary.dark",
+              color: "secondary.main",
+              borderTopLeftRadius:0,
+              borderTopRightRadius:0,
+              borderTop:0,
+              mt: 0.5,
+              width: '25%',
+            }
+          }}
           open={open}
           onClose={handleClose}
           anchorOrigin={{
             vertical: "bottom",
-            horizontal:"left"
+            horizontal:"center"
+          }}
+          transformOrigin={{
+            horizontal:"center",
+            vertical:"top"
           }}
         >
-            <MenuItem onClick={handleClose}>Hello</MenuItem>
+          <MenuItem  sx={{justifyContent:"center"}} onClick={handleClose}>
+            <Typography variant="h7">Test</Typography>
+          </MenuItem>
         </Menu>
-      </Stack>
+        </Stack>
+        )
+      })}
     </Stack>
   )
 }
