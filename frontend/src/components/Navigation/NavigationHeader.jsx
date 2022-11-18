@@ -16,24 +16,24 @@ function NavigationHeader({Filter, data, isAdmin}) {
     <Box
       className="nav-container"
       backgroundColor="page.background.primary.dark"
+      height={88}
       alignItems="center"
-      justifyContent="space-around"
     >
         <Stack
           direction="row"
-          spacing={2}
-          height="10vh"
-          marginLeft={3}
-          marginRight={ 10 }
-          justifyContent="space-between"
+          height="100%"
+          backgroundColor="page.background.primary.main"
+          justifyContent="space-around"
           alignItems="center"
           className="nav-items"
         >
-          <Typography sx={{paddingLeft:11}} color="primary" variant="h4">
-              IHC-Catalog
+        <Box width="33%">
+          <Typography color="secondary"  ml={9} variant="h4">
+              HCI-Catalog
           </Typography>
+        </Box>
         <Box
-          sx={{width: 0.3 }}
+          sx={{ width: "33%",  }}
         >
           {data?
           <Autocomplete
@@ -53,9 +53,12 @@ function NavigationHeader({Filter, data, isAdmin}) {
             )}/>
           :null}
         </Box>
-        <Box className="adm-button">
-          {isAdmin?<Link to="/"><FontAwesomeIcon icon={ faRightToBracket } size="sm"></FontAwesomeIcon></Link>:<Link to="/Login"><FontAwesomeIcon icon={ faLock } size="sm"></FontAwesomeIcon></Link>}
-        </Box>
+        <Box width="33%" ></Box>
+
+        {/* <Box className="adm-button"> */}
+        {/*   {isAdmin?<Link to="/"><FontAwesomeIcon icon={ faRightToBracket } size="sm"></FontAwesomeIcon></Link>:<Link to="/Login"><FontAwesomeIcon icon={ faLock } size="sm"></FontAwesomeIcon></Link>} */}
+        {/* </Box> */}
+
         </Stack>
     </Box>
   )
