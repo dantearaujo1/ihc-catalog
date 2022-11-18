@@ -7,43 +7,46 @@
 
 * Questions
 
-  Collections
-  We need to know how we gonna handle collections
-  Should Articles be one Collection with Groups embedded or separate things?
-  Should Groups have Categorys inside or they should be separated?
 
 * Bugs
 
   - [ ] Correct TAG inside Select [HomePage]. It should increase our select size with multiple options
-  - [ ] Correct Search Bar Select [HomePage]. It should not work as a Tag Selection
+  - [x] Correct Search Bar Select [HomePage]. It should not work as a Tag Selection
+  - [ ] Search Bar works only in [ Homepage ]
+    This is because backendapi are not being fetched in other pages and
+  currently we don't have a global store to pass to another routes
 
 * Tasks
 
 ** Frontend Tasks
    - [-] Create Components
-   -- [ ] Create Screen Components
-   --- [ ] Create List Results Screen
-   --- [ ] Create Article Description Screen
-   -- [ ] Create Modal Components
-   -- [-] Create Tab Components
+   -- [x] Create Screen Components
+   --- [x] Create List Results Screen
+   --- [x] Create Article Description Screen
+   -- [x] Create Modal Components
+   -- [ ] Create Tab Components
    --- [ ] Instrument Manager
    --- [ ] Group Manager
-   --- [-] Suggestion List
-   ---- [x] Create ListItem Component
+   --- [ ] Suggestion List
+   ---- [ ] Create ListItem Component
    ---- [ ] Handle rejection and approval of an item
    ---- [ ] Handle more than one rejection and approval
    ---- [ ] Create a Component that can be used by other tabs
+   - [x] Fix
+   -- [x] Center Autocomplete in NavigationHeader
+   -- [x] Remove locker and add path to admin route
+   --- [x] Admin route now is /admin and dashboard is /admin_dboard
 
 
 
 ** Backend Tasks
-   - [ ] Create API
-   -- [ ] Define Models
-   --- [ ] Article Model
-   --- [ ] Groups Model
-   --- [ ] Categories Model
+   - [-] Create API
+   -- [-] Define Models
+   --- [x] Article Model
+   --- [x] Groups Model
+   --- [x] Categories Model
+   --- [x] SubCategories Model
    --- [ ] Admin Model
-   - [ ] Create Routes
 
 
  * Models
@@ -52,11 +55,10 @@
    @code javascript
    const article = {
      name: "",
-     year: 2015,
-     framework: "",
+     year: number,
+     reference: "",
      main_idea: "",
      general_procedure: "",
-     categories: [{},{}],
    }
    @end
 
@@ -65,8 +67,8 @@
    @code javascript
    const group = {
      name: "",
-     color: "",
-     categories: [{},{}],
+     categoryID: RefOBJID,
+     subcategoryID: RefOBJID,
    }
    @end
 
@@ -75,6 +77,10 @@
    @code javascript
    const categories = {
      name: "",
-     group: {}
+     color: "",
+   }
+   const subCategories = {
+     name: "",
+     categoryID: RefOBJID,
    }
    @end
