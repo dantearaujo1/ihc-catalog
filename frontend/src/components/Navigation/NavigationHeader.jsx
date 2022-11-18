@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { Typography } from "@mui/material";
 
-function NavigationHeader({Filter, data, isAdmin}) {
+function NavigationHeader({Filter, data, show}) {
 
   return (
     <Box
@@ -35,7 +35,8 @@ function NavigationHeader({Filter, data, isAdmin}) {
         <Box
           sx={{ width: "33%",  }}
         >
-          {data?
+          {/* {data? */}
+          {show?
           <Autocomplete
             size='small'
             id="search-by-instrument"
@@ -51,7 +52,8 @@ function NavigationHeader({Filter, data, isAdmin}) {
                 sx={{"& .MuiOutlinedInput-root":{borderRadius:"50px"}}}
               />
             )}/>
-          :null}
+            :null}
+          {/* :null} */}
         </Box>
         <Box width="33%" ></Box>
 
@@ -62,6 +64,10 @@ function NavigationHeader({Filter, data, isAdmin}) {
         </Stack>
     </Box>
   )
+}
+
+NavigationHeader.defaultProps = {
+  show: true,
 }
 
 export default NavigationHeader
