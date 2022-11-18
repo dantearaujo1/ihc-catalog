@@ -1,4 +1,5 @@
 import React , {useState} from 'react'
+import { useNavigate } from "react-router-dom";
 
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
@@ -14,12 +15,14 @@ export default function NavigationBar() {
   // const [buttons, setButtons] = useState(["Hello"]);
   const buttons = ["Application Domain", "Approach", "Quality UX", "Target", "Type"];
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
   const handleClose = () => {
     setAnchorEl(null);
+    navigate('/result')
   }
 
   return (
