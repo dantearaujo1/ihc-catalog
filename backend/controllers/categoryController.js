@@ -40,6 +40,40 @@ const getSubCategoryById = async (req,res) => {
      res.status(500).json({error:error});
   }
 }
+const getSubCategoriesByGroupName = async (req,res) => {
+  const name = req.params.name;
+  try {
+
+    const category = await Category.findOne({name:name})
+    if(!category){
+      return res.status(422).json({message: "Couldn't find any category with this name!"})
+    }
+    const subcategoryList = await SubCategory.find({categoryID: category._id});
+    if(!subcategoryList){
+      return res.status(422).json({message: "There is no subcategory inside this category group"});
+    }
+    res.status(200).json(subcategoryList);
+
+  } catch (error) {
+     res.status(500).json({error:error});
+  }
+}
+
+const getSubCategoriesByGroupId = async (req,res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const subcategoryList = await SubCategory.find({categoryID: id});
+    if(!subcategoryList){
+      res.status(422).json({message: "There is no subcategory inside this category group"});
+      return;
+    }
+    res.status(200).json(subcategoryList);
+
+  } catch (error) {
+     res.status(500).json({error:error});
+  }
+}
 
 const getSubCategories = async (req, res) => {
   try {
@@ -115,6 +149,8 @@ const deleteSubCategory = async (req,res) => {
 
 module.exports.createSubCategory = createSubCategory;
 module.exports.getSubCategoryById = getSubCategoryById;
+module.exports.getSubCategoriesByGroupName = getSubCategoriesByGroupName;
+module.exports.getSubCategoriesByGroupId  = getSubCategoriesByGroupId ;
 module.exports.getSubCategories = getSubCategories;
 module.exports.patchSubCategory = patchSubCategory;
 module.exports.deleteSubCategory = deleteSubCategory;
@@ -166,3 +202,41 @@ const getCategoryByName = async (req, res) => {
 module.exports.createCategory = createCategory;
 module.exports.getCategories = getCategories;
 module.exports.getCategoryByName = getCategoryByName;
+
+// WARN: THIS IS FOR SEND LOCAL TO REMOTE DATABASE TAKE CARE
+// Tying to send data to our database
+// This is a list of lists that contains a subcategory and the category that it belongs to
+// const sanitezed = require('../sanitized_data.json');
+//
+// // Get each list of subcategories
+// const storeSubCategories = async (req,res) => {
+//   sanitezed.map( (lists,index) => {
+//     // Objs will be an object with categoryName and subCategory name
+//     lists.map( async (objs, index) => {
+//       let category = {};
+//       try {
+//         if (objs.categoryName === 'framework'){
+//           const cname = objs.categoryName[0].toUpperCase() + objs.categoryName.slice(1);
+//           category = await Category.find({name:cname});
+//         }
+//         else{
+//           category = await Category.find({name:objs.categoryName})
+//         }
+//
+//         if (!category){
+//           res.status(422).json({message: 'category not found'})
+//         }
+//         const subcategory = {
+//           name: objs.name,
+//           categoryID: category[0]._id
+//         }
+//         await SubCategory.create(subcategory);
+//         // res.status(201).json({message: 'Subcategory named ' + objs.name + ' was added!'})
+//
+//       } catch (err) {
+//         res.status(500).json({error:err});
+//       }
+//     } );
+//   } );
+// }
+// module.exports.storeSubCategories = storeSubCategories;
