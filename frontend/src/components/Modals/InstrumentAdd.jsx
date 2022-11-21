@@ -1,8 +1,7 @@
 import React from "react";
 
 import Modal from "@mui/material/Modal";
-// import Fab from "@mui/material/Fab";
-import Button from "@mui/material/Button";
+import { IHCButtonRounded } from "../../assets/ComponentStyle";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -23,7 +22,7 @@ function InstrumentAddModal() {
   return (
     <div>
       <Box sx={{ width: "100vw", marginTop: 10 }}>
-        <Button
+        <IHCButtonRounded
           onClick={handleOpen}
           color="primary"
           variant="contained"
@@ -44,7 +43,7 @@ function InstrumentAddModal() {
             <FontAwesomeIcon size="1x" icon={ faLightbulb } beatFade />
             <Typography color="text.content.white" variant="h7"> Leave a Suggestion </Typography>
           </Typography>
-        </Button>
+        </IHCButtonRounded>
       </Box>
       <Modal open={open} onClose={handleClose}>
         <Box
@@ -123,7 +122,7 @@ function InstrumentAddModal() {
               justifyContent="center"
               alignItems="center"
             >
-              <Button
+              <IHCButtonRounded
                 variant="contained"
                 sx={{
                   width:"40%",
@@ -132,8 +131,8 @@ function InstrumentAddModal() {
                 }}
               >
               <Typography color="button.text.light">Ok</Typography>
-              </Button>
-              <Button
+              </IHCButtonRounded>
+              <IHCButtonRounded
                 onClick={handleClose}
                 variant="contained"
                 sx={{
@@ -143,7 +142,7 @@ function InstrumentAddModal() {
                 }}
               >
               <Typography color="button.text.light">Cancel</Typography>
-              </Button>
+              </IHCButtonRounded>
             </Box>
           </Box>
         </Box>
