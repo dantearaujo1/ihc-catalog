@@ -1,5 +1,36 @@
 import { createTheme } from '@mui/material/styles'
 
+const Colors = {
+  type: 'light',
+  primary: {
+    main: '#00bcd4',
+  },
+  secondary: {
+    main: '#5e35b1',
+  },
+  background: {
+    default: '#fafafa',
+  },
+  text: {
+    primary: '#212121',
+    disabled: '#e0e0e0',
+    secondary: '#757575',
+  },
+  error: {
+    main: '#e53935',
+  },
+  warning: {
+    main: '#ff9800',
+  },
+  info: {
+    main: '#42a5f5',
+  },
+  divider: '#e0e0e0',
+  success: {
+    main: '#43a047',
+  },
+};
+
 const Theme = createTheme({
   palette : {
     primary : {
@@ -27,14 +58,9 @@ const Theme = createTheme({
       },
     },
     text: {
-      header :{
-
-      },
-      content :{
-        light: "#606060",
-        main: "#303030",
-        dark: "#000000",
-      },
+      primary: '#212121',
+      disabled: '#e0e0e0',
+      secondary: '#757575',
     },
     status : {
       success: {
@@ -80,29 +106,63 @@ const Theme = createTheme({
   },
 })
 
-Theme.components = {
-  MuiOutlinedInput: {
-    styleOverrides:{
-      root: ({theme}) => ({
-        backgroundColor: theme.palette.textField.background.main,
-        borderRadius: "50px",
-      }),
-      "&:hover": ({theme}) => ({
-        backgroundColor: theme.palette.primary.main,
-        borderRadius: "50px",
-      }),
-    },
-  },
-  MuiButton:{
-    styleOverrides:{
-      contained:({theme})=>({
-        backgroundColor: theme.palette.button.background.main
-      }),
-      text:({theme})=>({
-        backgroundColor: "transparent"
-      }),
-    }
-  },
-};
+// Theme.components = {
+//   MuiOutlinedInput: {
+//     styleOverrides:{
+//       root: ({theme}) => ({
+//         // backgroundColor: theme.palette.textField.background.main,
+//         // borderRadius: "50px",
+//       }),
+//       "&:hover": ({theme}) => ({
+//         // borderRadius: "50px",
+//         // backgroundColor: theme.palette.primary.main,
+//       }),
+//     },
+//   },
+//   MuiButton:{
+//     styleOverrides:{
+//       contained:({theme})=>({
+//         // backgroundColor: theme.palette.button.background.main
+//       }),
+//       text:({theme})=>({
+//         // backgroundColor: "transparent"
+//       }),
+//     }
+//   },
+// };
 
-export default Theme
+export const themeOptions = createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#00bcd4',
+    },
+    secondary: {
+      main: '#5e35b1',
+    },
+    background: {
+      default: '#fafafa',
+    },
+    text: {
+      primary: '#212121',
+      disabled: '#e0e0e0',
+      secondary: '#757575',
+    },
+    error: {
+      main: '#e53935',
+    },
+    warning: {
+      main: '#ff9800',
+    },
+    info: {
+      main: '#42a5f5',
+    },
+    divider: '#e0e0e0',
+    success: {
+      main: '#43a047',
+    },
+  },
+});
+
+
+export default Theme;
