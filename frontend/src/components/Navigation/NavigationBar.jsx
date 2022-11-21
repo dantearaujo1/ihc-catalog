@@ -60,13 +60,13 @@ export default function NavigationBar() {
       width="100%"
       alignItems="center"
       justifyContent="space-evenly"
-      backgroundColor="page.background.primary.dark"
+      backgroundColor="primary.main"
     >
       {data?data.map((value) => {
         return (
-        <Stack width="25%" alignItems="center">
-          <Button color="secondary" variant="text"  onClick={(event) => handleMenuClick(event, value._id)}>
-            <Typography>
+        <Stack key={value._id} width="25%" alignItems="center">
+          <Button  variant="text"  onClick={(event) => handleMenuClick(event, value._id)}>
+            <Typography color="text.primary">
                 {value.name}
             </Typography>
           </Button>
@@ -102,7 +102,7 @@ export default function NavigationBar() {
         >
         {menuItem?menuItem.map( (sub) => {
           return (
-            <MenuItem  sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id)}}>
+            <MenuItem sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id)}}>
               <Typography variant="h7">{ sub.name }</Typography>
             </MenuItem>
           )
