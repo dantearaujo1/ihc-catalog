@@ -1,7 +1,7 @@
 import React , {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+import { IHCButtonRounded } from "../assets/ComponentStyle";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
@@ -117,14 +117,14 @@ function Login() {
               control={<Checkbox value="remember" sx={{ ml:0.3 , borderRadius:50 }} color="primary" />}
               label="Remember me"
             />
-            <Button
+            <IHCButtonRounded
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, borderRadius: 50}}
             >
               Sign In
-            </Button>
+            </IHCButtonRounded>
             <Grid container >
               <Grid item xs={12} textAlign="center" >
                 {/* Todo: Correct Forgot Password Page */}

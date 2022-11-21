@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import { IHCAutocomplete } from '../../assets/ComponentStyle';
+import { IHCTextField } from '../../assets/ComponentStyle';
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -38,7 +39,7 @@ function NavigationHeader({Filter, data, show}) {
         >
           {/* {data? */}
           {show?
-          <Autocomplete
+          <IHCAutocomplete
             size='small'
             id="search-by-instrument"
             options={data}
@@ -47,7 +48,7 @@ function NavigationHeader({Filter, data, show}) {
             onInputChange={(e) => Filter(e.target.value)}
             renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
             renderInput={(params) => (
-              <TextField
+              <IHCTextField
                 {...params}
                 label="Search"
                   InputProps={{
@@ -58,7 +59,6 @@ function NavigationHeader({Filter, data, show}) {
                       </InputAdornment>
                     )
                   }}
-                sx={{"& .MuiOutlinedInput-root":{borderRadius:"50px"}}}
               />
             )}/>
             :null}

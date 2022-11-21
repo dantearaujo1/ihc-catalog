@@ -7,7 +7,7 @@ import Login from "./Login";
 import ResultList from "./ResultList";
 import InstrumentDetail from "./InstrumentDetail";
 
-import Theme from "../assets/themes"
+import Theme, { themeOptions } from "../assets/themes"
 import {  ThemeProvider } from '@mui/material/styles'
 
 

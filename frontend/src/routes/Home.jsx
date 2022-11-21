@@ -2,8 +2,9 @@ import React from "react";
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+
+import { IHCButtonRounded } from "../assets/ComponentStyle"
 
 import NavigationHeader from "../components/Navigation/NavigationHeader";
 import NavigationBar from "../components/Navigation/NavigationBar"
@@ -142,14 +143,13 @@ function Home() {
         ></TagSelect>
       </Stack>
       <Stack sx={{ alignItems: "center", marginTop: 6 }}>
-        <Button
-          color="primary"
+        <IHCButtonRounded
           variant="contained"
-          sx={{ backgroundColor: "#000000", minWidth: 160, height: "3rem", borderRadius: 50 }}
-          startIcon={<FontAwesomeIcon color="text.content.white" icon={faMagnifyingGlass} />}
+          sx={{  minWidth: 160, height: "3rem"}}
+          startIcon={<FontAwesomeIcon  icon={faMagnifyingGlass} />}
         >
-          <Typography color="text.content.white" sx={{textTransform:'none'}}>Search</Typography>
-        </Button>
+          <Typography>Search</Typography>
+        </IHCButtonRounded>
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
     </Box>

@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 
+import { IHCOutlinedInput } from '../../assets/ComponentStyle';
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -30,7 +30,7 @@ export default function TagSelect(props) {
           multiple
           value={selected}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="multi-select" />}
+          input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
