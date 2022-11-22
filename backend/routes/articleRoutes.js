@@ -4,6 +4,7 @@ const {
   getArticleById,
   getArticleByName,
   getArticles,
+  getArticlesBySubcategory,
   patchArticle,
   deleteArticle,
   sendGroupToDatabase,
@@ -17,6 +18,7 @@ router.post('/', createArticle);
 
 // Recieving all articles stored
 router.get('/', getArticles);
+router.get('/group/g/a/s/:sid', getArticlesBySubcategory);
 
 // Recieving an article by id
 router.get('/id/:id', getArticleById);
