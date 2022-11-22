@@ -56,6 +56,8 @@ export default function NavigationBar() {
       height={56} // WARN: PUT MAGIC NUMBER IS A GOOD IDEA?
       direction="row"
       width="100%"
+      borderTop={1}
+      borderColor="primary.dark"
       alignItems="center"
       justifyContent="space-evenly"
       backgroundColor="primary.main"
