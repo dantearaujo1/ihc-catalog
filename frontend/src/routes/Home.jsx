@@ -24,17 +24,31 @@ import { useState, useEffect } from "react";
 
 function Home() {
   const [data, setData] = useState([]);
+  const [cat, setCat] = useState();
+  const [sub, setSub] = useState();
+
   const [filtered, setFiltered] = useState("");
   const [data_filtered, setDataFiltered] = useState([]);
+  const [filterItems, setFilterItems] = useState();
 
   // Getting data from the backend
   // WARN: we should use useQuery hook for this
   useEffect(() => {
     const fetch_data = async () => {
-      const data = await fetch("/api/v1/article/");
-      const json = await data.json();
+      let data = await fetch("/api/v1/article/");
+      let json = await data.json();
+
       // Setting data to data using useState
       setData(json);
+
+      data = await fetch('/api/v1/article/cat/all');
+      json = await data.json();
+      setCat(json);
+
+      data = await fetch('/api/v1/article/sub/all');
+      json = await data.json();
+      setSub(json);
+
     };
     fetch_data().catch(console.error);
   }, []);
@@ -61,9 +75,12 @@ function Home() {
       // checking if we already have some data
       setDataFiltered([]);
     }
-  }, [filtered]); /* This last parameters means that we gonna call useEffect
-                      Everytime that filtered is diferrent;
-  */
+  }, [filtered]);
+  /* This last parameters means that we gonna call useEffect
+      Everytime that filtered is diferrent */
+  const handleClick = () => {
+    console.log("Clicked");
+  }
   return (
     <Box style={{height:"100vh"}}>
       <NavigationHeader
@@ -81,13 +98,14 @@ function Home() {
       >
         <Typography
           variant="h1"
+          color="text.primary"
           sx={{marginTop: 10 }}
         >
           UX Instruments Catalog
         </Typography>
         <Typography
           variant="h4"
-          color="text.content.light"
+          color="text.secondary"
         >
           Combine categories and find the best UX Evaluation Methods for your project
         </Typography>
@@ -97,56 +115,21 @@ function Home() {
         justifyContent="center"
         sx={{ width: '100', flexWrap: "wrap",  alignItems: "center", marginTop: 10, paddingLeft: 14, paddingRight: 14  }}
       >
-        <TagSelect
-          data={[
-            "Children",
-            "Older",
-            "All type of Users",
-            "Jornalists",
-            "Consumers",
-            "People with disabilities",
-            "Role-Specific",
-          ].sort()}
-          placeHolder={"Target"}
-        ></TagSelect>
-        <TagSelect
-          data={[
-            "Application-independent",
-            "Online Plataform",
-            "Mobile",
-            "Audiovisual",
-          ].sort()}
-          placeHolder={"Application Domain"}
-        ></TagSelect>
-        <TagSelect
-          data={[
-            "Questionary",
-            "Two-dimensional Diagrams/Graphs area",
-            "Scale",
-            "Pshychophysiology",
-            "Post-test Picture/Object",
-          ].sort()}
-          placeHolder={"Type"}
-        ></TagSelect>
-        <TagSelect
-          data={["Qualitative", "Quantitative", "Quali-Quantitative"].sort()}
-          placeHolder={"Approach"}
-        ></TagSelect>
-        <TagSelect
-          data={[
-            "Aesthetics",
-            "Affect",
-            "Appreaisal",
-            "Aspects of Game Experience",
-          ].sort()}
-          placeHolder={"Quality UX"}
-        ></TagSelect>
+        {cat?cat.sort(((a,b) => { return b.name < a.name ? 1 : b.name > a.name ? -1 : 0}))
+          .map((value) => {
+            return (
+              <TagSelect key={value._id} data={(sub)?sub.filter((obj) => {return (value._id === obj.categoryID)?obj:null}):[]} placeHolder={value.name}></TagSelect>
+            )
+          })
+          :null
+        }
       </Stack>
       <Stack sx={{ alignItems: "center", marginTop: 6 }}>
         <IHCButtonRounded
           variant="contained"
           sx={{  minWidth: 160, height: "3rem"}}
           startIcon={<FontAwesomeIcon  icon={faMagnifyingGlass} />}
+          onClick={handleClick}
         >
           <Typography>Search</Typography>
         </IHCButtonRounded>
