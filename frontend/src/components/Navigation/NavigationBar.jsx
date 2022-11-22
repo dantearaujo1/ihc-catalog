@@ -48,9 +48,7 @@ export default function NavigationBar() {
   }
   const handleItemClick = (id) => {
     setAnchorEl(null);
-    // TODO: Send to the correct result page
-    console.log(id);
-    // navigate('/result')
+    navigate('/result/' + id)
   }
 
   return (
@@ -102,7 +100,7 @@ export default function NavigationBar() {
         >
         {menuItem?menuItem.map( (sub) => {
           return (
-            <MenuItem sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id)}}>
+            <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id)}}>
               <Typography variant="h7">{ sub.name }</Typography>
             </MenuItem>
           )
