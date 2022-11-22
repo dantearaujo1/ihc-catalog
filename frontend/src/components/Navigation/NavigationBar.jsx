@@ -80,8 +80,8 @@ export default function NavigationBar() {
           sx={{height: "45%"}}
           PaperProps={{
             sx: {
-              backgroundColor: "page.background.primary.dark",
-              color: "secondary.main",
+              backgroundColor: "primary.dark",
+              color: "white",
               borderTopLeftRadius:0,
               borderTopRightRadius:0,
               borderTop:0,
