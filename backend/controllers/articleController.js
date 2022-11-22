@@ -1,5 +1,8 @@
 const Article = require('../models/Article');
+const { Category } = require('../models/Category');
+const { SubCategory } = require('../models/Category');
 const json = require('../dataa.json');
+const axsub = require('../articleXsub.json');
 
 const createArticle = async (req,res) => {
 
@@ -38,7 +41,22 @@ const getArticleById = async (req,res) => {
     }
     res.status(200).json(article);
 
-  } catch {
+  } catch (error) {
+     res.status(500).json({error:error});
+  }
+}
+const getArticleByName = async (req,res) => {
+  const name = req.params.name;
+  try {
+
+    const article = await Article.findOne({name: name});
+    if(!article){
+      res.status(422).json({message: "Article wasn't found!"});
+      return;
+    }
+    res.status(200).json(article);
+
+  } catch (error) {
      res.status(500).json({error:error});
   }
 }
@@ -117,9 +135,28 @@ const deleteArticle = async (req,res) => {
 // }
 // module.exports.sendToDatabase = sendToDatabase;
 
+const sendGroupToDatabase = (req, res) => {
+  axsub.map( async (article) => {
+    try {
+      // const articleData = await Article.findOne({name:article.name})
+      const subCategoryData = await SubCategory.findOne({name:article.c1});
+      // console.log(articleData._id);
+      if(subCategoryData){
+
+        console.log(subCategoryData);
+      }
+
+    } catch (err) {
+      // res.status(500).json({error:err});
+    }
+  } )
+}
+module.exports.sendGroupToDatabase = sendGroupToDatabase;
+
 
 module.exports.createArticle = createArticle;
 module.exports.getArticleById = getArticleById;
+module.exports.getArticleByName = getArticleByName;
 module.exports.getArticles = getArticles;
 module.exports.patchArticle = patchArticle;
 module.exports.deleteArticle = deleteArticle;
