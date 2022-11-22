@@ -86,6 +86,7 @@ const allSubCategoriesObjects = Categories.map( (value,index) => { return getSub
 const sanitezed = Categories.map( (value, index) => { return allSubCategoriesObjects[index] } )
 const jsonSanitezed = JSON.stringify(sanitezed);
 
+console.log(jsonSanitezed);
 // console.log(sanitezed.map((value, index) => {
 //  return value.length;
 // }));
@@ -98,16 +99,15 @@ const articleXsub = list.map(
   ( article ) => {
     return {
       name:article.ux_instruments,
-      c1:article.type_of_instrument,
-      c2:article.type_of_approach,
-      c3:article.application_domain,
-      c4:article['ux-quality'],
-      c5:article.target_users_,
-      c6:article.framework,
+      c1:article.type_of_instrument.toLowerCase(),
+      c2:article.type_of_approach.toLowerCase(),
+      c3:article.application_domain.toLowerCase(),
+      c4:article['ux-quality'].toLowerCase(),
+      c5:article.target_users_.toLowerCase(),
+      c6:article.framework.toLowerCase(),
     }
   })
 
-console.log(allSubCategoriesObjects);
 
 const articleXsubJSON = JSON.stringify(articleXsub);
 // fs.writeFile('articleXsub.json', articleXsubJSON, (err,result) => { if(err) console.log(result) });
