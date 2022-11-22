@@ -1,5 +1,5 @@
 import "./NavigationHeader.css"
-import {Link} from 'react-router-dom'
+import Link from '@mui/material/Link'
 
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -29,9 +29,11 @@ function NavigationHeader({Filter, data, show}) {
           className="nav-items"
         >
         <Box width="33%">
-          <Typography color="text.primary"  ml={9} variant="h4">
-              HCI-Catalog
-          </Typography>
+            <Typography color="text.primary"  ml={9} variant="h4">
+            <Link href="/" underline="hover" color="inherit">
+                HCI-Catalog
+              </Link>
+            </Typography>
         </Box>
         <Box
           sx={{ width: "33%",  }}
