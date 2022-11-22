@@ -1,6 +1,7 @@
 const Article = require('../models/Article');
 const { Category } = require('../models/Category');
 const { SubCategory } = require('../models/Category');
+const { Group } = require('../models/Group');
 const json = require('../dataa.json');
 const axsub = require('../articleXsub.json');
 
@@ -65,6 +66,27 @@ const getArticles = async (req, res) => {
   try {
     const articles = await Article.find();
     res.status(200).json(articles);
+
+  } catch (error) {
+     res.status(500).json({error:error});
+  }
+}
+// This return the articles with name and categorys
+const getArticlesBySubcategory = async (req, res) => {
+  const subID = req.params.sid;
+
+  try {
+    const groups = await Group.find({subcategoryID:subID});
+    const articles = groups.map( async (group) => {
+      const article = await Article.findOne({_id:group.articleID})
+      const subcategory = await SubCategory.findOne({_id:group.subcategoryID});
+      const category = await Category.findOne({_id:subcategory.categoryID})
+      if(article && subcategory){
+        const obj = {Article:article,Category:category,Subcategory:subcategory};
+        return (obj);
+      }
+    } )
+    res.status(200).json(await Promise.all(articles));
 
   } catch (error) {
      res.status(500).json({error:error});
@@ -136,20 +158,63 @@ const deleteArticle = async (req,res) => {
 // module.exports.sendToDatabase = sendToDatabase;
 
 const sendGroupToDatabase = (req, res) => {
-  axsub.map( async (article) => {
-    try {
-      // const articleData = await Article.findOne({name:article.name})
-      const subCategoryData = await SubCategory.findOne({name:article.c1});
-      // console.log(articleData._id);
-      if(subCategoryData){
-
-        console.log(subCategoryData);
-      }
-
-    } catch (err) {
-      // res.status(500).json({error:err});
-    }
-  } )
+  // const list = axsub.filter( async (a) => {
+  //   const article = await Article.findOne({name:a.name.trim()})
+  //   if (article){
+  //     // console.log(article._id);
+  //     const c1 = await SubCategory.findOne({name:a.c1.trim()});
+  //     if (c1) {
+  //       const c2 = await SubCategory.findOne({name:a.c2.trim()});
+  //       if (c2) {
+  //         const c3 = await SubCategory.findOne({name:a.c3.trim()});
+  //         if (c3) {
+  //           const c4 = await SubCategory.findOne({name:a.c4.trim()});
+  //           if (c4) {
+  //             const c5 = await SubCategory.findOne({name:a.c5.trim()});
+  //             if (c5) {
+  //               const c6 = await SubCategory.findOne({name:a.c5.trim()});
+  //               const damn = {
+  //                 articleID:article._id,
+  //                 cat1subID:c1._id,
+  //                 cat2subID:c2._id,
+  //                 cat3subID:c3._id,
+  //                 cat4subID:c4._id,
+  //                 cat5subID:c5._id,
+  //                 cat6subID:c6._id,
+  //               }
+  //               await Group.create({
+  //                 articleID:damn.articleID,
+  //                 subcategoryID:damn.cat1subID,
+  //               })
+  //               await Group.create({
+  //                 articleID:damn.articleID,
+  //                 subcategoryID:damn.cat2subID,
+  //               })
+  //               await Group.create({
+  //                 articleID:damn.articleID,
+  //                 subcategoryID:damn.cat3subID,
+  //               })
+  //               await Group.create({
+  //                 articleID:damn.articleID,
+  //                 subcategoryID:damn.cat4subID,
+  //               })
+  //               await Group.create({
+  //                 articleID:damn.articleID,
+  //                 subcategoryID:damn.cat5subID,
+  //               })
+  //               await Group.create({
+  //                 articleID:damn.articleID,
+  //                 subcategoryID:damn.cat6subID,
+  //               })
+  //               console.log(damn);
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // } )
+  // res.status(200).json(list);
 }
 module.exports.sendGroupToDatabase = sendGroupToDatabase;
 
@@ -157,6 +222,7 @@ module.exports.sendGroupToDatabase = sendGroupToDatabase;
 module.exports.createArticle = createArticle;
 module.exports.getArticleById = getArticleById;
 module.exports.getArticleByName = getArticleByName;
+module.exports.getArticlesBySubcategory = getArticlesBySubcategory ;
 module.exports.getArticles = getArticles;
 module.exports.patchArticle = patchArticle;
 module.exports.deleteArticle = deleteArticle;
