@@ -8,17 +8,26 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleXmark
+} from "@fortawesome/free-solid-svg-icons";
+
 export default function TagSelect(props) {
   const [selected, setSelected] = useState([]);
   const data = props.data;
 
   const handleChange = (event) => {
-    const {
-      target: {value},
-    } = event;
-
+    const { target: {value} } = event;
+    console.log(value);
     setSelected( typeof value === 'string' ? value.split(',') : value);
   };
+
+  const handleDelete = (e, value) => {
+    e.preventDefault();
+    setSelected(selected.filter((name) => name !== value));
+  }
+
   return (
     <div>
       <FormControl size="medium" sx={{minWidth:190, mr: 2, mt: 2}}>
@@ -34,17 +43,24 @@ export default function TagSelect(props) {
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip
+                  key={value._id}
+                  label={value.name}
+                  clickable
+                  deleteIcon={<FontAwesomeIcon onMouseDown={(e) => e.stopPropagation()} icon={faCircleXmark}/>}
+                  onDelete={(e) => handleDelete(e,value)}
+
+                />
               ))}
             </Box>
           )}
         >
           {data.map((item) => (
             <MenuItem
-              key={item}
+              key={item._id}
               value={item}
             >
-              {item}
+              {item.name}
             </MenuItem>
           ))}
         </Select>
