@@ -16,5 +16,4 @@ const groupSchema = new mongoose.Schema({
 
 const Group = mongoose.model('Group', groupSchema)
 
-module.exports.Category = Category
-module.exports.SubCategory = SubCategory
+module.exports.Group = Group
