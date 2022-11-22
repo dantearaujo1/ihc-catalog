@@ -61,7 +61,6 @@ const getSubCategoriesByGroupName = async (req,res) => {
 
 const getSubCategoriesByGroupId = async (req,res) => {
   const id = req.params.id;
-  console.log(id);
   try {
     const subcategoryList = await SubCategory.find({categoryID: id});
     if(!subcategoryList){
