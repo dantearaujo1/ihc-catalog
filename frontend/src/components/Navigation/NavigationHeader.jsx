@@ -1,5 +1,5 @@
 import "./NavigationHeader.css"
-import Link from '@mui/material/Link'
+import {useNavigate} from 'react-router-dom'
 
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -11,8 +11,22 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from "@mui/material/Typography";
+import Link from '@mui/material/Link'
 
 function NavigationHeader({Filter, data, show}) {
+  const navigate = useNavigate();
+
+  const handleClickSelection = () => {
+    navigate('/instrument_detail');
+  }
+  const handleEnterSelection = (event) => {
+    if(event.keyCode === 13){
+      // TODO: look inside database if there is some
+      console.log("Pressed enter");
+      navigate('/instrument_detail');
+
+    }
+  }
 
   return (
     <Box
@@ -45,8 +59,10 @@ function NavigationHeader({Filter, data, show}) {
             id="search-by-instrument"
             options={data}
             getOptionLabel={(option) => option.name.toString()}
-            onChange={(e,value) => {if(value !== null) console.log(value._id);}}
+            // onChange={(e,value) => {if(value !== null) navigate('/instrument_detail');}}
+            onChange={handleClickSelection}
             onInputChange={(e) => Filter(e.target.value)}
+              onKeyDown={handleEnterSelection}
             renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
             renderInput={(params) => (
               <IHCTextField
@@ -66,12 +82,7 @@ function NavigationHeader({Filter, data, show}) {
           {/* :null} */}
         </Box>
         <Box width="33%" ></Box>
-
-        {/* <Box className="adm-button"> */}
-        {/*   {isAdmin?<Link to="/"><FontAwesomeIcon icon={ faRightToBracket } size="sm"></FontAwesomeIcon></Link>:<Link to="/Login"><FontAwesomeIcon icon={ faLock } size="sm"></FontAwesomeIcon></Link>} */}
-        {/* </Box> */}
-
-        </Stack>
+      </Stack>
     </Box>
   )
 }
