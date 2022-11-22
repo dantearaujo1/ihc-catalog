@@ -57,11 +57,11 @@ function InstrumentAddModal() {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            border="5px solid black"
+            border="2px solid black"
             width={3/4}
             height={3/4}
             borderRadius="25px"
-            backgroundColor="#FFFFFF"
+            backgroundColor="background.default"
           >
             <Typography
               textAlign="center"
@@ -74,9 +74,6 @@ function InstrumentAddModal() {
               sx={{
                 width:"75%",
                 mb: "10px",
-                "& .MuiOutlinedInput-root":{
-                  borderRadius:"10px",
-                },
               }}
             >
             </TextField>
@@ -85,9 +82,6 @@ function InstrumentAddModal() {
               sx={{
                 width:"75%",
                 mb: "10px",
-                "& .MuiOutlinedInput-root":{
-                  borderRadius:"10px",
-                },
               }}
             >
             </TextField>
@@ -98,9 +92,6 @@ function InstrumentAddModal() {
               sx={{
                 width:"75%",
                 mb: "10px",
-                "& .MuiOutlinedInput-root":{
-                  borderRadius:"10px",
-                },
               }}
             >
             </TextField>
@@ -111,9 +102,6 @@ function InstrumentAddModal() {
               sx={{
                 width:"75%",
                 mb: "10px",
-                "& .MuiOutlinedInput-root":{
-                  borderRadius:"10px",
-                },
               }}
             >
             </TextField>

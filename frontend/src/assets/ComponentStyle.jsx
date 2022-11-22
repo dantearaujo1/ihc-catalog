@@ -5,14 +5,14 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 
 import { styled } from '@mui/material/styles'
 import { createTheme } from '@mui/material/styles'
-import Theme from './themes'
+import { themeOptions } from './themes'
 
 
-const theme = Theme;
+const theme = themeOptions;
 
 const IHCButtonRounded = styled((Button))( ( { theme } ) => ({
   borderRadius: 50,
-  backgroundColor: "#000000",
+  backgroundColor: theme.palette.primary.main,
   textTransform: "none",
 }));
 
@@ -27,19 +27,36 @@ const IHCTextField = styled((TextField))( ( {theme} ) => ({
 
 const IHCAutocomplete = styled((Autocomplete))( ( {theme} ) => ({
   borderRadius: 50,
-  backgroundColor: "#ffffff",
-  // color: "#ff0000",
+  backgroundColor: theme.palette.background.default,
   "& .MuiOutlinedInput-root": {
     borderRadius: 50,
+  },
+  "&:hover": {
+    // borderRadius: "50px",
+    // backgroundColor: theme.palette.background.default,
   },
 }))
 
 const IHCOutlinedInput = styled((OutlinedInput))( ( {theme} ) => ({
   borderRadius: 50,
-  backgroundColor: "#ffffff",
-  color: "#000000",
-  "& .MuiOutlinedInput-root": {
-    borderRadius: 50,
+  backgroundColor: theme.palette.background.default,
+  height: "30%",
+
+  "&.MuiOutlinedInput-root": {
+    "& fieldset": {
+      // borderColor: theme.palette.success.main,
+    },
+    "&:hover fieldset": {
+      // borderColor: theme.palette.primary.dark,
+    },
+    "&.Mui-focused fieldset": {
+      // borderColor: theme.palette.warning.light,
+    },
+
+  },
+  "&:hover": {
+    // borderRadius: "50px",
+    // backgroundColor: theme.palette.background.default,
   },
 }))
 

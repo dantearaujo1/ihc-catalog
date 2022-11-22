@@ -17,20 +17,19 @@ function NavigationHeader({Filter, data, show}) {
   return (
     <Box
       className="nav-container"
-      backgroundColor="page.background.primary.dark"
+      backgroundColor="primary.main"
       height={88}
       alignItems="center"
     >
         <Stack
           direction="row"
           height="100%"
-          backgroundColor="page.background.primary.main"
           justifyContent="space-around"
           alignItems="center"
           className="nav-items"
         >
         <Box width="33%">
-          <Typography color="secondary"  ml={9} variant="h4">
+          <Typography color="text.primary"  ml={9} variant="h4">
               HCI-Catalog
           </Typography>
         </Box>
