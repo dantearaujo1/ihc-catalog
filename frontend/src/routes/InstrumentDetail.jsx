@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from "react-router-dom";
 
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
@@ -16,9 +17,10 @@ import {
 
 const InstrumentDetail = () => {
   const [data, setData] = useState({});
+  const navigate = useNavigate();
   return (
     <Box>
-      <NavigationHeader/>
+      <NavigationHeader data={data?[]:[]}/>
       <NavigationBar/>
       <Stack  height="auto" backgroundColor="page.background.secondary.light" alignItems="center">
           <Stack width="70%" height="100%" sx={{mt:8}}  alignItems="flex-start">
@@ -42,7 +44,7 @@ const InstrumentDetail = () => {
                 <GroupBadge></GroupBadge>
               </Stack>
             </Stack>
-          <Button  variant='contained' sx={{mt: 5, mb: 6, borderRadius: 10}}>
+          <Button  variant='contained' onClick={() => {navigate(-1)}} sx={{mt: 5, mb: 6, borderRadius: 10}}>
             <FontAwesomeIcon  icon={faArrowLeftLong}/>
             <Typography ml={2}>Back</Typography>
           </Button>
