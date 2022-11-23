@@ -8,6 +8,8 @@ const {
   patchArticle,
   deleteArticle,
   sendGroupToDatabase,
+  testScratch,
+  populateGroup,
   // sendToDatabase,
 } = require('../controllers/articleController');
 
@@ -25,14 +27,16 @@ router.get('/id/:id', getArticleById);
 router.get('/name/:name', getArticleByName);
 
 // Updating our articles data (PUT -- Update all the article, PATCH update part of an article)
-router.patch('/:id', patchArticle)
+router.patch('/:id', patchArticle);
 
 // Delete an article by id
-router.delete('/:id', deleteArticle)
+router.delete('/:id', deleteArticle);
 module.exports = router;
 
 // WARN: This is for sending from local to remoteDatabase
 // Dont mess with this if u don't know
 // router.post('/add', sendToDatabase);
-router.post('/group/add', sendGroupToDatabase)
+router.post('/group/add', sendGroupToDatabase);
+router.post('/group/look', testScratch);
+router.post('/group/populate', populateGroup);
 

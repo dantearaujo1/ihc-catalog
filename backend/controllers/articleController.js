@@ -229,3 +229,44 @@ module.exports.getArticlesBySubcategory = getArticlesBySubcategory ;
 module.exports.getArticles = getArticles;
 module.exports.patchArticle = patchArticle;
 module.exports.deleteArticle = deleteArticle;
+
+const testScratch = async (req,res) => {
+  const frontData = req.body;
+  // const list = frontData.map( async (objs) => {
+  //   return await Group.find({
+  //     $or: [ {subcategoryID:{$in:obj.category.selections}} ]
+  //   })
+  // } )
+
+  const result = await Group.find({
+      $or: [
+      { subcategoryID:{$in:frontData[0]?.category.selections}},
+      { subcategoryID:{$in:frontData[1]?.category.selections}},
+      { subcategoryID:{$in:frontData[2]?.category.selections}},
+      { subcategoryID:{$in:frontData[3]?.category.selections}},
+      { subcategoryID:{$in:frontData[4]?.category.selections}},
+      { subcategoryID:{$in:frontData[5]?.category.selections}},
+      ]
+  });
+  console.log("START=====")
+  console.log(result);
+  console.log("END======")
+  res.status(200).json(result);
+
+
+}
+module.exports.testScratch = testScratch;
+
+const populateGroup = async ( req, res ) => {
+  const list = req.body;
+  // res.status(200).json(list);
+  const populated = await Group.populate(list, 'articleID')
+  if(populated){
+    console.log(populated);
+    res.status(200).json(populated);
+  }
+  // res.status(500).json({message:"Error"});
+}
+
+module.exports.populateGroup = populateGroup;
+
