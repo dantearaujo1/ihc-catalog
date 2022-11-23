@@ -19,7 +19,6 @@ export default function TagSelect(props) {
 
   const handleChange = (event) => {
     const { target: {value} } = event;
-    console.log(value);
     setSelected( typeof value === 'string' ? value.split(',') : value);
   };
 
