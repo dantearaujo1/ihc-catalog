@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
 
 const GroupBadge = () => {
   const [data, setData] = useState();
