@@ -13,8 +13,9 @@ const ArticleCard = (props) => {
   const [data, setData] = useState(props.data);
   const navigate = useNavigate();
   const handleClick = (e,value) => {
-    navigate('../../instrument_detail');
+    navigate('../../instrument_detail', { state: { article: data} });
   }
+
   return (
     <Box>
       <Stack alignItems="center">
