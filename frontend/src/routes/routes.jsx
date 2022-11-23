@@ -15,7 +15,9 @@ function AppRoutes(){
               <Route element={ <Login/> }  path="/admin" exact />
               <Route element={ <Home/> }  path="/" exact />
               <Route element={ <Admin/> }  path="/admin_dboard" exact />
-              <Route element={ <ResultList/> }  path="/result/:subID" exact />
+              <Route element={ <ResultList/> }  path="/result/:subID"/>
+          {/* React Router v6 > drop support for optional params */}
+              <Route element={ <ResultList/> }  path="/result/"/>
               <Route element={ <InstrumentDetail/> }  path="/instrument_detail" exact />
             </Routes>
        </BrowserRouter>
