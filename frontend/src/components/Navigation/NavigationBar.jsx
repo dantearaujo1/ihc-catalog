@@ -7,11 +7,12 @@ import Typography from "@mui/material/Typography"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   // Theses buttons should come from backend probablye
-  const [data, setData] = useState();
+  const [cats, setCats] = useState();
+  const [load, setLoad] = useState(false);
   const [subs, setSubs] = useState();
   const [menuItem, setMenuItem] = useState();
 
@@ -19,19 +20,27 @@ export default function NavigationBar() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setCats(props.categories);
+    setSubs(props.subcategories);
+
+  }, [props.categories,props.subcategories]);
+
+  useEffect( () => {
     const fetch_data = async () => {
-      const categoriesData = await fetch("/api/v1/article/cat/all");
-      const categories = await categoriesData.json();
-      const subCategoriesData = await fetch ("/api/v1/article/sub/all");
-      const subs = await subCategoriesData.json();
+      const categories = await fetch("/api/v1/article/cat/all");
+      const ctoJson = await categories.json();
+      const cordered = ctoJson.sort( (a,b) => { return  b.name < a.name ? 1 : b.name > a.name ? -1 : 0 } );
+      const subcategories = await fetch ("/api/v1/article/sub/all");
+      const stoJson = await subcategories.json();
+      const sordered = stoJson.sort( (a,b) => { return  b.name < a.name ? 1 : b.name > a.name ? -1 : 0 } );
 
       // Setting data to data using useState
-      setData(categories);
-      setSubs(subs);
+      setCats(cordered);
+      setSubs(sordered);
     };
-    fetch_data().catch(console.error);
+      fetch_data().catch(console.error);
 
-  }, []);
+  }, []  )
 
   const handleMenuClick = async (event,catID) => {
     setAnchorEl(event.currentTarget);
@@ -62,12 +71,12 @@ export default function NavigationBar() {
       justifyContent="space-evenly"
       backgroundColor="primary.main"
     >
-      {data?data.map((value) => {
+      {cats?cats.map((cat) => {
         return (
-        <Stack key={value._id} width="25%" alignItems="center">
-          <Button  variant="text"  onClick={(event) => handleMenuClick(event, value._id)}>
+        <Stack key={cat._id} width="25%" alignItems="center">
+          <Button  variant="text"  onClick={(event) => handleMenuClick(event, cat._id)}>
             <Typography color="text.primary">
-                {value.name}
+                {cat.name}
             </Typography>
           </Button>
         </Stack>
