@@ -20,6 +20,13 @@ export default function TagSelect(props) {
   const handleChange = (event) => {
     const { target: {value} } = event;
     setSelected( typeof value === 'string' ? value.split(',') : value);
+    const obj = {
+      category: {
+        id: props.cat._id,
+        selections: value
+      }
+    }
+    props.handler(obj);
   };
 
   const handleDelete = (e, value) => {
@@ -30,14 +37,14 @@ export default function TagSelect(props) {
   return (
     <div>
       <FormControl size="medium" sx={{minWidth:190, mr: 2, mt: 2}}>
-        <InputLabel id="multi-label">{props.placeHolder}</InputLabel>
+        <InputLabel id="multi-label">{props.cat.name}</InputLabel>
           <Select
           size="lg"
           labelId="multi-label"
           id="multi-select"
           multiple
           value={selected}
-          onChange={handleChange}
+          onChange={(event) => { handleChange(event);}}
           input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
