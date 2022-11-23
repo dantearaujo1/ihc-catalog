@@ -1,8 +1,8 @@
-import "./NavigationHeader.css"
-import {useNavigate} from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
-import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { IHCAutocomplete } from '../../assets/ComponentStyle';
 import { IHCTextField } from '../../assets/ComponentStyle';
@@ -11,13 +11,33 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from "@mui/material/Typography";
-import Link from '@mui/material/Link'
+import Link from '@mui/material/Link';
 
-function NavigationHeader({Filter, data, show}) {
+function NavigationHeader({data, show}) {
   const navigate = useNavigate();
+  const [art, setArt] = useState();
 
-  const handleClickSelection = () => {
-    navigate('/instrument_detail');
+  const getArticles = async () => {
+    const articles = await fetch("/api/v1/article/");
+    const toJson = await articles.json();
+    const ordered = toJson.sort( (a,b) => {
+      return (b.name < a.name ? 1 : b.name > a.name ? -1 : 0);
+    } )
+    setArt(ordered);
+  }
+
+  useEffect( () => {
+    const fetch_data = async () => {
+      await getArticles();
+    }
+    if(show){
+      fetch_data();
+    }
+  }, [] )
+
+
+  const handleClickSelection = (event, value) => {
+    navigate('/instrument_detail', { state: {article : {Article: value}} });
   }
   const handleEnterSelection = (event) => {
     if(event.keyCode === 13){
@@ -52,17 +72,14 @@ function NavigationHeader({Filter, data, show}) {
         <Box
           sx={{ width: "33%",  }}
         >
-          {/* {data? */}
           {show?
           <IHCAutocomplete
             size='small'
             id="search-by-instrument"
-            options={data}
+            options={art?art:[]}
             getOptionLabel={(option) => option.name.toString()}
-            // onChange={(e,value) => {if(value !== null) navigate('/instrument_detail');}}
             onChange={handleClickSelection}
-            onInputChange={(e) => Filter(e.target.value)}
-              onKeyDown={handleEnterSelection}
+            onKeyDown={handleEnterSelection}
             renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
             renderInput={(params) => (
               <IHCTextField
@@ -79,7 +96,6 @@ function NavigationHeader({Filter, data, show}) {
               />
             )}/>
             :null}
-          {/* :null} */}
         </Box>
         <Box width="33%" ></Box>
       </Stack>
