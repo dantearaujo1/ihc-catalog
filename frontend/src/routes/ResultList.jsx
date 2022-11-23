@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
@@ -17,6 +17,7 @@ import NavigationBar from "../components/Navigation/NavigationBar"
 import ArticleCard from "../components/ArticleCard"
 
 export default function ResultList() {
+  const navigate = useNavigate();
   const [pages, setPages] = useState(5);
   const [fetching, setFetching] = useState(true);
   const [result, setResult] = useState();
@@ -27,7 +28,7 @@ export default function ResultList() {
   useEffect( () => {
     setFetching(true);
     const fetch_data = async () => {
-      const data = await fetch('/api/v1/article/group/g/a/s/' + subID)
+      const data = await fetch('/api/v1/article/group/g/a/s/' + subID);
       const json = await data.json();
       setResult(json);
       setFetching(false);
@@ -41,6 +42,11 @@ export default function ResultList() {
     }
   }, [result] );
 
+
+  const handleClick = () => {
+      navigate("/");
+  }
+
   return (
     <Stack>
       <NavigationHeader data={result?[]:[]}></NavigationHeader>
@@ -48,24 +54,26 @@ export default function ResultList() {
       <Stack justifyContent="center" alignItems="center">
         {!fetching?
             <Stack height="100%" alignItems="center">
-              { result?result.slice(page-1, page+1).map( (article) => {
+              { ( result.length > 0 ) ? result.slice(page-1, page+1).map( (article) => {
                   return <ArticleCard key={article.Article._id} data={article}></ArticleCard>
-                })
+                }
+              )
                 :
-                <Stack alignItems="center" justifyContent="center" spacing={4} m="auto" width="15%">
+                <Stack alignItems="center" justifyContent="center" spacing={4} height="100%" m={ 20} width="35%">
                   <Typography variant="h3" textAlign="center">Oops!</Typography>
                   <Typography variant="h6" textAlign="center">We couldn't find what you are looking for.</Typography>
                   <Typography variant="h8" textAlign="center">Please, try another category combination or search for a keyword.</Typography>
-                <Box>
-                  <Button variant="contained" sx={{borderRadius: 10, mt: 4}}>
-                    <FontAwesomeIcon  icon={faArrowLeftLong}/>
-                    <Typography ml={2}>Back to Homepage</Typography>
-                  </Button>
-                </Box>
+                  <Box>
+                    <Button variant="contained" onClick={handleClick} sx={{borderRadius: 10, mt: 4}}>
+                      <FontAwesomeIcon  icon={faArrowLeftLong}/>
+                      <Typography ml={2}>Back to Homepage</Typography>
+                    </Button>
+                  </Box>
                 </Stack>
               }
-              <Pagination sx={{mt:4}}  count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>
-            </Stack>
+              {(result.length > 0)?<Pagination sx={{mt:4}}  count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
+              }
+          </Stack>
 
         :
           <Stack>
