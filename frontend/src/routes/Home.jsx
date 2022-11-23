@@ -20,76 +20,48 @@ import {
 import { useState, useEffect } from "react";
 
 
-
-
 function Home() {
-  const [data, setData] = useState([]);
   const [cat, setCat] = useState();
   const [sub, setSub] = useState();
 
-  const [filtered, setFiltered] = useState("");
-  const [data_filtered, setDataFiltered] = useState([]);
-  const [filterItems, setFilterItems] = useState();
+  const getCategories = async () => {
+    const categories = await fetch('/api/v1/article/cat/all');
+    const toJson = await categories.json();
+    const ordered = toJson.sort( (a,b) => {
+      return (b.name < a.name ? 1 : b.name > a.name ? -1 : 0);
+    } )
 
-  // Getting data from the backend
-  // WARN: we should use useQuery hook for this
+    setCat(ordered);
+  }
+
+  const getSubcategories = async () => {
+    const subcategories = await fetch('/api/v1/article/sub/all');
+    const toJson = await subcategories.json();
+    const ordered = toJson.sort( (a,b) => {
+      return (b.name < a.name ? 1 : b.name > a.name ? -1 : 0);
+    } )
+    setSub(ordered);
+  }
+
   useEffect(() => {
     const fetch_data = async () => {
-      let data = await fetch("/api/v1/article/");
-      let json = await data.json();
-
-      // Setting data to data using useState
-      setData(json);
-
-      data = await fetch('/api/v1/article/cat/all');
-      json = await data.json();
-      setCat(json);
-
-      data = await fetch('/api/v1/article/sub/all');
-      json = await data.json();
-      setSub(json);
+      await getCategories();
+      await getSubcategories();
 
     };
     fetch_data().catch(console.error);
   }, []);
 
-  // This will work as our searchBar filter
-  useEffect(() => {
-    // Check if search bar is not Empty
-    if (filtered !== "") {
-      //Setting our data_filtered to only contains what is
-      // in the searchBox
-      setDataFiltered(
-        data.filter((article) => {
-          if (article.ux_instruments) {
-            console.log(filtered);
-            return article.ux_instruments
-              .toLowerCase()
-              .includes(filtered.toLowerCase());
-          }
-        })
-      );
-    }
-    // if searchBar is empty we should set our full data to the list
-    else {
-      // checking if we already have some data
-      setDataFiltered([]);
-    }
-  }, [filtered]);
   /* This last parameters means that we gonna call useEffect
       Everytime that filtered is diferrent */
   const handleClick = () => {
     console.log("Clicked");
   }
+
   return (
     <Box style={{height:"100vh"}}>
-      <NavigationHeader
-        Filter={setFiltered}
-        data={( data_filtered.length > 0 ) ? data_filtered : data }
-        isAdmin={false}
-      >
-      </NavigationHeader>
-      <NavigationBar></NavigationBar>
+      <NavigationHeader />
+      <NavigationBar categories={cat} subcategories={sub}/>
       <Stack
         justifyContent="center"
         width="100%"
@@ -115,8 +87,7 @@ function Home() {
         justifyContent="center"
         sx={{ width: '100', flexWrap: "wrap",  alignItems: "center", marginTop: 10, paddingLeft: 14, paddingRight: 14  }}
       >
-        {cat?cat.sort(((a,b) => { return b.name < a.name ? 1 : b.name > a.name ? -1 : 0}))
-          .map((value) => {
+        {cat?cat.map((value) => {
             return (
               <TagSelect key={value._id} data={(sub)?sub.filter((obj) => {return (value._id === obj.categoryID)?obj:null}):[]} placeHolder={value.name}></TagSelect>
             )
