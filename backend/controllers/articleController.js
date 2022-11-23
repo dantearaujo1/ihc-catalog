@@ -158,63 +158,66 @@ const deleteArticle = async (req,res) => {
 // module.exports.sendToDatabase = sendToDatabase;
 
 const sendGroupToDatabase = (req, res) => {
-  // const list = axsub.filter( async (a) => {
-  //   const article = await Article.findOne({name:a.name.trim()})
-  //   if (article){
-  //     // console.log(article._id);
-  //     const c1 = await SubCategory.findOne({name:a.c1.trim()});
-  //     if (c1) {
-  //       const c2 = await SubCategory.findOne({name:a.c2.trim()});
-  //       if (c2) {
-  //         const c3 = await SubCategory.findOne({name:a.c3.trim()});
-  //         if (c3) {
-  //           const c4 = await SubCategory.findOne({name:a.c4.trim()});
-  //           if (c4) {
-  //             const c5 = await SubCategory.findOne({name:a.c5.trim()});
-  //             if (c5) {
-  //               const c6 = await SubCategory.findOne({name:a.c5.trim()});
-  //               const damn = {
-  //                 articleID:article._id,
-  //                 cat1subID:c1._id,
-  //                 cat2subID:c2._id,
-  //                 cat3subID:c3._id,
-  //                 cat4subID:c4._id,
-  //                 cat5subID:c5._id,
-  //                 cat6subID:c6._id,
-  //               }
-  //               await Group.create({
-  //                 articleID:damn.articleID,
-  //                 subcategoryID:damn.cat1subID,
-  //               })
-  //               await Group.create({
-  //                 articleID:damn.articleID,
-  //                 subcategoryID:damn.cat2subID,
-  //               })
-  //               await Group.create({
-  //                 articleID:damn.articleID,
-  //                 subcategoryID:damn.cat3subID,
-  //               })
-  //               await Group.create({
-  //                 articleID:damn.articleID,
-  //                 subcategoryID:damn.cat4subID,
-  //               })
-  //               await Group.create({
-  //                 articleID:damn.articleID,
-  //                 subcategoryID:damn.cat5subID,
-  //               })
-  //               await Group.create({
-  //                 articleID:damn.articleID,
-  //                 subcategoryID:damn.cat6subID,
-  //               })
-  //               console.log(damn);
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // } )
-  // res.status(200).json(list);
+  const list = axsub.filter( async (a) => {
+    const article = await Article.findOne({name:a.name.trim()})
+    if (article){
+      // console.log(article._id);
+      const c1 = await SubCategory.findOne({name:a.c1.trim()});
+      if (c1) {
+        const c2 = await SubCategory.findOne({name:a.c2.trim()});
+        if (c2) {
+          const c3 = await SubCategory.findOne({name:a.c3.trim()});
+          if (c3) {
+            const c4 = await SubCategory.findOne({name:a.c4.trim()});
+            if (c4) {
+              const c5 = await SubCategory.findOne({name:a.c5.trim()});
+              if (c5) {
+                const c6 = await SubCategory.findOne({name:a.c6.trim()});
+                if (c6){
+
+                  const damn = {
+                    articleID:article._id,
+                    cat1subID:c1._id,
+                    cat2subID:c2._id,
+                    cat3subID:c3._id,
+                    cat4subID:c4._id,
+                    cat5subID:c5._id,
+                    cat6subID:c6._id,
+                  }
+                  await Group.create({
+                    articleID:damn.articleID,
+                    subcategoryID:damn.cat1subID,
+                  })
+                  await Group.create({
+                    articleID:damn.articleID,
+                    subcategoryID:damn.cat2subID,
+                  })
+                  await Group.create({
+                    articleID:damn.articleID,
+                    subcategoryID:damn.cat3subID,
+                  })
+                  await Group.create({
+                    articleID:damn.articleID,
+                    subcategoryID:damn.cat4subID,
+                  })
+                  await Group.create({
+                    articleID:damn.articleID,
+                    subcategoryID:damn.cat5subID,
+                  })
+                  await Group.create({
+                    articleID:damn.articleID,
+                    subcategoryID:damn.cat6subID,
+                  })
+                  console.log(damn);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } )
+  res.status(200).json(list);
 }
 module.exports.sendGroupToDatabase = sendGroupToDatabase;
 
