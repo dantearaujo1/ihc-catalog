@@ -127,5 +127,25 @@ npm run dev
 
 ```
 
+## Requisitos funcionais
+
+|  Código                           |  Descrição                    |  Codificação  | Status | 
+|  ----------------------------   |  --------------------------|  ---------  | --------- |
+|  RF001     |  Autenticação(admin)              |  [código]()     | Concluído
+|  RF002     |  Sugestão de novos instrumentos(usuário)              |  [código]()     | Concluído
+|  RF003     |  Filtragem de conteúdos por categorias(usuário)              |  [código]()     | Iniciado
+|  RF004     |  Ferramenta de busca por palavras chaves(usuário)              |  [código]()     | Concluído
+|  RF005     |  Aprovar sugestões(admin)              |  [código]()     | Não iniciado
+|  RF006     |  Reprovar sugestões(admin)              |  [código]()     | Não iniciado
+|  RF007     |  Visualizar instrumentos aprovados ou reprovados(admin)              |  [código]()     | Não iniciado
+|  RF008     |  Adição de subcategorias(admin)              |  [código]()     | Não iniciado
+|  RF009     |  Remoção de subcategorias(admin)              |  [código]()     | Não iniciado
+|  RF010     |  Edição de subcategorias(admin)              |  [código]()     | Não iniciado
+|  RF011     |  Mostrar lista de resultados na busca(usuário)              |  [código]()     | Concluído
+|  RF012     |  Mostrar formulário de sugestão(usuário)              |  [código]()     | Concluído
+|  RF013     |  Mostrar lista de resultados filtrados(usuário)              |  [código]()     | Concluído
+|  RF014     |  Pesquisar por categorias específicas(usuário)              |  [código]()     | Concluído
+|  RF015     |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código]()     | Concluído
+
 
 ***
