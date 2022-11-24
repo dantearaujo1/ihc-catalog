@@ -12,6 +12,7 @@ COPY package*.json ./
 RUN npm install --prefix ./backend
 RUN npm install --prefix ./frontend
 RUN npm install
+RUN echo 'DB_USER=dbViewer\nDB_PASSWORD=ZXmbV4ZtSDXGNmAv\nJWT_SECRET=TheSecretKey' > backend/.env
 
 COPY . .
 
