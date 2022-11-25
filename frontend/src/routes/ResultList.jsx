@@ -111,7 +111,7 @@ export default function ResultList() {
                   </Box>
                 </Stack>
               }
-              {(result?.length > 0)?<Pagination sx={{mt:4}}  count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
+              {(result?.length > 0)?<Pagination sx={{mt:4}}  color="secondary" count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
               }
           </Stack>
 
