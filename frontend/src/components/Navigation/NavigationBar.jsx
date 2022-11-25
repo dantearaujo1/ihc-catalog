@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import Menu from "@mui/material/Menu"
+import { IHCMenu } from "../../assets/ComponentStyle"
 import MenuItem from "@mui/material/MenuItem"
 
 export default function NavigationBar(props) {
@@ -82,7 +83,7 @@ export default function NavigationBar(props) {
         </Stack>
         )
       }):null}
-        <Menu
+        <IHCMenu
           variant="menu"
           anchorEl={anchorEl}
           elevation={0}
@@ -116,7 +117,7 @@ export default function NavigationBar(props) {
             </MenuItem>
           )
         } ):null}
-        </Menu>
+        </IHCMenu>
     </Stack>
   )
 }
