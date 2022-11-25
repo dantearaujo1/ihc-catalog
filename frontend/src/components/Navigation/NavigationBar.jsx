@@ -4,20 +4,29 @@ import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
-import Menu from "@mui/material/Menu"
-import { IHCMenu } from "../../assets/ComponentStyle"
 import MenuItem from "@mui/material/MenuItem"
+import { useTheme } from "@mui/material/styles"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";;
+import {
+  faAngleRight,
+  faAngleDown,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { IHCMenu } from "../../assets/ComponentStyle"
 
 export default function NavigationBar(props) {
 
+  // TODO: add material-ui-popup-state for handle disabling focus
+
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   // Theses buttons should come from backend probablye
   const [cats, setCats] = useState();
   const [load, setLoad] = useState(false);
   const [subs, setSubs] = useState();
   const [menuItem, setMenuItem] = useState();
-
-  let open = Boolean(anchorEl);
+  const [open,setOpen] = useState([false,false,false,false,false]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,8 +52,12 @@ export default function NavigationBar(props) {
 
   }, []  )
 
-  const handleMenuClick = async (event,catID) => {
+  const handleMenuClick = async (event,catID, index) => {
     setAnchorEl(event.currentTarget);
+    console.log(event.currentTarget);
+    let newArray = [...open];
+    newArray[index] = true;
+    setOpen(newArray);
     const list = subs.filter( (value) => {
       if( value.categoryID == catID ){
         return value;
@@ -53,8 +66,11 @@ export default function NavigationBar(props) {
     setMenuItem(list);
 
   }
-  const handleClose = () => {
+  const handleClose = (index) => {
     setAnchorEl(null);
+    let newArray = [...open];
+    newArray[index] = false;
+    setOpen(newArray);
   }
   const handleItemClick = (id) => {
     setAnchorEl(null);
@@ -72,22 +88,26 @@ export default function NavigationBar(props) {
       justifyContent="space-evenly"
       backgroundColor="primary.main"
     >
-      {cats?cats.map((cat) => {
+      {cats?cats.map((cat, index) => {
         return (
         <Stack key={cat._id} width="25%" alignItems="center">
-          <Button  variant="text"  onClick={(event) => handleMenuClick(event, cat._id)}>
+          <Button  variant="text"  onClick={(event) => handleMenuClick(event, cat._id, index)}>
             <Typography color="text.primary">
-                {cat.name}
+                {
+                  open[index]?
+                    ( <FontAwesomeIcon  color={theme.palette.effects.primary.lighter} icon={faAngleDown} bounce></FontAwesomeIcon>)
+                  :
+                    ( <FontAwesomeIcon  color={theme.palette.effects.primary.darker} icon={faAngleRight}></FontAwesomeIcon>)
+                } {cat.name}
             </Typography>
           </Button>
-        </Stack>
-        )
-      }):null}
         <IHCMenu
           variant="menu"
           anchorEl={anchorEl}
+              disableAutoFocusItem={true}
+              autoFocus={true}
           elevation={0}
-          sx={{height: "45%"}}
+          sx={{height: "30%"}}
           PaperProps={{
             sx: {
               backgroundColor: "primary.dark",
@@ -95,12 +115,12 @@ export default function NavigationBar(props) {
               borderTopLeftRadius:0,
               borderTopRightRadius:0,
               borderTop:0,
-              mt: 1.31,
+              mt: 1.1,
               width: '25%',
             }
           }}
-          open={open}
-          onClose={handleClose}
+          open={open[index]}
+          onClose={() => handleClose(index)}
           anchorOrigin={{
             vertical: "bottom",
             horizontal:"center"
@@ -118,6 +138,9 @@ export default function NavigationBar(props) {
           )
         } ):null}
         </IHCMenu>
+        </Stack>
+        )
+      }):null}
     </Stack>
   )
 }
