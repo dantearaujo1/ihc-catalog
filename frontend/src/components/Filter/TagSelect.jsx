@@ -46,6 +46,11 @@ export default function TagSelect(props) {
           value={selected}
           onChange={(event) => { handleChange(event);}}
           input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
+          MenuProps={{
+            sx: {
+              height: '30%',
+            }
+          }}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
