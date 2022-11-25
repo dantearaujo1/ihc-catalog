@@ -2,6 +2,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import OutlinedInput from '@mui/material/OutlinedInput'
+import Menu from '@mui/material/Menu'
 
 import { styled } from '@mui/material/styles'
 import { createTheme } from '@mui/material/styles'
@@ -60,5 +61,37 @@ const IHCOutlinedInput = styled((OutlinedInput))( ( {theme} ) => ({
   },
 }))
 
+const IHCMenu = styled((Menu))( ( {theme} ) => ({
+  // borderRadius: 50,
+  // backgroundColor: theme.palette.background.default,
+  // height: "30%",
 
-export { IHCButtonRounded, IHCTextField, IHCAutocomplete, IHCOutlinedInput};
+  "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+    borderRadius: 8,
+    backgroundColor: theme.palette.secondary.light,
+    minHeight: 24,
+    border: "3px solid",
+    borderColor: theme.palette.secondary.dark,
+  },
+  "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+    backgroundColor: theme.palette.primary.light,
+    borderColor: theme.palette.primary.dark,
+  },
+  "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+    backgroundColor: theme.palette.primary.light,
+    borderColor: theme.palette.primary.dark,
+  },
+  "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+    backgroundColor: theme.palette.primary.light,
+    borderColor: theme.palette.primary.dark,
+  },
+  "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+    backgroundColor: "#2b2b2b",
+  },
+}))
+
+
+export { IHCButtonRounded, IHCTextField, IHCAutocomplete, IHCOutlinedInput, IHCMenu};
