@@ -94,7 +94,12 @@ git clone https://github.com/dantearaujo1/ihc-catalog && cd ihc-catalog
 git checkout develop
 ```
 
-2. Existem duas maneiras para rodar a aplicação
+2. Existem três maneiras para rodar a aplicação
+
+##### Usando Batch Script da pasta dist (FORMA MAIS FÁCIL)
+
+* Entre na pasta dist e execute o arquivo runWindows.bat, ele irá se
+encarregar de executar os comandos e rodar os servidores.
 
 ##### Usando Docker
 
