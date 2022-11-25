@@ -29,6 +29,16 @@ const Colors = {
   success: {
     main: '#43a047',
   },
+  effects:{
+    primary:{
+      lighter: '#00f3d8',
+      darker: '#002bb3',
+    },
+    secondary:{
+      lighter: '#a984ec',
+      darker: '#4809a5',
+    },
+  }
 };
 
 
