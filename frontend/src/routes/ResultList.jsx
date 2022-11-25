@@ -21,6 +21,7 @@ export default function ResultList() {
   const navigate = useNavigate();
   const [pages, setPages] = useState(5);
   let [page, setPage] = useState(1);
+  const [showQuantity, setShowQuantity] = useState(2);
   const [fetching, setFetching] = useState(true);
   const [result, setResult] = useState();
   let {subID} = useParams();
@@ -77,7 +78,7 @@ export default function ResultList() {
 
   useEffect( () => {
     if(result){
-      setPages(( Math.floor(result.length/2) ));
+      setPages(( Math.floor(result.length/showQuantity) ));
     }
   }, [result] );
 
@@ -93,7 +94,7 @@ export default function ResultList() {
       <Stack justifyContent="center" alignItems="center">
         {!fetching?
             <Stack height="100%" alignItems="center">
-              { ( result?.length > 0 ) ? result?.slice(page-1, page+1).map( (article) => {
+              { ( result?.length > 0 ) ? result?.slice( (page-1) * showQuantity, page * showQuantity).map( (article) => {
                   return <ArticleCard key={article.Article._id} data={article}></ArticleCard>
                 }
               )
