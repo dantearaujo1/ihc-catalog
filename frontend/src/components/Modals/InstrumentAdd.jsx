@@ -21,13 +21,18 @@ function InstrumentAddModal() {
 
   return (
     <Box>
-      <Box sx={{
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
+      <Box
+        sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                right: 32,
+                bottom: 98
+              }}
+      >
         <IHCButtonRounded onClick={handleOpen} variant="contained" >
             <FontAwesomeIcon size="1x" icon={ faLightbulb } beatFade />
-            <Typography color="white" ml={2}> Leave a Suggestion </Typography>
+            <Typography color="white" ml={3}> Leave a Suggestion </Typography>
         </IHCButtonRounded>
       </Box>
       <Modal open={open} onClose={handleClose}>
