@@ -93,7 +93,7 @@ function NavigationHeader({data, show}) {
                     ...params.InputProps,
                     endAdornment: (
                       <InputAdornment position="start">
-                        <FontAwesomeIcon color={theme.palette.primary.main} icon={faSearch}></FontAwesomeIcon>
+                        <FontAwesomeIcon color={theme.palette.primary.main} icon={faSearch}/>
                       </InputAdornment>
                     )
                   }}
