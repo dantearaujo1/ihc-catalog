@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
+import { IHCButtonRounded } from "../assets/ComponentStyle"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
 import Card from "@mui/material/Card"
@@ -33,9 +33,9 @@ const ArticleCard = (props) => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <Button onClick={handleClick} variant="contained" sx={{borderRadius: 10, ml:"auto", mr: 10, mb: 4 }}>
+            <IHCButtonRounded onClick={handleClick} color="secondary" variant="contained" sx={{borderRadius: 10, ml:"auto", mr: 10, mb: 4 }}>
               <Typography>Read more</Typography>
-            </Button>
+            </IHCButtonRounded>
           </CardActions>
         </Card>
       </Stack>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
+import { IHCButtonRounded } from '../assets/ComponentStyle'
 import Typography from '@mui/material/Typography'
 
 const GroupBadge = () => {
@@ -12,16 +12,11 @@ const GroupBadge = () => {
         {data?data.category:"Category"}
       </Typography>
       <Stack direction="row" spacing={2}>
-        <Button variant="contained" sx={{width:"auto", borderRadius:10}}>
+        <IHCButtonRounded  variant="contained" sx={{width:"auto", borderRadius:10}}>
           <Typography variant="h7">
             {data?data.subcategory:"SubCategory"}
           </Typography>
-        </Button>
-        <Button variant="contained" sx={{width:"auto", borderRadius:10}}>
-          <Typography variant="h7">
-            {data?data.subcategory:"SubCategory"}
-          </Typography>
-        </Button>
+        </IHCButtonRounded>
       </Stack>
     </Stack>
 
