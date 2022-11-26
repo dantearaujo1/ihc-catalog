@@ -9,6 +9,7 @@ import { IHCButtonRounded } from "../assets/ComponentStyle"
 
 import NavigationHeader from "../components/Navigation/NavigationHeader";
 import NavigationBar from "../components/Navigation/NavigationBar"
+import IHCFooter from "../components/Navigation/Footer"
 import InstrumentAddModal from "../components/Modals/InstrumentAdd"
 import TagSelect from "../components/Filter/TagSelect.jsx";
 import Image from "mui-image"
@@ -159,6 +160,7 @@ function Home() {
         {/*   }) */}
         {/* })} */}
       </Stack>
+      <IHCFooter></IHCFooter>
       <InstrumentAddModal></InstrumentAddModal>
     </Box>
 
