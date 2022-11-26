@@ -11,6 +11,7 @@ import NavigationHeader from "../components/Navigation/NavigationHeader";
 import NavigationBar from "../components/Navigation/NavigationBar"
 import InstrumentAddModal from "../components/Modals/InstrumentAdd"
 import TagSelect from "../components/Filter/TagSelect.jsx";
+import Image from "mui-image"
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -93,25 +94,36 @@ function Home() {
     <Box style={{ height: "100vh" }}>
       <NavigationHeader />
       <NavigationBar categories={cat} subcategories={sub} />
+
       <Stack
-        justifyContent="center"
-        width="100%"
-        alignItems="center"
+        direction="row"
+        width="80%"
+        alignItems="flex-end"
+        justifyContent="space-around"
         sx={{ m: "auto" }}
       >
-        <Typography
-          variant="h1"
-          color="text.primary"
-          sx={{ marginTop: 10 }}
+        <Stack
+          justifyContent="center"
+          width="65%"
+          alignItems="center"
+          sx={{ m: "auto" }}
         >
-          UX Instruments Catalog
-        </Typography>
-        <Typography
-          variant="h4"
-          color="text.secondary"
-        >
-          Combine categories and find the best UX Evaluation Methods for your project
-        </Typography>
+          <Typography
+            variant="h1"
+            color="text.primary"
+            sx={{ marginTop: 10 }}
+          >
+            Find your UX Evaluation Instrument
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{ marginTop: 4 }}
+            color="text.secondary"
+          >
+            Combine categories and find the best UX Evaluation Methods for your project
+          </Typography>
+        </Stack>
+        <Image sx={{marginTop: 10}} src="../../public/header-teal.png"/>
       </Stack>
       <Stack
         direction="row"
