@@ -60,22 +60,22 @@ const IHCFooter = () => {
         </Stack>
         <Stack direction="row" spacing={ 4 } justifyContent="center" width="25%" >
             <Typography color="white" variant="h4">
-              <Link href="/" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.instagram.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
               </Link>
             </Typography>
             <Typography color="white" variant="h4">
-              <Link href="/" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.facebook.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon>
               </Link>
             </Typography>
             <Typography color="white" variant="h4">
-              <Link href="/" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.youtube.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
               </Link>
             </Typography>
             <Typography color="white" variant="h4">
-              <Link href="/" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.spotify.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faSpotify}></FontAwesomeIcon>
               </Link>
             </Typography>
