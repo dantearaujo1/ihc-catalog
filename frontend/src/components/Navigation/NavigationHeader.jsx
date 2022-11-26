@@ -45,65 +45,65 @@ function NavigationHeader({data, show}) {
     if(event.keyCode === 13){
       // TODO: look inside database if there is some
       console.log("Pressed enter");
-      navigate('/instrument_detail');
+      navigate('/instrument_detail', { state: { article: { Article: event.target } } });
 
     }
   }
 
   return (
-    <Box
+    <Stack
       className="nav-container"
       backgroundColor="primary.main"
-      height={77}
-      pl={10}
-      pr={10}
-      alignItems="center"
+      minHeight={77}
+      height="auto"
+      justifyContent="center"
+      pl={19}
+      pr={19}
     >
         <Stack
           direction="row"
           height="100%"
-          justifyContent="space-around"
+          justifyContent="center"
           alignItems="center"
-          className="nav-items"
         >
-        <Box width="33%">
-            <Typography color="white"  ml={9} variant="h4">
-              <Link href="/" underline="hover" color="inherit">
-                HCI Catalog
-              </Link>
-            </Typography>
-        </Box>
-        <Box
-          sx={{ width: "33%",  }}
-        >
-          {show?
-          <IHCAutocomplete
-            size='small'
-            id="search-by-instrument"
-            options={art?art:[]}
-            getOptionLabel={(option) => option.name.toString()}
-            onChange={handleClickSelection}
-            onKeyDown={handleEnterSelection}
-            renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
-            renderInput={(params) => (
-              <IHCTextField
-                {...params}
-                label="Search"
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <FontAwesomeIcon color={theme.palette.primary.main} icon={faSearch}/>
-                      </InputAdornment>
-                    )
-                  }}
-              />
-            )}/>
-            :null}
-        </Box>
-        <Box width="33%" ></Box>
+          <Box width="33%">
+              <Typography color="white" variant="h3">
+                <Link href="/" underline="hover" color="inherit">
+                  HCI Catalog
+                </Link>
+              </Typography>
+          </Box>
+          <Box
+            sx={{ width: "33%",  }}
+          >
+            {show?
+            <IHCAutocomplete
+              size='small'
+              id="search-by-instrument"
+              options={art?art:[]}
+              getOptionLabel={(option) => option.name.toString()}
+              onChange={handleClickSelection}
+              onKeyDown={handleEnterSelection}
+              renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
+              renderInput={(params) => (
+                <IHCTextField
+                  {...params}
+                  label="Search"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <InputAdornment position="start">
+                          <FontAwesomeIcon color={theme.palette.primary.main} icon={faSearch}/>
+                        </InputAdornment>
+                      )
+                    }}
+                />
+              )}/>
+              :null}
+          </Box>
+          <Box width="33%" ></Box>
+        </Stack>
       </Stack>
-    </Box>
   )
 }
 
