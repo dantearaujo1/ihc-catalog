@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 const Colors = {
   type: 'light',
@@ -54,10 +54,13 @@ const Colors = {
 };
 
 
-export const themeOptions = createTheme({
+let themeOptions = createTheme({
   palette: Colors,
   typography: {
     fontFamily: ["Roboto", "Nunito"],
   },
 });
 
+themeOptions = responsiveFontSizes(themeOptions);
+
+export default themeOptions;

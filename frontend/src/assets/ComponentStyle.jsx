@@ -6,7 +6,7 @@ import Menu from '@mui/material/Menu'
 
 import { styled } from '@mui/material/styles'
 import { createTheme } from '@mui/material/styles'
-import { themeOptions } from './themes'
+import themeOptions from './themes'
 
 
 const theme = themeOptions;
