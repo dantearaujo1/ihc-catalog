@@ -85,7 +85,7 @@ export default function NavigationBar(props) {
       alignItems="center"
       justifyContent="space-evenly"
       backgroundColor="primary.main"
-      p="0px 72px 0px 72px"
+      p="0px 152px 0px 152px"
     >
       {cats?cats.map((cat, index) => {
         return (
