@@ -149,18 +149,9 @@ function Home() {
           <Typography>Search</Typography>
         </IHCButtonRounded>
       </Stack>
-      <Stack direction="row">
-        {/* {selections && selections.map((categorys) => { */}
-        {/*   return categorys.category.selections.map((options, index, array) => { */}
-        {/*     return ( */}
-        {/*       <Typography key={index} ml={1} mt={3} variant="h6" color="#ff0000"> */}
-        {/*         {options.name} {(index + 1 < array.length) ? "OR" : (index + 1 > array.lenght) ? null : "|AND|"} */}
-        {/*       </Typography> */}
-        {/*     ) */}
-        {/*   }) */}
-        {/* })} */}
-      </Stack>
-      <IHCFooter></IHCFooter>
+      <Box height={276}>
+        <IHCFooter></IHCFooter>
+      </Box>
       <InstrumentAddModal></InstrumentAddModal>
     </Box>
 

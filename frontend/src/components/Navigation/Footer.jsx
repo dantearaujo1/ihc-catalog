@@ -11,18 +11,18 @@ import { faInstagram, faFacebook, faYoutube, faSpotify } from '@fortawesome/free
 const IHCFooter = () => {
   return (
     <Box
-      className="nav-container"
       backgroundColor="primary.main"
       alignItems="center"
-      mt={2}
-      height={276}
+      mt={6}
+      pt={6}
+      pb={6}
+      height="100%"
     >
         <Stack
           direction="row"
           height="100%"
           justifyContent="space-around"
           alignItems="center"
-          className="nav-items"
         >
         <Stack spacing={4} width="25%" pl={19}>
             <Typography color="white" textAlign="left" variant="h3">
@@ -79,7 +79,6 @@ const IHCFooter = () => {
                 <FontAwesomeIcon icon={faSpotify}></FontAwesomeIcon>
               </Link>
             </Typography>
-
         </Stack>
       </Stack>
     </Box>

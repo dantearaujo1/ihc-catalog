@@ -21,7 +21,6 @@ const InstrumentDetail = () => {
   const location = useLocation();
   const theme = useTheme();
   const data = location.state.article;
-  console.log(data);
 
   return (
     <Box>
