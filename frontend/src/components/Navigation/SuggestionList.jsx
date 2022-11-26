@@ -43,7 +43,7 @@ function Suggestion({ info, value, onChange }) {
               <Typography fontSize="8px" textAlign="center">{item.title}</Typography>
               <Tooltip title={ <div style={{whiteSpace: 'pre-line'}}>{ tooltipText } </div>} sx={{maxWidth:20}}>
                 <Box
-                  sx={{ backgroundColor: item.color, borderRadius: "8px", width: "8px", height: "8px" }}
+                  sx={{ backgroundColor: item.color, borderRadius: "8px", width: "8px", minHeight: "8px" }}
                 />
               </Tooltip>
             </Stack>
@@ -51,10 +51,10 @@ function Suggestion({ info, value, onChange }) {
         })}
       </Stack>
       <Typography color="text.content.dark" width="75%" textAlign="left" ml={2} >{info.message}</Typography>
-      <Button variant='contained' size="small"  sx={{minWidth: 0 ,width:"20px",minHeight: 0 ,height:"20px", borderRadius:"50px", marginRight:"10px"}}>
+      <Button variant='contained' size="small"  sx={{minWidth: "20px" ,minHeight: "8px", borderRadius:"50px", marginRight:"10px"}}>
         <Typography color="status.success.main" m={2}><FontAwesomeIcon icon={faCheck}></FontAwesomeIcon></Typography>
       </Button>
-      <Button variant='contained' color="primary" size="small"  sx={{minWidth: 0 ,width:"20px",minHeight: 0 ,height:"20px", borderRadius:"50px", marginRight:"10px"}}>
+      <Button variant='contained' color="primary" size="small"  sx={{minWidth: 0 ,width:"20px",minHeight: "8px", borderRadius:"50px", marginRight:"10px"}}>
         <Typography color="status.error.main" m={2}><FontAwesomeIcon icon={faXmark}></FontAwesomeIcon></Typography>
       </Button>
     </Stack>

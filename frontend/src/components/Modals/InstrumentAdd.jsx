@@ -20,29 +20,14 @@ function InstrumentAddModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Box sx={{ width: "100vw", marginTop: 10 }}>
-        <IHCButtonRounded
-          onClick={handleOpen}
-          color="primary"
-          variant="contained"
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            textTransform: "none",
-            width: "auto",
-            right: 64,
-            bottom: 240,
-            borderTopLeftRadius: 50,
-            borderBottomLeftRadius: 50,
-            borderTopRightRadius: 50,
-          }}
-        >
-          <Typography color="text.content.white" variant="h7">
+    <Box>
+      <Box sx={{
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+        <IHCButtonRounded onClick={handleOpen} variant="contained" >
             <FontAwesomeIcon size="1x" icon={ faLightbulb } beatFade />
-            <Typography color="text.content.white" variant="h7"> Leave a Suggestion </Typography>
-          </Typography>
+            <Typography color="white" ml={2}> Leave a Suggestion </Typography>
         </IHCButtonRounded>
       </Box>
       <Modal open={open} onClose={handleClose}>
@@ -135,7 +120,7 @@ function InstrumentAddModal() {
           </Box>
         </Box>
       </Modal>
-    </div>
+    </Box>
   );
 }
 

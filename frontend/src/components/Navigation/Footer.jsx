@@ -24,57 +24,57 @@ const IHCFooter = () => {
           justifyContent="space-around"
           alignItems="center"
         >
-        <Stack spacing={4} width="25%" pl={19}>
+        <Stack spacing={4} width="100%" pl={19}>
             <Typography color="white" textAlign="left" variant="h3">
                 HCI Catalog
             </Typography>
-            <Typography color="white"  variant="body1">
+            <Typography color="white"  variant="body2">
                 Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
             </Typography>
-            <Typography color="white"  variant="body2">
+            <Typography color="white"  variant="caption">
                 Copyright @ 2022. All rights reserved.
             </Typography>
         </Stack>
-        <Stack width="25%" height="50%" spacing={2} ml="auto" justifyContent="center" >
-            <Typography color="white" variant="h6">
+        <Stack width="100%" spacing={2} ml="auto" alignItems="center" justifyContent="center" >
+            <Typography color="white" variant="body2">
               <Link href="/" underline="hover" color="inherit">
                 Home
               </Link>
             </Typography>
-            <Typography color="white" variant="h6">
+            <Typography color="white" variant="body2">
               <Link href="/" underline="hover" color="inherit">
                 About
               </Link>
             </Typography>
-            <Typography color="white" variant="h6">
+            <Typography color="white" variant="body2">
               <Link href="/" underline="hover" color="inherit" sx={{textAlign:"left"}}>
                 FAQ
               </Link>
             </Typography>
-            <Typography color="white"  variant="h6">
+            <Typography color="white"  variant="body2">
               <Link href="/" underline="hover" textAlign="left" color="inherit">
                 Contact
               </Link>
             </Typography>
 
         </Stack>
-        <Stack direction="row" spacing={ 4 } justifyContent="center" width="25%" >
-            <Typography color="white" variant="h4">
+        <Stack direction="row" spacing={ 4 } justifyContent="center" width="100%" >
+            <Typography color="white" variant="h7">
               <Link target="_blank" href="https://www.instagram.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
               </Link>
             </Typography>
-            <Typography color="white" variant="h4">
+            <Typography color="white" variant="h7">
               <Link target="_blank" href="https://www.facebook.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon>
               </Link>
             </Typography>
-            <Typography color="white" variant="h4">
+            <Typography color="white" variant="h7">
               <Link target="_blank" href="https://www.youtube.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
               </Link>
             </Typography>
-            <Typography color="white" variant="h4">
+            <Typography color="white" variant="h7">
               <Link target="_blank" href="https://www.spotify.com.br" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faSpotify}></FontAwesomeIcon>
               </Link>

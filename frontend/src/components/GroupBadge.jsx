@@ -13,7 +13,7 @@ const GroupBadge = () => {
       </Typography>
       <Stack direction="row" spacing={2}>
         <IHCButtonRounded  variant="contained" sx={{width:"auto", borderRadius:10}}>
-          <Typography variant="h7">
+          <Typography variant="buttonSmall">
             {data?data.subcategory:"SubCategory"}
           </Typography>
         </IHCButtonRounded>

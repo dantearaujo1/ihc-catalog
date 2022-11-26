@@ -92,10 +92,9 @@ function Home() {
   // useEffect(() => { console.log(selections) }, [selections]);
 
   return (
-    <Box style={{ height: "100vh" }}>
+    <Box style={{ height: "auto" }}>
       <NavigationHeader />
       <NavigationBar categories={cat} subcategories={sub} />
-
       <Stack
         direction="row"
         width="80%"
@@ -117,7 +116,7 @@ function Home() {
             Find your UX Evaluation Instrument
           </Typography>
           <Typography
-            variant="h5"
+            variant="h6"
             sx={{ marginTop: 4 }}
             color="text.secondary"
           >
@@ -146,13 +145,13 @@ function Home() {
           startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
           onClick={handleClick}
         >
-          <Typography>Search</Typography>
+          <Typography variant="buttonMedium">Search</Typography>
         </IHCButtonRounded>
       </Stack>
-      <Box height={276}>
+      <InstrumentAddModal></InstrumentAddModal>
+      <Box height="auto">
         <IHCFooter></IHCFooter>
       </Box>
-      <InstrumentAddModal></InstrumentAddModal>
     </Box>
 
   );

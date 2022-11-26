@@ -78,20 +78,19 @@ export default function NavigationBar(props) {
 
   return (
     <Stack
-      height={77} // WARN: PUT MAGIC NUMBER IS A GOOD IDEA?
+      minHeight={77}
       direction="row"
       width="100%"
       borderColor="primary.dark"
       alignItems="center"
       justifyContent="space-evenly"
       backgroundColor="primary.main"
-      p="0px 152px 0px 152px"
     >
       {cats?cats.map((cat, index) => {
         return (
-        <Stack key={cat._id} width="25%" alignItems="center">
-          <Button  variant="text"  onClick={(event) => handleMenuClick(event, cat._id, index)}>
-            <Typography variant="h6" component="h5" color="white">
+        <Stack key={cat._id}  alignItems="center">
+          <Button sx={{textTransform:"none"}} onClick={(event) => handleMenuClick(event, cat._id, index)}>
+            <Typography variant="h5" color="white">
                 {
                   open[index]?
                     ( <FontAwesomeIcon  color={theme.palette.effects.primary.lighter} icon={faAngleDown} bounce></FontAwesomeIcon>)
@@ -130,7 +129,7 @@ export default function NavigationBar(props) {
         {menuItem?menuItem.map( (sub) => {
           return (
             <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id, index)}}>
-              <Typography variant="h7">{ sub.name }</Typography>
+              <Typography variant="h5">{ sub.name }</Typography>
             </MenuItem>
           )
         } ):null}
