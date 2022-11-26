@@ -98,6 +98,7 @@ function Home() {
       <Stack
         direction="row"
         width="80%"
+        minHeight="650px"
         alignItems="flex-end"
         justifyContent="space-around"
         sx={{ m: "auto" }}
