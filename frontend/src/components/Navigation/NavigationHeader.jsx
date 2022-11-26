@@ -12,8 +12,10 @@ import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from "@mui/material/Typography";
 import Link from '@mui/material/Link';
+import { useTheme } from '@mui/material/styles';
 
 function NavigationHeader({data, show}) {
+  const theme = useTheme();
   const navigate = useNavigate();
   const [art, setArt] = useState();
 
@@ -52,7 +54,9 @@ function NavigationHeader({data, show}) {
     <Box
       className="nav-container"
       backgroundColor="primary.main"
-      height={88}
+      height={77}
+      pl={10}
+      pr={10}
       alignItems="center"
     >
         <Stack
@@ -63,9 +67,9 @@ function NavigationHeader({data, show}) {
           className="nav-items"
         >
         <Box width="33%">
-            <Typography color="text.primary"  ml={9} variant="h4">
+            <Typography color="white"  ml={9} variant="h4">
             <Link href="/" underline="hover" color="inherit">
-                HCI-Catalog
+                HCI Catalog
               </Link>
             </Typography>
         </Box>
@@ -88,8 +92,8 @@ function NavigationHeader({data, show}) {
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
-                      <InputAdornment position="end">
-                        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+                      <InputAdornment position="start">
+                        <FontAwesomeIcon color={theme.palette.primary.main} icon={faSearch}></FontAwesomeIcon>
                       </InputAdornment>
                     )
                   }}
