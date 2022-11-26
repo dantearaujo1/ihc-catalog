@@ -68,7 +68,7 @@ function NavigationHeader({data, show}) {
         >
         <Box width="33%">
             <Typography color="white"  ml={9} variant="h4">
-            <Link href="/" underline="hover" color="inherit">
+              <Link href="/" underline="hover" color="inherit">
                 HCI Catalog
               </Link>
             </Typography>
