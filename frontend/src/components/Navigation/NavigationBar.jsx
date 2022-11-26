@@ -54,7 +54,6 @@ export default function NavigationBar(props) {
 
   const handleMenuClick = async (event,catID, index) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget);
     let newArray = [...open];
     newArray[index] = true;
     setOpen(newArray);
@@ -72,40 +71,38 @@ export default function NavigationBar(props) {
     newArray[index] = false;
     setOpen(newArray);
   }
-  const handleItemClick = (id) => {
-    setAnchorEl(null);
+  const handleItemClick = (id, index) => {
+    handleClose(index);
     navigate('/result/' + id)
   }
 
   return (
     <Stack
-      height={56} // WARN: PUT MAGIC NUMBER IS A GOOD IDEA?
+      height={77} // WARN: PUT MAGIC NUMBER IS A GOOD IDEA?
       direction="row"
       width="100%"
-      borderTop={1}
       borderColor="primary.dark"
       alignItems="center"
       justifyContent="space-evenly"
       backgroundColor="primary.main"
+      p="0px 72px 0px 72px"
     >
       {cats?cats.map((cat, index) => {
         return (
         <Stack key={cat._id} width="25%" alignItems="center">
           <Button  variant="text"  onClick={(event) => handleMenuClick(event, cat._id, index)}>
-            <Typography color="text.primary">
+            <Typography variant="h6" component="h5" color="white">
                 {
                   open[index]?
                     ( <FontAwesomeIcon  color={theme.palette.effects.primary.lighter} icon={faAngleDown} bounce></FontAwesomeIcon>)
                   :
-                    ( <FontAwesomeIcon  color={theme.palette.effects.primary.darker} icon={faAngleRight}></FontAwesomeIcon>)
-                } {cat.name}
+                    ( <FontAwesomeIcon  color={theme.palette.white} icon={faAngleRight}></FontAwesomeIcon>)
+                } {(cat.name)}
             </Typography>
           </Button>
         <IHCMenu
           variant="menu"
           anchorEl={anchorEl}
-              disableAutoFocusItem={true}
-              autoFocus={true}
           elevation={0}
           sx={{height: "30%"}}
           PaperProps={{
@@ -115,7 +112,7 @@ export default function NavigationBar(props) {
               borderTopLeftRadius:0,
               borderTopRightRadius:0,
               borderTop:0,
-              mt: 1.1,
+              mt: 2,
               width: '25%',
             }
           }}
@@ -132,7 +129,7 @@ export default function NavigationBar(props) {
         >
         {menuItem?menuItem.map( (sub) => {
           return (
-            <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id)}}>
+            <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id, index)}}>
               <Typography variant="h7">{ sub.name }</Typography>
             </MenuItem>
           )
