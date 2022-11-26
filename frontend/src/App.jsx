@@ -1,6 +1,6 @@
 import './App.css'
 import AppRoutes  from './routes/routes'
-import { themeOptions } from "./assets/themes"
+import themeOptions from "./assets/themes"
 import {  ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
