@@ -124,7 +124,7 @@ function Home() {
             Combine categories and find the best UX Evaluation Methods for your project
           </Typography>
         </Stack>
-        <Image sx={{marginTop: 10}} src="../../public/header-teal.png"/>
+        <Image sx={{marginTop: 10}} src="../../header-teal.png"/>
       </Stack>
       <Stack
         direction="row"
