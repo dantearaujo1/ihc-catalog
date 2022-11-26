@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 
 import NavigationHeader from '../components/Navigation/NavigationHeader'
+import Footer from '../components/Navigation/Footer'
 import NavigationBar from '../components/Navigation/NavigationBar'
 import ArticleCard from '../components/ArticleCard'
 import GroupBadge from '../components/GroupBadge'
@@ -61,6 +62,7 @@ const InstrumentDetail = () => {
           </Stack>
           </Stack>
       </Stack>
+      <Footer></Footer>
     </Box>
   )
 }

@@ -13,6 +13,7 @@ import {
 
 import NavigationHeader from "../components/Navigation/NavigationHeader"
 import NavigationBar from "../components/Navigation/NavigationBar"
+import Footer from "../components/Navigation/Footer"
 import ArticleCard from "../components/ArticleCard"
 import { IHCButtonRounded } from "../assets/ComponentStyle"
 
@@ -122,6 +123,7 @@ export default function ResultList() {
 
         }
       </Stack>
+      <Footer></Footer>
     </Stack>
   )
 }
