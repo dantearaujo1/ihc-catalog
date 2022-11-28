@@ -38,14 +38,16 @@ function NavigationHeader({data, show}) {
   }, [] )
 
 
-  const handleClickSelection = (event, value) => {
-    navigate('/instrument_detail', { state: {article : {Article: value}} });
+  const handleClickSelection = async (event, value) => {
+    const fetching = await fetch("/api/v1/article/id/"+value._id);
+    const article = await fetching.json();
+
+    navigate('/instrument_detail', { state: {article : article} });
   }
+  // Handle pressing enter with a random search inside search bar
   const handleEnterSelection = (event) => {
     if(event.keyCode === 13){
-      // TODO: look inside database if there is some
-      console.log("Pressed enter");
-      navigate('/instrument_detail', { state: { article: { Article: event.target } } });
+      navigate('/instrument_detail', { state: { article: { Article: event.target, Categorys:[], Subcategorys:[]} } });
 
     }
   }

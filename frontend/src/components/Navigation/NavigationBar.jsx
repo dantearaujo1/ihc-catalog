@@ -71,9 +71,21 @@ export default function NavigationBar(props) {
     newArray[index] = false;
     setOpen(newArray);
   }
-  const handleItemClick = (id, index) => {
+  const handleItemClick = (sub, index) => {
     handleClose(index);
-    navigate('/result/' + id)
+    navigate('/result/' + sub._id, {state: {
+      lookedFor: [{
+            category:{
+                  id:cats[index]._id,
+                  name:cats[index].name,
+                  selections: [{
+                    _id:sub._id,
+                    name:sub.name,
+                    categoryID:sub.categoryID,
+                  }],
+                },
+      }]
+    }});
   }
 
   return (
@@ -115,7 +127,7 @@ export default function NavigationBar(props) {
               width: '25%',
             }
           }}
-          open={open[index]}
+          open={open[index]?open[index]:false}
           onClose={() => handleClose(index)}
           anchorOrigin={{
             vertical: "bottom",
@@ -128,7 +140,7 @@ export default function NavigationBar(props) {
         >
         {menuItem?menuItem.map( (sub) => {
           return (
-            <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub._id, index)}}>
+            <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub, index)}}>
               <Typography variant="h5">{ sub.name }</Typography>
             </MenuItem>
           )
