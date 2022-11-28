@@ -140,7 +140,8 @@ function Home() {
         }
       </Stack>
       <Stack sx={{ alignItems: "center", marginTop: 6 }}>
-        <IHCButtonRounded
+        { ( selections.length > 0 ) ?
+          <IHCButtonRounded
           variant="contained"
           sx={{ minWidth: 160, height: "3rem" }}
           startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
@@ -148,6 +149,17 @@ function Home() {
         >
           <Typography variant="buttonMedium">Search</Typography>
         </IHCButtonRounded>
+        :
+          <IHCButtonRounded
+          variant="contained"
+          disabled
+          sx={{ minWidth: 160, height: "3rem" }}
+          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+          onClick={handleClick}
+        >
+          <Typography variant="buttonMedium">Search</Typography>
+        </IHCButtonRounded>
+        }
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
       <Box height="auto">
