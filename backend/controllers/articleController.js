@@ -107,6 +107,30 @@ const getArticlesBySubcategory = async (req, res) => {
      res.status(500).json({error:error});
   }
 }
+const getArticlesBySubcategoryName = async (req, res) => {
+  const subName = req.params.sname;
+
+  try {
+    const sub = await SubCategory.findOne({name:subName});
+    if(!sub){
+      res.status(422).json({message: "There's no subcategory with this name!"});
+      return;
+    }
+    const groups = await Group.find({subcategoryID:sub._id});
+    const articles = groups.map( async (group) => {
+      const article = await Article.findOne({_id:group.articleID})
+      const category = await Category.findOne({_id:sub.categoryID})
+      if(article && category){
+        const obj = {Article:article,Category:category,Subcategory:sub};
+        return (obj);
+      }
+    } )
+    res.status(200).json(await Promise.all(articles));
+
+  } catch (error) {
+     res.status(500).json({error:error});
+  }
+}
 
 const patchArticle = async (req,res) => {
   const id = req.params.id;
@@ -240,7 +264,8 @@ module.exports.sendGroupToDatabase = sendGroupToDatabase;
 module.exports.createArticle = createArticle;
 module.exports.getArticleById = getArticleById;
 module.exports.getArticleByName = getArticleByName;
-module.exports.getArticlesBySubcategory = getArticlesBySubcategory ;
+module.exports.getArticlesBySubcategory = getArticlesBySubcategory;
+module.exports.getArticlesBySubcategoryName = getArticlesBySubcategoryName;
 module.exports.getArticles = getArticles;
 module.exports.patchArticle = patchArticle;
 module.exports.deleteArticle = deleteArticle;
