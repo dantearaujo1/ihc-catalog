@@ -69,8 +69,7 @@ function Home() {
       body: JSON.stringify(selections),
     });
     const json = await result.json();
-    console.log(json);
-    navigate('/result', {state: { data: json }})
+    navigate('/result', {state: { data: json, lookedFor: selections }})
   }
 
   const handleFilterCategory = (value) => {
@@ -89,7 +88,6 @@ function Home() {
       setSelection(newArr);
     }
   }
-  // useEffect(() => { console.log(selections) }, [selections]);
 
   return (
     <Box style={{ height: "auto" }}>
@@ -98,7 +96,7 @@ function Home() {
       <Stack
         direction="row"
         width="80%"
-        minHeight="650px"
+        minHeight="60vh"
         alignItems="flex-end"
         justifyContent="space-around"
         sx={{ m: "auto" }}
