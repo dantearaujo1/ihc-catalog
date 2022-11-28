@@ -10,6 +10,7 @@ const {
   sendGroupToDatabase,
   testScratch,
   populateGroup,
+  getArticlesBySubcategoryName,
   // sendToDatabase,
 } = require('../controllers/articleController');
 
@@ -21,6 +22,7 @@ router.post('/', createArticle);
 // Recieving all articles stored
 router.get('/', getArticles);
 router.get('/group/g/a/s/:sid', getArticlesBySubcategory);
+router.get('/group/g/a/sn/:sname', getArticlesBySubcategoryName);
 
 // Recieving an article by id
 router.get('/id/:id', getArticleById);

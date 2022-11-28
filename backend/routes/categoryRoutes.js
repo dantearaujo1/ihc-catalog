@@ -4,6 +4,7 @@ const {
   getSubCategoriesByGroupName,
   getSubCategoriesByGroupId,
   getSubCategoryById,
+  getSubCategoryByName,
   createSubCategory,
   patchSubCategory,
   deleteSubCategory,
@@ -21,6 +22,7 @@ router.post('/sub/add', createSubCategory);
 router.get('/sub/all', getSubCategories);
 // Recieving an subcategory by id
 router.get('/sub/:id', getSubCategoryById);
+router.get('/sub/n/:name', getSubCategoryByName);
 // Recieve a list of subcategories from a groupName and groupID
 router.get('/sub/c/name/:name', getSubCategoriesByGroupName);
 router.get('/sub/c/id/:id', getSubCategoriesByGroupId);
