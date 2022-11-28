@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from "react-router-dom";
 
 import Stack from '@mui/material/Stack'
@@ -23,6 +23,7 @@ const InstrumentDetail = () => {
   const theme = useTheme();
   const data = location.state.article;
 
+
   return (
     <Box>
       <NavigationHeader/>
@@ -46,7 +47,11 @@ const InstrumentDetail = () => {
                 </Stack>
               </Stack>
               <Stack  width="50%" height="auto" mt={5} pl={2} >
-                <GroupBadge></GroupBadge>
+              {data.Categorys.map( (value, index) => {
+                return <GroupBadge category={value} subcategory={data.Subcategorys[index]}></GroupBadge>
+              } )
+
+              }
               </Stack>
             </Stack>
           <IHCButtonRounded  variant='contained'  onClick={() => {navigate(-1)}} sx={{mt: 5, mb: 6, borderRadius: 10}}>
