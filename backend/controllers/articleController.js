@@ -36,11 +36,26 @@ const getArticleById = async (req,res) => {
   try {
 
     const article = await Article.findOne({_id: id});
+    const csData = await Group.find({articleID:id}).populate( {path:'subcategoryID', populate: { path: 'categoryID' }});
     if(!article){
       res.status(422).json({message: "Article wasn't found!"});
       return;
     }
-    res.status(200).json(article);
+    if(!csData){
+      res.status(422).json({message: "There's no group data for this article"});
+    }
+    let articleFull = {
+      article:article,
+      categorys: [],
+      subcategorys: []
+    }
+
+    csData.forEach(value => {
+      articleFull.categorys.push(value.subcategoryID.categoryID.name);
+      articleFull.subcategorys.push(value.subcategoryID.name);
+    });
+    console.log(articleFull);
+    res.status(200).json(articleFull);
 
   } catch (error) {
      res.status(500).json({error:error});
@@ -269,4 +284,5 @@ const populateGroup = async ( req, res ) => {
 }
 
 module.exports.populateGroup = populateGroup;
+
 
