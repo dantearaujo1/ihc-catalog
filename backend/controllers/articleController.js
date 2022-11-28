@@ -45,14 +45,14 @@ const getArticleById = async (req,res) => {
       res.status(422).json({message: "There's no group data for this article"});
     }
     let articleFull = {
-      article:article,
-      categorys: [],
-      subcategorys: []
+      Article:article,
+      Categorys: [],
+      Subcategorys: []
     }
 
     csData.forEach(value => {
-      articleFull.categorys.push(value.subcategoryID.categoryID.name);
-      articleFull.subcategorys.push(value.subcategoryID.name);
+      articleFull.Categorys.push(value.subcategoryID.categoryID.name);
+      articleFull.Subcategorys.push(value.subcategoryID.name);
     });
     console.log(articleFull);
     res.status(200).json(articleFull);
