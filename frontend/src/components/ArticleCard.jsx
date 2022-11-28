@@ -19,8 +19,8 @@ const ArticleCard = (props) => {
   }
 
   return (
-    <Box>
-      <Stack alignItems="center">
+    <Stack width="100%">
+      <Stack alignItems="left">
         <Card  sx={{ width: "auto", height: "auto", mr:9, ml:props.ml, borderRadius: 10, mb: 4, mt: 4}} >
           <CardHeader
             title={data?data.Article.name:"Title of the Instrument"}
@@ -41,7 +41,7 @@ const ArticleCard = (props) => {
           </CardActions>
         </Card>
       </Stack>
-    </Box>
+    </Stack>
   )
 }
 
