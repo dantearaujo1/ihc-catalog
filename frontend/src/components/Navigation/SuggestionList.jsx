@@ -113,8 +113,6 @@ export default function SuggestionList() {
   ]);
   const [ isChecked, setCheckedState ] = useState(new Array(data.length).fill(false));
 
-  useEffect(() => { console.log(isChecked) }, [isChecked]);
-
   const handleSelected = ( position ) => {
     const updateCheckedState = isChecked.map( (item, index) => {
       return (index === position ? !item : item);
