@@ -60,23 +60,13 @@ const IHCFooter = () => {
         </Stack>
         <Stack direction="row" spacing={ 4 } justifyContent="center" width="100%" >
             <Typography color="white" variant="h7">
-              <Link target="_blank" href="https://www.instagram.com.br" rel="noreferrer" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.instagram.com.br/celulamultimidia/?igshid=YmMyMTA2M2Y%3D" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
               </Link>
             </Typography>
             <Typography color="white" variant="h7">
-              <Link target="_blank" href="https://www.facebook.com.br" rel="noreferrer" underline="hover" color="inherit">
-                <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon>
-              </Link>
-            </Typography>
-            <Typography color="white" variant="h7">
-              <Link target="_blank" href="https://www.youtube.com.br" rel="noreferrer" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.youtube.com.br/channel/UC7S8lZMUk12LPKQN9Y4Hrug/featured" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
-              </Link>
-            </Typography>
-            <Typography color="white" variant="h7">
-              <Link target="_blank" href="https://www.spotify.com.br" rel="noreferrer" underline="hover" color="inherit">
-                <FontAwesomeIcon icon={faSpotify}></FontAwesomeIcon>
               </Link>
             </Typography>
         </Stack>
