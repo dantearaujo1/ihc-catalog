@@ -12,14 +12,16 @@ import CardActions from "@mui/material/CardActions"
 const ArticleCard = (props) => {
   const [data, setData] = useState(props.data);
   const navigate = useNavigate();
-  const handleClick = (e,value) => {
-    navigate('../../instrument_detail', { state: { article: data} });
+  const handleClick = async (e,value) => {
+    const result = await fetch('/api/v1/article/id/' + data.Article._id);
+    const toJson = await result.json();
+    navigate('../../instrument_detail', { state: { article: toJson } });
   }
 
   return (
     <Box>
       <Stack alignItems="center">
-        <Card  sx={{maxWidth: 1000, width: "auto", height: "auto", mr:props.mr, ml:props.ml, borderRadius: 10, mb: 4, mt: 4}} >
+        <Card  sx={{ width: "auto", height: "auto", mr:9, ml:props.ml, borderRadius: 10, mb: 4, mt: 4}} >
           <CardHeader
             title={data?data.Article.name:"Title of the Instrument"}
             subheader={data?data.Article.reference:"Subheader"}
