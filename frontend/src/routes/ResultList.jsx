@@ -2,20 +2,16 @@ import React, {useState, useEffect} from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";;
-import {
-  faArrowLeftLong,
-} from "@fortawesome/free-solid-svg-icons";
 
 import NavigationHeader from "../components/Navigation/NavigationHeader"
 import NavigationBar from "../components/Navigation/NavigationBar"
 import Footer from "../components/Navigation/Footer"
 import ArticleCard from "../components/ArticleCard"
 import SideFilter from "../components/Filter/SideFilter"
+import ResultNotFound from "../components/ResultNotFound"
 import { IHCButtonRounded } from "../assets/ComponentStyle"
 
 
@@ -85,9 +81,6 @@ export default function ResultList() {
   }, [result] );
 
 
-  const handleClick = () => {
-      navigate("/");
-  }
 
   const handleSubClick = (sub) => {
     navigate("/result/" + sub._id, { state: {
@@ -103,7 +96,7 @@ export default function ResultList() {
 
   return (
     <Stack>
-      <NavigationHeader data={result?[]:[]}></NavigationHeader>
+      <NavigationHeader></NavigationHeader>
       <NavigationBar></NavigationBar>
       <Stack direction="row" >
         <SideFilter></SideFilter>
@@ -127,23 +120,13 @@ export default function ResultList() {
             </Stack>
           </Stack>
           {!fetching?
-              <Stack width="100%" minHeight="59.9vh" alignItems="flex-start">
+              <Stack width="100%" minHeight="59.9vh" justifyContent="center" alignItems="flex-start">
                 { ( result?.length > 0 ) ? result?.slice( (page-1) * showQuantity, page * showQuantity).map( (article) => {
                     return <ArticleCard key={article.Article._id} data={article}></ArticleCard>
                   }
                 )
                   :
-                  <Stack alignItems="center" justifyContent="center" spacing={4} height="100%" m={ 20} width="100%">
-                    <Typography variant="h3" textAlign="center">Oops!</Typography>
-                    <Typography variant="h6" textAlign="center">We couldn't find what you are looking for.</Typography>
-                    <Typography variant="h8" textAlign="center">Please, try another category combination or search for a keyword.</Typography>
-                    <Box>
-                      <IHCButtonRounded variant="contained" onClick={handleClick} sx={{ mt: 4}}>
-                        <FontAwesomeIcon  icon={faArrowLeftLong}/>
-                        <Typography ml={2}>Back to Homepage</Typography>
-                      </IHCButtonRounded>
-                    </Box>
-                  </Stack>
+                  <ResultNotFound></ResultNotFound>
                 }
               <Stack alignItems="center" width="100%">
                 {(result?.length > 0)?<Pagination sx={{mt:4}}  color="secondary" count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
