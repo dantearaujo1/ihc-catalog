@@ -23,7 +23,6 @@ export default function NavigationBar(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   // Theses buttons should come from backend probablye
   const [cats, setCats] = useState();
-  const [load, setLoad] = useState(false);
   const [subs, setSubs] = useState();
   const [menuItem, setMenuItem] = useState();
   const [open,setOpen] = useState([false,false,false,false,false]);
