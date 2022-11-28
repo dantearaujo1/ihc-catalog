@@ -25,6 +25,22 @@ const createSubCategory = async (req,res) => {
 
 }
 
+const getSubCategoryByName = async (req,res) => {
+  const subName = req.params.name;
+  try {
+
+    const subcategory = await SubCategory.findOne({name: subName});
+    if(!subcategory){
+      res.status(422).json({message: "SubCategory wasn't found!"});
+      return;
+    }
+    res.status(200).json(subcategory);
+
+  } catch {
+     res.status(500).json({error:error});
+  }
+}
+
 const getSubCategoryById = async (req,res) => {
   const id = req.params.id;
   try {
@@ -148,6 +164,7 @@ const deleteSubCategory = async (req,res) => {
 
 module.exports.createSubCategory = createSubCategory;
 module.exports.getSubCategoryById = getSubCategoryById;
+module.exports.getSubCategoryByName = getSubCategoryByName;
 module.exports.getSubCategoriesByGroupName = getSubCategoriesByGroupName;
 module.exports.getSubCategoriesByGroupId  = getSubCategoriesByGroupId ;
 module.exports.getSubCategories = getSubCategories;
