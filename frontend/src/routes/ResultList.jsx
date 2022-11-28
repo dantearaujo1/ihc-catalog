@@ -15,6 +15,7 @@ import NavigationHeader from "../components/Navigation/NavigationHeader"
 import NavigationBar from "../components/Navigation/NavigationBar"
 import Footer from "../components/Navigation/Footer"
 import ArticleCard from "../components/ArticleCard"
+import SideFilter from "../components/Filter/SideFilter"
 import { IHCButtonRounded } from "../assets/ComponentStyle"
 
 
@@ -28,7 +29,7 @@ export default function ResultList() {
   let {subID} = useParams();
   let { state } = useLocation();
 
-  // This need to fetch article Data
+  // This is used when searching for NavigationBar
   useEffect( () => {
     setFetching(true);
     const fetch_data = async () => {
@@ -42,9 +43,9 @@ export default function ResultList() {
     }
   }, [subID] );
 
+  // This is used when searching from Filter
   useEffect( () => {
-    if(state){
-      console.log(state.data);
+    if(!subID){
       const fetch_data = async () => {
         const data = await fetch('/api/v1/article/group/populate',
         {
@@ -64,10 +65,10 @@ export default function ResultList() {
                 year:article.articleID.year,
                 main:article.articleID.main,
                 general:article.articleID.general,
-              }
+              },
           }
         });
-        console.log(better);
+
         setResult(better);
         setFetching(false);
       }
@@ -88,42 +89,77 @@ export default function ResultList() {
       navigate("/");
   }
 
+  const handleSubClick = (sub) => {
+    navigate("/result/" + sub._id, { state: {
+      lookedFor: [{
+        category:{
+          id:sub.categoryID,
+          selections:[{ _id:sub._id, name: sub.name, categoryID: sub.categoryID, }],
+        },
+      }],
+    }})
+
+  }
+
   return (
     <Stack>
       <NavigationHeader data={result?[]:[]}></NavigationHeader>
       <NavigationBar></NavigationBar>
-      <Stack justifyContent="center" alignItems="center">
-        {!fetching?
-            <Stack height="100%" alignItems="center">
-              { ( result?.length > 0 ) ? result?.slice( (page-1) * showQuantity, page * showQuantity).map( (article) => {
-                  return <ArticleCard key={article.Article._id} data={article}></ArticleCard>
+      <Stack direction="row" >
+        <SideFilter></SideFilter>
+        <Stack alignItems="flex-start" ml={4} mt={4} width="80vw">
+          <Stack direction="row" alignItems="center" spacing={2} width="100%" >
+            <Typography variant="h5">Searching results for: </Typography>
+            <Stack pt={2} pb={2} direction="row" spacing={2} flexWrap="wrap">
+              {state.lookedFor.map( (value) => {
+                return value.category.selections.map( ( selections ) => {
+                  return (
+                    <Stack>
+                      <IHCButtonRounded onClick={()=>handleSubClick(selections)} variant="buttonSmall">
+                        <Typography color="white">
+                          {selections.name}
+                        </Typography>
+                      </IHCButtonRounded>
+                    </Stack>
+                  )
+
+                } ) }  )}
+            </Stack>
+          </Stack>
+          {!fetching?
+              <Stack width="100%" minHeight="59.9vh" alignItems="flex-start">
+                { ( result?.length > 0 ) ? result?.slice( (page-1) * showQuantity, page * showQuantity).map( (article) => {
+                    return <ArticleCard key={article.Article._id} data={article}></ArticleCard>
+                  }
+                )
+                  :
+                  <Stack alignItems="center" justifyContent="center" spacing={4} height="100%" m={ 20} width="100%">
+                    <Typography variant="h3" textAlign="center">Oops!</Typography>
+                    <Typography variant="h6" textAlign="center">We couldn't find what you are looking for.</Typography>
+                    <Typography variant="h8" textAlign="center">Please, try another category combination or search for a keyword.</Typography>
+                    <Box>
+                      <IHCButtonRounded variant="contained" onClick={handleClick} sx={{ mt: 4}}>
+                        <FontAwesomeIcon  icon={faArrowLeftLong}/>
+                        <Typography ml={2}>Back to Homepage</Typography>
+                      </IHCButtonRounded>
+                    </Box>
+                  </Stack>
                 }
-              )
-                :
-                <Stack alignItems="center" justifyContent="center" spacing={4} height="100%" m={ 20} width="35%">
-                  <Typography variant="h3" textAlign="center">Oops!</Typography>
-                  <Typography variant="h6" textAlign="center">We couldn't find what you are looking for.</Typography>
-                  <Typography variant="h8" textAlign="center">Please, try another category combination or search for a keyword.</Typography>
-                  <Box>
-                    <IHCButtonRounded variant="contained" onClick={handleClick} sx={{ mt: 4}}>
-                      <FontAwesomeIcon  icon={faArrowLeftLong}/>
-                      <Typography ml={2}>Back to Homepage</Typography>
-                    </IHCButtonRounded>
-                  </Box>
-                </Stack>
-              }
-              {(result?.length > 0)?<Pagination sx={{mt:4}}  color="secondary" count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
-              }
+              <Stack alignItems="center" width="100%">
+                {(result?.length > 0)?<Pagination sx={{mt:4}}  color="secondary" count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
+                }
+              </Stack>
+            </Stack >
+
+          :
+          <Stack alignItems="center" justifyContent="center" sx={{width:"80vw", height:"80vh", ml:"auto"}}>
+              <CircularProgress color="primary" />
           </Stack>
 
-        :
-          <Stack>
-            <CircularProgress color="primary"/>
-          </Stack>
-
-        }
+          }
+        </Stack>
       </Stack>
-      <Footer></Footer>
+      {fetching?null:<Footer></Footer>}
     </Stack>
   )
 }
