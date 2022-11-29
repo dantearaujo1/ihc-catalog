@@ -95,10 +95,10 @@ export default function ResultList() {
   }
 
   return (
-    <Stack>
+    <Stack flexGrow={1}>
       <NavigationHeader></NavigationHeader>
       <NavigationBar></NavigationBar>
-      <Stack direction="row" >
+      <Stack mb={4}  direction="row" >
         <SideFilter></SideFilter>
         <Stack alignItems="flex-start" ml={4} mt={4} width="80vw">
           <Stack direction="row" alignItems="center" spacing={2} width="100%" >

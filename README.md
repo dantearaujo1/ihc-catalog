@@ -107,13 +107,13 @@ encarregar de executar os comandos e rodar os servidores.
 * Primeiro, crie um build da imagem docker a partir do Dockerfile do repositório.
 
 ```bash
-docker build -t ihc-tihci .
+docker build -t ihc .
 ```
 
 * Depois dê inicio ao seu container docker com o seguinte comando:
 
 ```bash
-docker run -dp 3000:5173 ihc-tihci
+docker run -dp 5173:5173 ihc
 ```
 
 * Basta acessar a aplicação
