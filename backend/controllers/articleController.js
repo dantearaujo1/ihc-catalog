@@ -54,7 +54,6 @@ const getArticleById = async (req,res) => {
       articleFull.Categorys.push(value.subcategoryID.categoryID.name);
       articleFull.Subcategorys.push(value.subcategoryID.name);
     });
-    console.log(articleFull);
     res.status(200).json(articleFull);
 
   } catch (error) {
@@ -198,6 +197,8 @@ const deleteArticle = async (req,res) => {
 
 const sendGroupToDatabase = (req, res) => {
   const list = axsub.filter( async (a) => {
+    // WARN: HERE WE HAVE A PROBLEM
+    // THERE IS ARTICLES WITH "NO NAME INFORMED"
     const article = await Article.findOne({name:a.name.trim()})
     if (article){
       // console.log(article._id);
@@ -247,7 +248,6 @@ const sendGroupToDatabase = (req, res) => {
                     articleID:damn.articleID,
                     subcategoryID:damn.cat6subID,
                   })
-                  console.log(damn);
                 }
               }
             }
@@ -258,26 +258,9 @@ const sendGroupToDatabase = (req, res) => {
   } )
   res.status(200).json(list);
 }
-module.exports.sendGroupToDatabase = sendGroupToDatabase;
 
-
-module.exports.createArticle = createArticle;
-module.exports.getArticleById = getArticleById;
-module.exports.getArticleByName = getArticleByName;
-module.exports.getArticlesBySubcategory = getArticlesBySubcategory;
-module.exports.getArticlesBySubcategoryName = getArticlesBySubcategoryName;
-module.exports.getArticles = getArticles;
-module.exports.patchArticle = patchArticle;
-module.exports.deleteArticle = deleteArticle;
-
-const testScratch = async (req,res) => {
+const searchBySubcategories = async (req,res) => {
   const frontData = req.body;
-  // const list = frontData.map( async (objs) => {
-  //   return await Group.find({
-  //     $or: [ {subcategoryID:{$in:obj.category.selections}} ]
-  //   })
-  // } )
-
   const result = await Group.find({
       $or: [
       { subcategoryID:{$in:frontData[0]?.category.selections}},
@@ -287,27 +270,66 @@ const testScratch = async (req,res) => {
       { subcategoryID:{$in:frontData[4]?.category.selections}},
       { subcategoryID:{$in:frontData[5]?.category.selections}},
       ]
-  });
-  console.log("START=====")
-  console.log(result);
-  console.log("END======")
+  }).sort({articleID: 1});
+
+  if(!result){
+    res.status(422).json({message:"There's not Group found with these subcategories"});
+  }
+
   res.status(200).json(result);
-
-
 }
-module.exports.testScratch = testScratch;
+
+const searchBySubcategories2 = async (req,res) => {
+  const frontData = req.body;
+  const testfunc = async (index) => {
+    return await Group.find({
+      $or: [
+        { subcategoryID:{$in:frontData[index].category.selections}},
+      ]
+    });
+  }
+  const array = await frontData.map( (value, index) => {
+    return testfunc(index);
+  } )
+
+  const data = await Promise.all(array);
+
+  const result = await Group.find({
+    $and:[
+
+    ]
+  })
+  res.status(200).json(data);
+}
 
 const populateGroup = async ( req, res ) => {
   const list = req.body;
   // res.status(200).json(list);
   const populated = await Group.populate(list, 'articleID')
   if(populated){
-    console.log(populated);
     res.status(200).json(populated);
   }
-  // res.status(500).json({message:"Error"});
+  res.status(500).json({message:"Error"});
 }
 
-module.exports.populateGroup = populateGroup;
+const getArticleWithSubcategories = async (req, res) => {
+  const id = req.params.id;
+  const results = await Group.find({articleID: id}).sort({articleID: 1, subcategoryID: 1});
 
+  console.log(results);
+  res.status(200).json(results);
+}
+
+module.exports.createArticle = createArticle;
+module.exports.getArticleById = getArticleById;
+module.exports.getArticleByName = getArticleByName;
+module.exports.getArticlesBySubcategory = getArticlesBySubcategory;
+module.exports.getArticlesBySubcategoryName = getArticlesBySubcategoryName;
+module.exports.getArticles = getArticles;
+module.exports.patchArticle = patchArticle;
+module.exports.deleteArticle = deleteArticle;
+module.exports.populateGroup = populateGroup;
+module.exports.searchBySubcategories = searchBySubcategories ;
+module.exports.sendGroupToDatabase = sendGroupToDatabase;
+module.exports.getArticleWithSubcategories = getArticleWithSubcategories;
 

@@ -8,9 +8,10 @@ const {
   patchArticle,
   deleteArticle,
   sendGroupToDatabase,
-  testScratch,
+  searchBySubcategories,
   populateGroup,
   getArticlesBySubcategoryName,
+  getArticleWithSubcategories
   // sendToDatabase,
 } = require('../controllers/articleController');
 
@@ -25,6 +26,7 @@ router.get('/group/g/a/s/:sid', getArticlesBySubcategory);
 router.get('/group/g/a/sn/:sname', getArticlesBySubcategoryName);
 
 // Recieving an article by id
+router.get('/full/:id', getArticleWithSubcategories);
 router.get('/id/:id', getArticleById);
 router.get('/name/:name', getArticleByName);
 
@@ -39,6 +41,6 @@ module.exports = router;
 // Dont mess with this if u don't know
 // router.post('/add', sendToDatabase);
 router.post('/group/add', sendGroupToDatabase);
-router.post('/group/look', testScratch);
+router.post('/group/look', searchBySubcategories);
 router.post('/group/populate', populateGroup);
 

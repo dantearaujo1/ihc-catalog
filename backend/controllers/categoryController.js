@@ -161,16 +161,6 @@ const deleteSubCategory = async (req,res) => {
 // }
 // module.exports.sendToDatabase = sendToDatabase;
 
-
-module.exports.createSubCategory = createSubCategory;
-module.exports.getSubCategoryById = getSubCategoryById;
-module.exports.getSubCategoryByName = getSubCategoryByName;
-module.exports.getSubCategoriesByGroupName = getSubCategoriesByGroupName;
-module.exports.getSubCategoriesByGroupId  = getSubCategoriesByGroupId ;
-module.exports.getSubCategories = getSubCategories;
-module.exports.patchSubCategory = patchSubCategory;
-module.exports.deleteSubCategory = deleteSubCategory;
-
 const createCategory = async (req,res) => {
 
   const {name, color} = req.body;
@@ -215,9 +205,6 @@ const getCategoryByName = async (req, res) => {
   }
 }
 
-module.exports.createCategory = createCategory;
-module.exports.getCategories = getCategories;
-module.exports.getCategoryByName = getCategoryByName;
 
 // WARN: THIS IS FOR SEND LOCAL TO REMOTE DATABASE TAKE CARE
 // Tying to send data to our database
@@ -257,3 +244,16 @@ module.exports.getCategoryByName = getCategoryByName;
 // }
 // module.exports.storeSubCategories = storeSubCategories;
 
+
+
+module.exports.createCategory = createCategory;
+module.exports.getCategories = getCategories;
+module.exports.getCategoryByName = getCategoryByName;
+module.exports.createSubCategory = createSubCategory;
+module.exports.getSubCategoryById = getSubCategoryById;
+module.exports.getSubCategoryByName = getSubCategoryByName;
+module.exports.getSubCategoriesByGroupName = getSubCategoriesByGroupName;
+module.exports.getSubCategoriesByGroupId  = getSubCategoriesByGroupId ;
+module.exports.getSubCategories = getSubCategories;
+module.exports.patchSubCategory = patchSubCategory;
+module.exports.deleteSubCategory = deleteSubCategory;
