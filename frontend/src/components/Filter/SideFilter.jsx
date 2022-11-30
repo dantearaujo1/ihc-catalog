@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation } from "react-router-dom";
 
 import { useTheme } from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
@@ -30,7 +31,29 @@ const CategoryFilterMenu = (props) => {
       const data = await fetch('/api/v1/article/sub/c/name/' + props.category.name);
       const result = await data.json()
       setSubs(result);
-      setSelecteds(new Array(result.length).fill(false));
+
+      let arr = new Array(result.length);
+      arr.fill(false);
+
+      const category = props.applied.filter( (category, idx ) => {
+        return (category.category.name === props.category.name)
+      } );
+      const selections = category?.flatMap( (cat, idx ) => {
+        return (cat.category.selections);
+      } );
+
+      const checkeds = result.flatMap( (toCheck, idx) => {
+        return selections.map( ( checked, index ) => {
+            const result_boolean = (checked.name === toCheck.name);
+            if (result_boolean){
+              setOpen(result_boolean);
+            }
+            return result_boolean;
+        } )
+      } )
+
+      arr = checkeds
+      setSelecteds(arr);
     }
     fetch_data();
     setCats(props.category);
@@ -45,17 +68,16 @@ const CategoryFilterMenu = (props) => {
     let newArray = [...selecteds];
     newArray[index] = !selecteds[index];
     setSelecteds(newArray);
-    console.log(newArray);
   };
 
   // TODO: I Probablly should add and KEY FOR EACH CHILD in a LIST
   return (
-    <IHCList key={category?._id}>
+    <IHCList>
       <ListItem button onClick={handleClick}>
         <ListItemText primaryTypographyProps={{color:theme.palette.secondary.main, variant:"button"}}  primary={category?.name} />
         {open ? <FontAwesomeIcon color={theme.palette.secondary.main} icon={faAngleUp}/> : <FontAwesomeIcon color={theme.palette.secondary.main} icon={faAngleDown}/>}
       </ListItem>
-      <Collapse key={category?._id} sx={{maxHeight:"250px", overflow:"auto"}} in={open} timeout="auto" unmountOnExit>
+      <Collapse sx={{maxHeight:"250px", overflow:"auto"}} in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
             {subs?subs.map( (sub, index) => {
                 return (
@@ -75,10 +97,8 @@ const CategoryFilterMenu = (props) => {
 
 const SideFilter = () => {
   const theme = useTheme();
-  const [selecteds, setSelecteds] = useState();
-  const [open, setOpen] = useState(true);
   const [categories, setCats] = useState([]);
-  const [subs, setSubs] = useState();
+  const { state } = useLocation();
 
 
   // WARN: I already do this in NavigationBar WE SHOULD USE useQuery
@@ -87,13 +107,8 @@ const SideFilter = () => {
       const categories = await fetch("/api/v1/article/cat/all");
       const ctoJson = await categories.json();
       const cordered = ctoJson.sort( (a,b) => { return  b.name < a.name ? 1 : b.name > a.name ? -1 : 0 } );
-      const subcategories = await fetch ("/api/v1/article/sub/all");
-      const stoJson = await subcategories.json();
-      const sordered = stoJson.sort( (a,b) => { return  b.name < a.name ? 1 : b.name > a.name ? -1 : 0 } );
 
-      // Setting data to data using useState
       setCats(cordered);
-      setSubs(sordered);
     };
     fetch_data().catch(console.error);
 
@@ -106,10 +121,12 @@ const SideFilter = () => {
           <FontAwesomeIcon icon={faFilter}/> Filter
         </Typography>
       </Stack>
-      {categories? categories.map( (cat, idx) => {
-          return (<CategoryFilterMenu key={cat._id} category={cat}></CategoryFilterMenu>)
-        } ):null
-      }
+        {categories? categories.map( (cat, idx) => {
+            return (
+                <CategoryFilterMenu key={cat._id} applied={state.lookedFor} category={cat}></CategoryFilterMenu>
+              )
+          } ):null
+        }
 
     </Stack>
   )
