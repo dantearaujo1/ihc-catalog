@@ -15,8 +15,11 @@ const GroupBadge = ({category, subcategory}) => {
     const joined = split.join('%2f');
     const query = await fetch('/api/v1/article/sub/n/' + joined);
     const toJson = await query.json();
+    const category = await fetch('/api/v1/article/cat/id/' + toJson.categoryID);
+    const catToJson = await category.json();
     navigate('/result/' + toJson._id, {state: {lookedFor:[{category:{
       id:toJson.categoryID,
+      name: catToJson.name,
       selections:[{_id:toJson._id,name:data.subcategory,categoryID:toJson.categoryID}]
     }}]}});
   }

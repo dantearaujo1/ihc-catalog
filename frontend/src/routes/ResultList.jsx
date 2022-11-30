@@ -54,7 +54,6 @@ export default function ResultList() {
           body: JSON.stringify(state.data),
         });
         const toJson = await data.json();
-        console.log(toJson);
         const better = toJson.map( (article) => { return {
           Article: {
                 _id:article.articleID._id,
@@ -89,11 +88,14 @@ export default function ResultList() {
 
 
 
-  const handleSubClick = (sub) => {
+  const handleSubClick = async (sub) => {
+    const data = await fetch('/api/v1/article/cat/id/' + sub.categoryID);
+    const category = await data.json();
     navigate("/result/" + sub._id, { state: {
       lookedFor: [{
         category:{
           id:sub.categoryID,
+          name:category.name,
           selections:[{ _id:sub._id, name: sub.name, categoryID: sub.categoryID, }],
         },
       }],
