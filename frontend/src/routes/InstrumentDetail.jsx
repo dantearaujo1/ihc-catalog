@@ -48,7 +48,7 @@ const InstrumentDetail = () => {
               </Stack>
               <Stack  width="50%" height="auto" mt={5} pl={2} >
               {data.Categorys.map( (value, index) => {
-                return <GroupBadge category={value} subcategory={data.Subcategorys[index]}></GroupBadge>
+                return <GroupBadge key={index} category={value} subcategory={data.Subcategorys[index]}></GroupBadge>
               } )
 
               }
