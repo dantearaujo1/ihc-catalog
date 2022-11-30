@@ -31,6 +31,7 @@ const CategoryFilterMenu = (props) => {
       const data = await fetch('/api/v1/article/sub/c/name/' + props.category.name);
       const result = await data.json()
       setSubs(result);
+      setOpen(false);
 
       let arr = new Array(result.length);
       arr.fill(false);
@@ -42,23 +43,24 @@ const CategoryFilterMenu = (props) => {
         return (cat.category.selections);
       } );
 
-      const checkeds = result.flatMap( (toCheck, idx) => {
-        return selections.map( ( checked, index ) => {
-            const result_boolean = (checked.name === toCheck.name);
-            if (result_boolean){
-              setOpen(result_boolean);
-            }
-            return result_boolean;
-        } )
-      } )
+      // Checking chekbox if they are in the search
+      for (let index = 0; index < result.length; index++) {
+        const element = result[index];
+        for (let idx = 0; idx < selections.length; idx++) {
+          const select = selections[idx];
+          if (element.name === select.name){
+            arr[index] = true;
+            setOpen(true);
+          }
+        }
+      }
 
-      arr = checkeds
       setSelecteds(arr);
     }
     fetch_data();
     setCats(props.category);
 
-  }, [props.category]);
+  }, [props.category, props.applied]);
 
 
   const handleClick = () => {
@@ -70,7 +72,6 @@ const CategoryFilterMenu = (props) => {
     setSelecteds(newArray);
   };
 
-  // TODO: I Probablly should add and KEY FOR EACH CHILD in a LIST
   return (
     <IHCList>
       <ListItem button onClick={handleClick}>
@@ -98,7 +99,12 @@ const CategoryFilterMenu = (props) => {
 const SideFilter = () => {
   const theme = useTheme();
   const [categories, setCats] = useState([]);
-  const { state } = useLocation();
+  let { state } = useLocation();
+
+  const getSubs = () => {
+
+  }
+
 
 
   // WARN: I already do this in NavigationBar WE SHOULD USE useQuery
