@@ -57,8 +57,6 @@ function Home() {
     fetch_data().catch(console.error);
   }, []);
 
-  /* This last parameters means that we gonna call useEffect
-      Everytime that filtered is diferrent */
   const handleClick = async () => {
     const result = await fetch('/api/v1/article/group/look', {
       headers: {
