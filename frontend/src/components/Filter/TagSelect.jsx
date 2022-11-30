@@ -23,6 +23,7 @@ export default function TagSelect(props) {
     const obj = {
       category: {
         id: props.cat._id,
+        name: props.cat.name,
         selections: value
       }
     }
