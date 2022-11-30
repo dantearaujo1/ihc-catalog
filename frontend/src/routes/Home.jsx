@@ -90,14 +90,14 @@ function Home() {
   }
 
   return (
-    <Box style={{ height: "auto" }}>
+    <Stack style={{ height: "100vh" }}>
       <NavigationHeader />
       <NavigationBar categories={cat} subcategories={sub} />
       <Stack
         direction="row"
         width="80%"
         minHeight="60vh"
-        alignItems="flex-end"
+        alignItems="center"
         justifyContent="space-around"
         sx={{ m: "auto" }}
       >
@@ -122,7 +122,7 @@ function Home() {
             Combine categories and find the best UX Evaluation Methods for your project
           </Typography>
         </Stack>
-        <Image sx={{marginTop: 10}} src="../../header-teal.png"/>
+        <Image width="auto" height="auto" sx={{marginTop: 10}} src="../../header-teal.png"/>
       </Stack>
       <Stack
         direction="row"
@@ -137,7 +137,7 @@ function Home() {
           : null
         }
       </Stack>
-      <Stack sx={{ alignItems: "center", marginTop: 6 }}>
+      <Stack mb={4} sx={{ alignItems: "center", marginTop: 6 }}>
         { ( selections.length > 0 ) ?
           <IHCButtonRounded
           variant="contained"
@@ -160,10 +160,10 @@ function Home() {
         }
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
-      <Box height="auto">
+      <Stack height="100%">
         <IHCFooter></IHCFooter>
-      </Box>
-    </Box>
+      </Stack>
+    </Stack>
 
   );
 }

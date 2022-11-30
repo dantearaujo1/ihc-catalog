@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+import {useState, useEffect} from "react";
+import React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -76,7 +77,12 @@ export default function ResultList() {
 
   useEffect( () => {
     if(result){
-      setPages(( Math.floor(result.length/showQuantity) ));
+      if(result.length/showQuantity > 1){
+        setPages(( Math.floor(result.length/showQuantity) ));
+      }
+      else{
+        setPages(1);
+      }
     }
   }, [result] );
 
@@ -95,10 +101,10 @@ export default function ResultList() {
   }
 
   return (
-    <Stack flexGrow={1}>
+    <Stack>
       <NavigationHeader></NavigationHeader>
       <NavigationBar></NavigationBar>
-      <Stack mb={4}  direction="row" >
+      <Stack pb={4}  direction="row" >
         <SideFilter></SideFilter>
         <Stack alignItems="flex-start" ml={4} mt={4} width="80vw">
           <Stack direction="row" alignItems="center" spacing={2} width="100%" >
@@ -129,7 +135,7 @@ export default function ResultList() {
                   <ResultNotFound></ResultNotFound>
                 }
               <Stack alignItems="center" width="100%">
-                {(result?.length > 0)?<Pagination sx={{mt:4}}  color="secondary" count={pages} page={page} onChange={(e,value)=>{setPage(value); console.log(value)}}></Pagination>:null
+                {(result?.length > 0)?<Pagination sx={{mt:4}}  color="secondary" count={pages} page={page} onChange={(e,value)=>{setPage(value);}}></Pagination>:null
                 }
               </Stack>
             </Stack >
