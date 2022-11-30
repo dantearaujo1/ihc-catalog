@@ -74,7 +74,6 @@ const signup = async (req, res) => {
 
       const storeData = await finalUser.save();
 
-      console.log(storeData);
     }
   } catch (error){
     return new Error(error);
