@@ -54,6 +54,7 @@ export default function ResultList() {
           body: JSON.stringify(state.data),
         });
         const toJson = await data.json();
+        console.log(toJson);
         const better = toJson.map( (article) => { return {
           Article: {
                 _id:article.articleID._id,
@@ -111,9 +112,9 @@ export default function ResultList() {
             <Typography variant="h5">Searching results for: </Typography>
             <Stack pt={2} pb={2} direction="row" spacing={2} flexWrap="wrap">
               {state.lookedFor.map( (value) => {
-                return value.category.selections.map( ( selections ) => {
+                return value.category.selections.map( ( selections, idx ) => {
                   return (
-                    <Stack>
+                    <Stack key={selections._id}>
                       <IHCButtonRounded onClick={()=>handleSubClick(selections)} variant="buttonSmall">
                         <Typography color="white">
                           {selections.name}
@@ -141,7 +142,7 @@ export default function ResultList() {
             </Stack >
 
           :
-          <Stack alignItems="center" justifyContent="center" sx={{width:"80vw", height:"80vh", ml:"auto"}}>
+          <Stack alignItems="center" justifyContent="center" sx={{width:"100%", height:"80vh", ml:"auto"}}>
               <CircularProgress color="primary" />
           </Stack>
 
