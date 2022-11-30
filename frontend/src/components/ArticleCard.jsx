@@ -12,6 +12,7 @@ import CardActions from "@mui/material/CardActions"
 const ArticleCard = (props) => {
   const [data, setData] = useState(props.data);
   const navigate = useNavigate();
+
   const handleClick = async (e,value) => {
     const result = await fetch('/api/v1/article/id/' + data.Article._id);
     const toJson = await result.json();
