@@ -10,10 +10,9 @@ import { faInstagram, faFacebook, faYoutube, faSpotify } from '@fortawesome/free
 
 const IHCFooter = () => {
   return (
-    <Box
+    <Stack
       backgroundColor="primary.main"
-      alignItems="center"
-      mt={6}
+      alignItems="space-around"
       pt={6}
       pb={6}
       height="100%"
@@ -71,7 +70,7 @@ const IHCFooter = () => {
             </Typography>
         </Stack>
       </Stack>
-    </Box>
+    </Stack>
   )
 }
 
