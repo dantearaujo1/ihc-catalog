@@ -17,16 +17,16 @@ const createArticle = async (req,res) => {
   }
 
   if(!name || !year || !reference) {
-    res.status(422).json({error: 'Fill mandatory fields!'})
+    return res.status(422).json({error: 'Fill mandatory fields!'})
     return;
   }
 
   try {
     await Article.create(article);
-    res.status(201).json({message: 'Article successfully stored!'});
+    return res.status(201).json({message: 'Article successfully stored!'});
 
   } catch (error) {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 
 }
@@ -38,11 +38,11 @@ const getArticleById = async (req,res) => {
     const article = await Article.findOne({_id: id});
     const csData = await Group.find({articleID:id}).populate( {path:'subcategoryID', populate: { path: 'categoryID' }});
     if(!article){
-      res.status(422).json({message: "Article wasn't found!"});
+      return res.status(422).json({message: "Article wasn't found!"});
       return;
     }
     if(!csData){
-      res.status(422).json({message: "There's no group data for this article"});
+      return res.status(422).json({message: "There's no group data for this article"});
     }
     let articleFull = {
       Article:article,
@@ -54,10 +54,10 @@ const getArticleById = async (req,res) => {
       articleFull.Categorys.push(value.subcategoryID.categoryID.name);
       articleFull.Subcategorys.push(value.subcategoryID.name);
     });
-    res.status(200).json(articleFull);
+    return res.status(200).json(articleFull);
 
   } catch (error) {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 const getArticleByName = async (req,res) => {
@@ -69,20 +69,20 @@ const getArticleByName = async (req,res) => {
       res.status(422).json({message: "Article wasn't found!"});
       return;
     }
-    res.status(200).json(article);
+    return res.status(200).json(article);
 
   } catch (error) {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 
 const getArticles = async (req, res) => {
   try {
     const articles = await Article.find();
-    res.status(200).json(articles);
+    return res.status(200).json(articles);
 
   } catch (error) {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 // This return the articles with name and categorys
@@ -100,10 +100,10 @@ const getArticlesBySubcategory = async (req, res) => {
         return (obj);
       }
     } )
-    res.status(200).json(await Promise.all(articles));
+    return res.status(200).json(await Promise.all(articles));
 
   } catch (error) {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 const getArticlesBySubcategoryName = async (req, res) => {
@@ -124,10 +124,10 @@ const getArticlesBySubcategoryName = async (req, res) => {
         return (obj);
       }
     } )
-    res.status(200).json(await Promise.all(articles));
+    return res.status(200).json(await Promise.all(articles));
 
   } catch (error) {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 
@@ -146,12 +146,12 @@ const patchArticle = async (req,res) => {
 
     const updatedArticle = await Article.updateOne({ _id:id }, article);
     if ( updatedArticle.matchedCount === 0 ){
-      res.status(422).json({message:"Article not found for update!"})
+      return res.status(422).json({message:"Article not found for update!"})
     }
-    res.status(200).json(updatedArticle);
+    return res.status(200).json(updatedArticle);
 
   } catch {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 
@@ -164,10 +164,10 @@ const deleteArticle = async (req,res) => {
   }
   try {
     await Article.deleteOne({_id:id});
-    res.status(200).json({message:'Article removed successfully!'});
+    return res.status(200).json({message:'Article removed successfully!'});
 
   } catch {
-     res.status(500).json({error:error});
+     return res.status(500).json({error:error});
   }
 }
 
@@ -256,7 +256,7 @@ const sendGroupToDatabase = (req, res) => {
       }
     }
   } )
-  res.status(200).json(list);
+  return res.status(200).json(list);
 }
 
 const searchBySubcategories = async (req,res) => {
@@ -273,10 +273,10 @@ const searchBySubcategories = async (req,res) => {
   }).sort({articleID: 1});
 
   if(!result){
-    res.status(422).json({message:"There's not Group found with these subcategories"});
+    return res.status(422).json({message:"There's not Group found with these subcategories"});
   }
 
-  res.status(200).json(result);
+  return res.status(200).json(result);
 }
 
 const searchBySubcategories2 = async (req,res) => {
@@ -299,7 +299,7 @@ const searchBySubcategories2 = async (req,res) => {
 
     ]
   })
-  res.status(200).json(data);
+  return res.status(200).json(data);
 }
 
 const populateGroup = async ( req, res ) => {
@@ -307,9 +307,9 @@ const populateGroup = async ( req, res ) => {
   // res.status(200).json(list);
   const populated = await Group.populate(list, 'articleID')
   if(populated){
-    res.status(200).json(populated);
+    return res.status(200).json(populated);
   }
-  res.status(500).json({message:"Error"});
+  return res.status(500).json({message:"Error"});
 }
 
 const getArticleWithSubcategories = async (req, res) => {
