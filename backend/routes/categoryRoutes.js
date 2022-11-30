@@ -10,6 +10,7 @@ const {
   deleteSubCategory,
   getCategories,
   getCategoryByName,
+  getCategoryById,
   createCategory,
   /* sendToDatabase */
   // storeSubCategories
@@ -35,6 +36,7 @@ router.delete('/sub/:id', deleteSubCategory)
 // Category api
 router.get('/cat/all', getCategories); // GetAllCategories
 router.get('/cat/:name', getCategoryByName); // GetByName
+router.get('/cat/id/:id', getCategoryById); // GetByID
 router.post('/cat/add', createCategory); // Add a category
 
 // WARN: This is for sending from local to remoteDatabase

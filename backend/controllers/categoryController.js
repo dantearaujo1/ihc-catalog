@@ -60,11 +60,12 @@ const getSubCategoriesByGroupName = async (req,res) => {
   const name = req.params.name;
   try {
 
-    const category = await Category.findOne({name:name})
+    const category = await Category.findOne({name:name});
     if(!category){
       return res.status(422).json({message: "Couldn't find any category with this name!"})
     }
-    const subcategoryList = await SubCategory.find({categoryID: category._id});
+    // Getting subcategorys from a category sorted ascendent by name
+    const subcategoryList = await SubCategory.find({categoryID: category._id}).sort({name:1});
     if(!subcategoryList){
       return res.status(422).json({message: "There is no subcategory inside this category group"});
     }
@@ -204,6 +205,18 @@ const getCategoryByName = async (req, res) => {
     res.status(500).json({error:error});
   }
 }
+const getCategoryById = async (req, res) => {
+  const categoryID = req.params.id;
+  try {
+    const category = await Category.findOne({_id:categoryID});
+    if(category.length === 0){
+      return res.status(422).json({message:"Could not find any category with this ID!"})
+    }
+    res.status(200).json(category);
+  } catch (error) {
+    res.status(500).json({error:error});
+  }
+}
 
 
 // WARN: THIS IS FOR SEND LOCAL TO REMOTE DATABASE TAKE CARE
@@ -249,6 +262,7 @@ const getCategoryByName = async (req, res) => {
 module.exports.createCategory = createCategory;
 module.exports.getCategories = getCategories;
 module.exports.getCategoryByName = getCategoryByName;
+module.exports.getCategoryById = getCategoryById;
 module.exports.createSubCategory = createSubCategory;
 module.exports.getSubCategoryById = getSubCategoryById;
 module.exports.getSubCategoryByName = getSubCategoryByName;
