@@ -137,13 +137,11 @@ const SideFilter = (props) => {
       setState(newArray);
     }
 
-    console.log(filterState);
     props.setParentData(newArray);
 
   }
 
   useEffect( () => {
-    console.log("Hello");
     setState(state.lookedFor);
   }, [state])
   // WARN: I already do this in NavigationBar WE SHOULD USE useQuery
