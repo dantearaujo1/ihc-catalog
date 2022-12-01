@@ -157,6 +157,8 @@ const patchArticle = async (req,res) => {
   }
 }
 
+// Needs to delete every GROUP that contains the article id
+// in the field articleID of group
 const deleteArticle = async (req,res) => {
   const id = req.params.id;
   const article = await Article.findOne({_id: id});
