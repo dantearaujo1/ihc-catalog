@@ -66,7 +66,6 @@ function Home() {
       method:"POST",
       body: JSON.stringify(selections),
     });
-    console.log(selections);
     const json = await result.json();
     navigate('/result', {state: { data: json, lookedFor: selections }})
   }
