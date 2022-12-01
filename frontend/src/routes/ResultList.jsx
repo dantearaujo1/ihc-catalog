@@ -25,6 +25,7 @@ export default function ResultList() {
   const [result, setResult] = useState();
   let {subID} = useParams();
   let { state } = useLocation();
+  const [ filterState, setState ] = useState( state.lookedFor || {} );
 
   // This is used when searching for NavigationBar
   useEffect( () => {
@@ -43,35 +44,24 @@ export default function ResultList() {
   // This is used when searching from Filter
   useEffect( () => {
     if(!subID){
-      const fetch_data = async () => {
-        const data = await fetch('/api/v1/article/group/populate',
-        {
-          headers: {
-            'Accepts': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          method:"POST",
-          body: JSON.stringify(state.data),
-        });
-        const toJson = await data.json();
-        const better = toJson.map( (article) => { return {
-          Article: {
-                _id:article.articleID._id,
-                name:article.articleID.name,
-                reference:article.articleID.reference,
-                year:article.articleID.year,
-                main:article.articleID.main,
-                general:article.articleID.general,
-              },
+      setFetching(true);
+      const better = state.data.map( (result) => {
+        return {
+          Article:{
+            _id:result.data[0]._id,
+            name:result.data[0].name,
+            reference:result.data[0].reference,
+            year:result.data[0].year,
+            main:result.data[0].main,
+            general:result.data[0].general,
           }
-        });
-
-        setResult(better);
-        setFetching(false);
-      }
-      fetch_data();
+        }
+      } )
+      setResult(better);
+      setFetching(false);
 
     }
+    setState(state.lookedFor);
 
   }, [state] );
 
@@ -100,20 +90,23 @@ export default function ResultList() {
         },
       }],
     }})
-
   }
+  const setFilterFromChild = (newFilter) => {
+    setState(newFilter);
+  }
+
 
   return (
     <Stack>
       <NavigationHeader></NavigationHeader>
       <NavigationBar></NavigationBar>
       <Stack pb={4}  direction="row" >
-        <SideFilter></SideFilter>
+        <SideFilter setParentData={setFilterFromChild}></SideFilter>
         <Stack alignItems="flex-start" ml={4} mt={4} width="80vw">
           <Stack direction="row" alignItems="center" spacing={2} width="100%" >
             <Typography variant="h5">Searching results for: </Typography>
             <Stack pt={2} pb={2} direction="row" spacing={2} flexWrap="wrap">
-              {state.lookedFor.map( (value) => {
+              {filterState.map( (value) => {
                 return value.category.selections.map( ( selections, idx ) => {
                   return (
                     <Stack key={selections._id}>

@@ -66,10 +66,26 @@ const CategoryFilterMenu = (props) => {
   const handleClick = () => {
     setOpen((prev) => !prev);
   };
+
   const handleCheck = (index) => {
     let newArray = [...selecteds];
     newArray[index] = !selecteds[index];
     setSelecteds(newArray);
+
+    const selections = [];
+    for (let index = 0; index < newArray.length; index++) {
+      const element = newArray[index];
+      if(element){
+        selections.push(subs[index]);
+      }
+    }
+
+    const selectionState =  {
+        id:category?._id,
+        name:category?.name,
+        selections:selections
+      }
+    props.callback.func(props.callback.index, selectionState);
   };
 
   return (
@@ -96,17 +112,40 @@ const CategoryFilterMenu = (props) => {
   )
 }
 
-const SideFilter = () => {
+const SideFilter = (props) => {
   const theme = useTheme();
+  const { state } = useLocation();
   const [categories, setCats] = useState([]);
-  let { state } = useLocation();
+  const [filterState, setState] = useState(state.lookedFor || {});
 
-  const getSubs = () => {
+  const getSubsSelected = (idx, subSelectState) => {
+    let shouldCreateNew = true;
+    let newArray = [];
+    for (let index = 0; index < filterState.length; index++) {
+      const element = filterState[index];
+      if(element.category.id === subSelectState.id){
+        shouldCreateNew = false
+        newArray = [...filterState];
+        newArray[index].category.selections = subSelectState.selections;
+        setState ( newArray );
+      }
+    }
+    if(shouldCreateNew){
+      newArray = [...filterState];
+      const data = { category:subSelectState };
+      newArray.push(data);
+      setState(newArray);
+    }
+
+    console.log(filterState);
+    props.setParentData(newArray);
 
   }
 
-
-
+  useEffect( () => {
+    console.log("Hello");
+    setState(state.lookedFor);
+  }, [state])
   // WARN: I already do this in NavigationBar WE SHOULD USE useQuery
   useEffect( () => {
     const fetch_data = async () => {
@@ -129,7 +168,7 @@ const SideFilter = () => {
       </Stack>
         {categories? categories.map( (cat, idx) => {
             return (
-                <CategoryFilterMenu key={cat._id} applied={state.lookedFor} category={cat}></CategoryFilterMenu>
+                <CategoryFilterMenu callback={{func:getSubsSelected,index:idx}} key={cat._id} applied={filterState} category={cat}></CategoryFilterMenu>
               )
           } ):null
         }
