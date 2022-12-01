@@ -18,9 +18,9 @@ import { IHCButtonRounded } from "../assets/ComponentStyle"
 
 export default function ResultList() {
   const navigate = useNavigate();
-  const [pages, setPages] = useState(5);
+  const [pages, setPages] = useState(1);
   let [page, setPage] = useState(1);
-  const [showQuantity, setShowQuantity] = useState(2);
+  const [showQuantity, setShowQuantity] = useState(5);
   const [fetching, setFetching] = useState(true);
   const [result, setResult] = useState();
   let {subID} = useParams();
@@ -66,6 +66,45 @@ export default function ResultList() {
   }, [state] );
 
   useEffect( () => {
+    if(state.lookedFor !== filterState){
+      setFetching(true);
+      let newSelections = [];
+      for (let index = 0; index < filterState.length; index++) {
+        const element = filterState[index];
+        newSelections.push(element);
+      }
+      const fetch_data = async (selections) => {
+        const result = await fetch('/api/v1/article/group/look', {
+          headers: {
+            'Accepts': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          method:"POST",
+          body: JSON.stringify(selections),
+        });
+        const json = await result.json();
+        const better = json.map( (result) => {
+          return {
+            Article:{
+              _id:result.data[0]._id,
+              name:result.data[0].name,
+              reference:result.data[0].reference,
+              year:result.data[0].year,
+              main:result.data[0].main,
+              general:result.data[0].general,
+            }
+          }
+        } )
+        setResult(better);
+        setFetching(false);
+      }
+      fetch_data(newSelections).catch(console.error);
+
+    }
+
+  }, [filterState] );
+
+  useEffect( () => {
     if(result){
       if(result.length/showQuantity > 1){
         setPages(( Math.floor(result.length/showQuantity) ));
@@ -92,6 +131,7 @@ export default function ResultList() {
     }})
   }
   const setFilterFromChild = (newFilter) => {
+    setFetching(true);
     setState(newFilter);
   }
 
