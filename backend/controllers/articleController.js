@@ -4,6 +4,8 @@ const { SubCategory } = require('../models/Category');
 const { Group } = require('../models/Group');
 const json = require('../dataa.json');
 const axsub = require('../articleXsub.json');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 const createArticle = async (req,res) => {
 
@@ -261,21 +263,50 @@ const sendGroupToDatabase = (req, res) => {
 
 const searchBySubcategories = async (req,res) => {
   const frontData = req.body;
-  const result = await Group.find({
-      $or: [
-      { subcategoryID:{$in:frontData[0]?.category.selections}},
-      { subcategoryID:{$in:frontData[1]?.category.selections}},
-      { subcategoryID:{$in:frontData[2]?.category.selections}},
-      { subcategoryID:{$in:frontData[3]?.category.selections}},
-      { subcategoryID:{$in:frontData[4]?.category.selections}},
-      { subcategoryID:{$in:frontData[5]?.category.selections}},
-      ]
-  }).sort({articleID: 1});
+
+  let transformedData = []
+  for (let index = 0; index < frontData.length; index++) {
+    const categoryObject = frontData[index];
+    for (let idx = 0; idx < categoryObject.category.selections.length; idx++) {
+      const selection = categoryObject.category.selections[idx];
+      transformedData.push(ObjectId(selection._id));
+
+    }
+  }
+
+  // Everyone OR OPERATOR
+  const result = await Group.aggregate([
+    {
+      $match: {
+          subcategoryID: {$in: transformedData},
+      },
+    },
+    {
+      $group: {
+        _id:"$articleID",
+        subcategories:{ $push:"$subcategoryID" },
+        matches: {$sum: 1},
+      }
+    },
+    {
+      $sort: {
+        matches: -1,
+        _id:1,
+      }
+    },
+    {
+      $lookup: {
+        from: "articles",
+        localField: "_id",
+        foreignField: "_id",
+        as:"data",
+      }
+    },
+  ]);
 
   if(!result){
     return res.status(422).json({message:"There's not Group found with these subcategories"});
   }
-
   return res.status(200).json(result);
 }
 
@@ -304,6 +335,7 @@ const searchBySubcategories2 = async (req,res) => {
 
 const populateGroup = async ( req, res ) => {
   const list = req.body;
+  console.log(list);
   // res.status(200).json(list);
   const populated = await Group.populate(list, 'articleID')
   if(populated){
