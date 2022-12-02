@@ -84,29 +84,30 @@ const IHCMenu = styled((Menu))( ( {theme} ) => ({
   // height: "30%",
 
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.scrollbar.light,
+    borderRadius: 8,
   },
   "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
     borderRadius: 8,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.scrollbar.dark,
     minHeight: 24,
-    border: "3px solid",
-    borderColor: theme.palette.secondary.dark,
+    // border: "3px solid",
+    // borderColor: theme.palette.secondary.dark,
   },
   "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+    borderColor: theme.palette.scrollbar.light,
   },
   "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+    borderColor: theme.palette.scrollbar.light,
   },
   "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-    backgroundColor: "#2b2b2b",
+    backgroundColor: theme.palette.scrollbar.light,
   },
 }))
 
@@ -116,30 +117,30 @@ const IHCList = styled((List))( ( {theme} ) => ({
   // height: "30%",
 
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.scrollbar.light,
     borderRadius: 8,
   },
   "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
     borderRadius: 8,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.scrollbar.dark,
     minHeight: 24,
-    border: "3px solid",
-    borderColor: theme.palette.secondary.dark,
+    // border: "3px solid",
+    // borderColor: theme.palette.secondary.dark,
   },
   "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary
+    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary
+    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary
+    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-    backgroundColor: "#2b2b2b",
+    backgroundColor: theme.palette.scrollbar.light,
   },
 }))
 

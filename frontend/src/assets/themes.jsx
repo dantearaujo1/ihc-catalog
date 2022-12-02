@@ -13,7 +13,7 @@ const Colors = {
     dark: '#583c87',
   },
   background: {
-    default: '#fafafa',
+    default: '#ffffff',
   },
   text: {
     primary: '#424242',
@@ -50,6 +50,10 @@ const Colors = {
       lighter: '#a984ec',
       darker: '#4809a5',
     },
+  },
+  scrollbar:{
+    light: '#E8E8E8',
+    dark: '#7A7A7A',
   }
 };
 

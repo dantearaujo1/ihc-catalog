@@ -117,11 +117,13 @@ export default function NavigationBar(props) {
           sx={{height: "30%"}}
           PaperProps={{
             sx: {
-              backgroundColor: "primary.dark",
-              color: "white",
+              backgroundColor: "background.default",
               borderTopLeftRadius:0,
               borderTopRightRadius:0,
+              borderBottomRightRadius:16,
+              borderBottomLeftRadius:16,
               borderTop:0,
+              boxShadow:8,
               mt: 2,
               width: '25%',
             }
@@ -139,8 +141,8 @@ export default function NavigationBar(props) {
         >
         {menuItem?menuItem.map( (sub) => {
           return (
-            <MenuItem key={sub._id} sx={{justifyContent:"center"}} onClick={() => {handleItemClick(sub, index)}}>
-              <Typography variant="h5">{ sub.name }</Typography>
+            <MenuItem key={sub._id} sx={{justifyContent:"left"}} onClick={() => {handleItemClick(sub, index)}}>
+              <Typography variant="body2">{ sub.name }</Typography>
             </MenuItem>
           )
         } ):null}
