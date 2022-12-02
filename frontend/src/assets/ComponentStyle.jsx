@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import Menu from '@mui/material/Menu'
+import Select from '@mui/material/Select'
 import List from '@mui/material/List'
 
 import { styled } from '@mui/material/styles'
@@ -16,6 +17,21 @@ const IHCButtonRounded = styled((Button))( ( { theme } ) => ({
   borderRadius: 50,
   backgroundColor: theme.palette.secondary.main,
   textTransform: "none",
+}));
+
+const IHCSelect = styled((Select))( ( { theme } ) => ({
+      "&.MuiOutlinedInput-root": {
+        // width: '200px',
+        "& fieldset": {
+          borderColor: theme.palette.effects.secondary.darker,
+        },
+        "&:hover fieldset": {
+          borderColor: theme.palette.effects.secondary.lighter,
+        },
+        "&.Mui-focused fieldset": {
+          borderColor:  theme.palette.effects.primary.darker,
+        }
+      }
 }));
 
 const IHCTextField = styled((TextField))( ( {theme} ) => ({
@@ -128,4 +144,4 @@ const IHCList = styled((List))( ( {theme} ) => ({
 }))
 
 
-export { IHCButtonRounded, IHCTextField, IHCAutocomplete, IHCOutlinedInput, IHCMenu, IHCList};
+export { IHCButtonRounded, IHCTextField, IHCAutocomplete, IHCOutlinedInput, IHCMenu, IHCList, IHCSelect};
