@@ -5,6 +5,8 @@ import Home from "./Home";
 import Admin from "./Admin";
 import Login from "./Login";
 import ResultList from "./ResultList";
+import About from "./About";
+import Tutorial from "./Tutorial";
 import InstrumentDetail from "./InstrumentDetail";
 
 
@@ -19,6 +21,8 @@ function AppRoutes(){
           {/* React Router v6 > drop support for optional params */}
               <Route element={ <ResultList/> }  path="/result/"/>
               <Route element={ <InstrumentDetail/> }  path="/instrument_detail" exact />
+              <Route element={ <About/> }  path="/about"/>
+              <Route element={ <Tutorial/> }  path="/tutorial"/>
             </Routes>
        </BrowserRouter>
    )
