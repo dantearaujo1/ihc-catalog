@@ -10,6 +10,7 @@ call npm install
 cd ..
 call npm pkg set scripts.postinstall="echo no-postinstall"
 call npm install
+call npm pkg set scripts.postinstall="npm --prefix ./frontend install && npm --prefix ./backend install"
 
 echo DB_USER=dbViewer > ./backend/.env
 echo DB_PASSWORD=ZXmbV4ZtSDXGNmAv >> ./backend/.env
