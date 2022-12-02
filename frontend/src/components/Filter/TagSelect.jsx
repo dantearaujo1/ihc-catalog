@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import { IHCOutlinedInput } from '../../assets/ComponentStyle';
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
+import { IHCSelect } from '../../assets/ComponentStyle';
 import Chip from '@mui/material/Chip';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
@@ -31,15 +32,23 @@ export default function TagSelect(props) {
   };
 
   const handleDelete = (e, value) => {
-    e.preventDefault();
-    setSelected(selected.filter((name) => name !== value));
+    const result = selected.filter( (name) => name !== value );
+    setSelected(result);
+    const obj = {
+      category: {
+        id: props.cat._id,
+        name: props.cat.name,
+        selections: result
+      }
+    }
+    props.handler(obj, true);
   }
 
   return (
     <div>
-      <FormControl size="medium" sx={{minWidth:190, mr: 2, mt: 2}}>
+      <FormControl size="medium" sx={{minWidth:250, mr: 2, mt: 4}}>
         <InputLabel id="multi-label">{props.cat.name}</InputLabel>
-          <Select
+          <IHCSelect
           size="lg"
           labelId="multi-label"
           id="multi-select"
@@ -60,7 +69,7 @@ export default function TagSelect(props) {
                   label={value.name}
                   clickable
                   deleteIcon={<FontAwesomeIcon onMouseDown={(e) => e.stopPropagation()} icon={faCircleXmark}/>}
-                  onDelete={(e) => handleDelete(e,value)}
+                  onDelete={(e) => {handleDelete(e,value)}}
 
                 />
               ))}
@@ -75,7 +84,7 @@ export default function TagSelect(props) {
               {item.name}
             </MenuItem>
           ))}
-        </Select>
+        </IHCSelect>
       </FormControl>
     </div>
   )
