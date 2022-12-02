@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 
 import { IHCButtonRounded } from "../assets/ComponentStyle"
 
 import NavigationHeader from "../components/Navigation/NavigationHeader";
 import NavigationBar from "../components/Navigation/NavigationBar"
+import MultiActionAreaCard from "../components/PageCard"
 import IHCFooter from "../components/Navigation/Footer"
 import InstrumentAddModal from "../components/Modals/InstrumentAdd"
 import TagSelect from "../components/Filter/TagSelect.jsx";
@@ -70,7 +70,28 @@ function Home() {
     navigate('/result', {state: { data: json, lookedFor: selections }})
   }
 
-  const handleFilterCategory = (value) => {
+  const handleFilterCategory = (value , del) => {
+    if(del){
+      let newArr = [...selections];
+      let shouldCreateNew = true;
+      newArr.map((obj, idx) => {
+        if (obj.category.id === value.category.id) {
+          obj.category.selections = value.category.selections;
+          if(value.category.selections.length === 0){
+            newArr.splice(idx,1);
+          }
+          shouldCreateNew = false;
+        }
+      })
+      if (shouldCreateNew){
+        setSelection(prev =>[...prev, value])
+        console.log(value);
+        return
+      }
+      setSelection(newArr);
+        console.log(newArr);
+      return
+    }
     let newArr = [...selections];
     let shouldCreateNew = true;
     newArr.map((obj) => {
@@ -122,10 +143,23 @@ function Home() {
         </Stack>
         <Image width="auto" height="auto" sx={{marginTop: 10}} src="../../header-teal.png"/>
       </Stack>
+      <Stack mb={1} sx={{ alignItems: "center", marginTop: 4 }}>
+        { ( selections.length > 0 ) ?
+          <IHCButtonRounded
+          variant="contained"
+          sx={{ minWidth: 160, minHeight: "3rem", width: 300, height: 80 }}
+          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+          onClick={handleClick}
+        >
+          <Typography variant="buttonMedium">Search</Typography>
+        </IHCButtonRounded>
+        :null
+        }
+      </Stack>
       <Stack
         direction="row"
         justifyContent="center"
-        sx={{ width: '100', flexWrap: "wrap", alignItems: "center", marginTop: 10, paddingLeft: 14, paddingRight: 14 }}
+        sx={{ width: '100', flexWrap: "wrap", alignItems: "center", marginBottom: 10, paddingLeft: 14, paddingRight: 14 }}
       >
         {cat ? cat.map((value) => {
           return (
@@ -135,27 +169,15 @@ function Home() {
           : null
         }
       </Stack>
-      <Stack mb={4} sx={{ alignItems: "center", marginTop: 6 }}>
-        { ( selections.length > 0 ) ?
-          <IHCButtonRounded
-          variant="contained"
-          sx={{ minWidth: 160, height: "3rem" }}
-          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
-          onClick={handleClick}
-        >
-          <Typography variant="buttonMedium">Search</Typography>
-        </IHCButtonRounded>
-        :
-          <IHCButtonRounded
-          variant="contained"
-          disabled
-          sx={{ minWidth: 160, height: "3rem" }}
-          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
-          onClick={handleClick}
-        >
-          <Typography variant="buttonMedium">Search</Typography>
-        </IHCButtonRounded>
-        }
+      <Stack
+        direction="row"
+        width="80%"
+        alignItems="center"
+        justifyContent="space-around"
+        sx={{ m: "auto", mb:13 }}
+      >
+        <MultiActionAreaCard link="/about"></MultiActionAreaCard>
+        <MultiActionAreaCard link="/tutorial" img={"/about-teal.png"} title={"Know more"}  content={"If you want to know who build the website, who did the UI Design, this is the best place to find us! Check it Out"}></MultiActionAreaCard>
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
       <Stack height="100%">
