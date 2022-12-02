@@ -1,17 +1,13 @@
 import React , {useState} from "react";
+
 import { useNavigate } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
+
 import { IHCButtonRounded } from "../assets/ComponentStyle";
+
+import Image from "mui-image"
+
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
-// import CssBaseline from "@mui/material/CssBaseline";
-// import Dialog from "@mui/material/Dialog";
-// import DialogTitle from "@mui/material/DialogTitle";
-// import DialogContent from "@mui/material/DialogContent";
-// import DialogContentText from "@mui/material/DialogContentText";
-// import DialogActions from "@mui/material/DialogActions";
-
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -22,25 +18,29 @@ import Container from "@mui/material/Container";
 
 function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+  const [forgot, setForgot] = useState(false);
+  const [passError, setPassError] = useState(true);
+  const [userError, setUserError] = useState(true);
 
-  // Alert Dialog state - OLD
-  // const [open, setOpen] = useState(true);
 
   const handleClickClose = () => {
     setOpen(false);
   }
   const handleClickBack = () => {
     navigate("/");
-  }
-  // ==
 
+  }
   // Login Button handler
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log(data);
     const result = {
-      identifier: data.get("email"),
-      password: data.get("password"),
+      identifier: data?.get("email"),
+      password: data?.get("password"),
     }
     const options = {
       method: 'POST',
@@ -50,92 +50,103 @@ function Login() {
       body: JSON.stringify(result)
     };
     const okay = await fetch('/api/v1/login/signin',options);
+
     if(okay.ok === true){
       navigate("/admin_dboard");
+    }
+    if(okay.ok === false){
+      setUserError(false);
+      setPassError(false);
     }
   };
 
   return (
-    <Stack height="100vh" justifyContent="center">
-      <Container  component="main"  maxWidth="xs">
-        {/* OLD MODAL */}
-        {/* <Dialog */}
-        {/*   open={open} */}
-        {/* > */}
-        {/*   <DialogTitle> */}
-        {/*     {"This area is restrict to administrator"} */}
-        {/*   </DialogTitle> */}
-        {/*   <DialogContent> */}
-        {/*     <DialogContentText> */}
-        {/*       If you're not an administrator you should go back. */}
-        {/*     </DialogContentText> */}
-        {/*     <DialogActions> */}
-        {/*       <Button onClick={handleClickBack}>Back</Button> */}
-        {/*       <Button onClick={handleClickClose}>Im Admin</Button> */}
-        {/*     </DialogActions> */}
-        {/*   </DialogContent> */}
-        {/* </Dialog> */}
-        <Stack
-          sx={{
-            padding: 3,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "white",
-            borderRadius: 3,
-          }}
-        >
-          <Typography variant="h5" color="error.dark">Administrator Page</Typography>
-          <Typography color="error.dark">Go <Link href="/" color="primary">back</Link> if you are not an administrator</Typography>
-          <Avatar sx={{ m: 2, bgcolor: "black" }} />
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 4 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" sx={{ ml:0.3 , borderRadius:50 }} color="primary" />}
-              label="Remember me"
-            />
-            <IHCButtonRounded
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: 50}}
-            >
-              Sign In
-            </IHCButtonRounded>
-            <Grid container >
-              <Grid item xs={12} textAlign="center" >
-                {/* Todo: Correct Forgot Password Page */}
-                <Link href="#"  variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+    <Stack height="100vh" width="100vw" direction="row">
+      <Stack backgroundColor="primary.main" alignItems="center" width="70%">
+        <Stack alignItems="center" spacing={8} mt={8} width="75%">
+          <Typography variant="h4" textAlign="center" color="white">Welcome to the Administrator Area</Typography>
+          <Typography variant="h3" color="white">This is a restricted area for the people who runs the IHC Catalog.</Typography>
         </Stack>
-      </Container>
+        <Image fit="scale-down" src="../login-purple.png"></Image>
+      </Stack>
+      <Stack height="auto" width="100%" justifyContent="center">
+        <Container  component="main"  maxWidth="sm">
+          {!forgot?
+            <Stack sx={{ padding: 3, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "white", borderRadius: 3, }} >
+              <Typography variant="h3">Enter Administrator Area</Typography>
+              <Typography color="text.light">Go <Link href="/" color="primary">back</Link> if you are not an administrator</Typography>
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 4 }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  error={userError}
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  error={passError}
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" sx={{ ml:0.3, borderRadius:50 }} color="secondary" />}
+                  label={ <Typography color="secondary.dark">Remember me</Typography> }
+                />
+                <IHCButtonRounded
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, borderRadius: 50}}
+                >
+                  Sign In
+                </IHCButtonRounded>
+                <Grid container >
+                  <Grid item xs={12} textAlign="center" >
+                    <Link href="#" onClick={ () => setForgot(!forgot) } variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Stack>
+          :
+            <Stack sx={{ padding: 3, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "white", borderRadius: 3, }} >
+              <Typography textAlign="center" variant="h5">Enter your email address so we can send an reset password link</Typography>
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 4 }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <IHCButtonRounded
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  onClick={ () => setForgot(!forgot) }
+                  sx={{ mt: 3, mb: 2, borderRadius: 50}}
+                >
+                  Send password reset!
+                </IHCButtonRounded>
+              </Box>
+            </Stack>
+          }
+        </Container>
+      </Stack>
     </Stack>
   );
 }
