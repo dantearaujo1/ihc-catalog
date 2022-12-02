@@ -22,8 +22,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [forgot, setForgot] = useState(false);
-  const [passError, setPassError] = useState(true);
-  const [userError, setUserError] = useState(true);
+  const [error, setError] = useState([false,false,false]);
 
 
   const handleClickClose = () => {
@@ -37,7 +36,6 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data);
     const result = {
       identifier: data?.get("email"),
       password: data?.get("password"),
@@ -50,13 +48,16 @@ function Login() {
       body: JSON.stringify(result)
     };
     const okay = await fetch('/api/v1/login/signin',options);
+    const json = await okay.json();
+    console.log(json);
 
-    if(okay.ok === true){
-      navigate("/admin_dboard");
+    if(json.error){
+      let errors = [...error];
+      errors[json.code] = true;
+      setError(errors);
     }
-    if(okay.ok === false){
-      setUserError(false);
-      setPassError(false);
+    if(json.user){
+      navigate("/admin_dboard");
     }
   };
 
@@ -84,19 +85,21 @@ function Login() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  error={userError}
+                  error={error[0]?error[0]:error[1]}
+                  helperText={error[0]?"User not found!":error[1]?"Fill user email!":""}
                   autoFocus
                 />
                 <TextField
                   margin="normal"
                   required
-                  error={passError}
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  error={error[2]?error[2]:error[1]}
+                  helperText={error[2]?"Wrong password!":error[1]?"Fill with your password!":""}
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" sx={{ ml:0.3, borderRadius:50 }} color="secondary" />}

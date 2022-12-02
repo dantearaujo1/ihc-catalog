@@ -10,22 +10,22 @@ const jwt = require('jsonwebtoken');
 // password, if its a match we should login
 // ===============================
 const signin = async ( req, res, next ) => {
-  const {identifier,password} = (req.body);
+  const {identifier,password} = req.body;
 
   if(!identifier) {
-    res.status(422).json({error: 'Username or email is mandatory!'})
+    res.status(422).json({error: 'Username or email is mandatory!',code:1})
     return;
   }
 
   try {
     const userValid = await UserDB.findOne({email:identifier});
     if (!userValid){
-        res.status(422).json({error: "User doesn't exists"});
+        res.status(422).json({error: "User doesn't exists",code:0});
     }
     else {
       const isMatch = await bcrypt.compare(password, userValid.password);
       if (!isMatch){
-        res.status(422).json({error: 'Invalid authentication'});
+        res.status(422).json({error: 'Invalid authentication',code:2});
       }
       else{
         const token = jwt.sign({id: userValid._id},process.env.JWT_SECRET, {
@@ -41,9 +41,10 @@ const signin = async ( req, res, next ) => {
           .json({message: "Successfully Logged In", user: userValid, token});
       }
     }
+    return res.status(500).json({error:"End"})
 
   } catch (error) {
-        return new Error(err);
+        return new Error(error);
   }
 }
 
@@ -57,15 +58,15 @@ const signup = async (req, res) => {
   const {uname,email,password,cpassword} = req.body;
 
   if( !uname || !email || !password || !cpassword ){
-    return res.status(422).json({error:"Fill all the fields"});
+    return res.status(422).json({error:"Fill all the fields", code:1});
   }
   try {
     const preuser = await UserDB.findOne({email:email});
     if (preuser){
-      return res.status(422).json({error:"This email already exists!"})
+      return res.status(422).json({error:"This email already exists!",code:2})
     }
     else if (password !== cpassword){
-      return res.status(422).json({error:"Passwords doesn't match! Please use the same password in both fields"})
+      return res.status(422).json({error:"Passwords doesn't match! Please use the same password in both fields", code:3})
     }
     else{
       const finalUser = new UserDB({
