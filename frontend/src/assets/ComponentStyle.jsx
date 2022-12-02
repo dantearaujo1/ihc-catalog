@@ -12,13 +12,13 @@ import themeOptions from './themes'
 
 const theme = themeOptions;
 
-const IHCButtonRounded = styled((Button))( ( { theme } ) => ({
+const IHCButtonRounded = styled((Button))(({ theme }) => ({
   borderRadius: 50,
   backgroundColor: theme.palette.secondary.main,
   textTransform: "none",
 }));
 
-const IHCTextField = styled((TextField))( ( {theme} ) => ({
+const IHCTextField = styled((TextField))(({ theme }) => ({
   borderRadius: 50,
   // backgroundColor: "#000000",
   // color: "#000000",
@@ -27,7 +27,7 @@ const IHCTextField = styled((TextField))( ( {theme} ) => ({
   // },
 }))
 
-const IHCAutocomplete = styled((Autocomplete))( ( {theme} ) => ({
+const IHCAutocomplete = styled((Autocomplete))(({ theme }) => ({
   borderRadius: 50,
   backgroundColor: theme.palette.background.default,
   "& .MuiOutlinedInput-root": {
@@ -39,7 +39,7 @@ const IHCAutocomplete = styled((Autocomplete))( ( {theme} ) => ({
   },
 }))
 
-const IHCOutlinedInput = styled((OutlinedInput))( ( {theme} ) => ({
+const IHCOutlinedInput = styled((OutlinedInput))(({ theme }) => ({
   borderRadius: 50,
   backgroundColor: theme.palette.background.default,
   height: "30%",
@@ -62,70 +62,68 @@ const IHCOutlinedInput = styled((OutlinedInput))( ( {theme} ) => ({
   },
 }))
 
-const IHCMenu = styled((Menu))( ( {theme} ) => ({
+const IHCMenu = styled((Menu))(({ theme }) => ({
   // borderRadius: 50,
   // backgroundColor: theme.palette.background.default,
   // height: "30%",
 
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.scrollbar.light,
+    borderRadius: 8,
+
   },
   "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
     borderRadius: 8,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.scrollbar.dark,
     minHeight: 24,
-    border: "3px solid",
-    borderColor: theme.palette.secondary.dark,
+
   },
   "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
   },
   "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+    borderColor: theme.palette.scrollbar.light,
   },
   "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+    borderColor: theme.palette.scrollbar.light,
   },
   "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-    backgroundColor: "#2b2b2b",
+    backgroundColor: theme.palette.scrollbar.light,
   },
 }))
 
-const IHCList = styled((List))( ( {theme} ) => ({
+const IHCList = styled((List))(({ theme }) => ({
   // borderRadius: 50,
   // backgroundColor: theme.palette.background.default,
   // height: "30%",
 
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.scrollbar.light,
     borderRadius: 8,
   },
   "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
     borderRadius: 8,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.scrollbar.dark,
     minHeight: 24,
-    border: "3px solid",
-    borderColor: theme.palette.secondary.dark,
+
   },
   "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
   },
   "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+
   },
   "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.text.primary,
+
   },
   "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-    backgroundColor: "#2b2b2b",
+    backgroundColor: theme.palette.scrollbar.light,
   },
 }))
 
 
-export { IHCButtonRounded, IHCTextField, IHCAutocomplete, IHCOutlinedInput, IHCMenu, IHCList};
+export { IHCButtonRounded, IHCTextField, IHCAutocomplete, IHCOutlinedInput, IHCMenu, IHCList };
