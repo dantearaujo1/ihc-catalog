@@ -49,33 +49,33 @@ export default function TagSelect(props) {
       <FormControl size="medium" sx={{width:'100%', minWidth:250, mr: 2, mt: 4}}>
         <InputLabel id="multi-label">{props.cat?.name}</InputLabel>
           <IHCSelect
-          size="lg"
-          labelId="multi-label"
-          id="multi-select"
-          multiple
-          value={selected}
-          onChange={(event) => { handleChange(event);}}
-          input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
-          MenuProps={{
-            sx: {
-              height: '30%',
-            }
-          }}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip
-                  key={value._id}
-                  label={value.name}
-                  clickable
-                  deleteIcon={<FontAwesomeIcon onMouseDown={(e) => e.stopPropagation()} icon={faCircleXmark}/>}
-                  onDelete={(e) => {handleDelete(e,value)}}
+            size="lg"
+            labelId="multi-label"
+            id="multi-select"
+            multiple
+            value={selected}
+            onChange={(event) => { handleChange(event);}}
+            input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
+            MenuProps={{
+              sx: {
+                height: '30%',
+              }
+            }}
+            renderValue={(selected) => (
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip
+                    key={value._id}
+                    label={value.name}
+                    clickable
+                    deleteIcon={<FontAwesomeIcon onMouseDown={(e) => e.stopPropagation()} icon={faCircleXmark}/>}
+                    onDelete={(e) => {handleDelete(e,value)}}
 
-                />
-              ))}
-            </Box>
-          )}
-        >
+                  />
+                ))}
+              </Box>
+            )}
+          >
           {data?.map((item) => (
             <MenuItem
               key={item._id}
