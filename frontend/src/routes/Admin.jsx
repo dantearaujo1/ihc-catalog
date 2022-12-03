@@ -11,6 +11,7 @@ import Box from '@mui/material/Box'
 
 import SuggestionList from '../components/Navigation/SuggestionList'
 import InstrumentManager from '../components/Navigation/InstrumentManager'
+import SubcategoriesManager from '../components/Navigation/SubcategoriesManager'
 
 // Copied code from mui.com ==========================
 function TabPanel(props) {
@@ -118,7 +119,7 @@ function Admin() {
           </Tabs>
           </Box>
         <TabPanel value={value} index={0}><SuggestionList></SuggestionList></TabPanel>
-        <TabPanel value={value} index={1}></TabPanel>
+        <TabPanel value={value} index={1}><SubcategoriesManager></SubcategoriesManager></TabPanel>
         <TabPanel value={value} index={2}><InstrumentManager></InstrumentManager></TabPanel>
       </div>
     </div>

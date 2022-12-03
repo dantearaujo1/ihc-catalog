@@ -6,11 +6,10 @@ import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton'
-import Pagination from '@mui/material/Pagination';
-import { DataGrid, gridPageCountSelector, gridPageSelector, useGridApiContext, useGridSelector, } from '@mui/x-data-grid';
 
 import { IHCButtonRounded } from '../../assets/ComponentStyle'
 import { IHCTextField } from '../../assets/ComponentStyle'
+import IHCDataGrid from '../IHCDataGrid'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";;
 import {
@@ -18,56 +17,6 @@ import {
   faPencil,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-
-
-
-
-function CustomPagination() {
-  const apiRef = useGridApiContext();
-  const page = useGridSelector(apiRef, gridPageSelector);
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
-  return (
-    <Pagination
-      color="secondary"
-      count={pageCount}
-      page={page + 1}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
-  );
-}
-
-function ListGrid(props) {
-
-  return (
-  <Stack justifyContent='center' sx={{width:'80vw', height:'70vh'}} mt={4}>
-    <div style={{display:'flex', width:'100%', height:'100%'}}>
-      <div style={{flexGrow:1}}>
-        <DataGrid
-          rows={props.rows?props.rows:[]}
-          getRowId={(row) => {return (row._id)}}
-          columns={props.columns?props.columns:[]}
-          autoPageSize
-          checkboxSelection
-          disableSelectionOnClick
-          onSelectionModelChange={props.selection}
-          components={{
-            Pagination: CustomPagination
-          }}
-          sx={{
-            boxShadow: 8,
-            borderRadius:2,
-            '& .MuiDataGrid-footerContainer': {
-              // backgroundColor:'#ff0000',
-              justifyContent: 'center',
-            }
-          }}
-        />
-      </div>
-    </div>
-  </Stack>
-        )
-}
 
 export default function InstrumentManagerPanel(props) {
   const theme = useTheme();
@@ -197,8 +146,8 @@ export default function InstrumentManagerPanel(props) {
 
   return (
       <Stack alignItems='center'>
-        <Stack direction='row' width='100%' spacing={4} justifyContent='space-between'>
-          <Stack direction='row' spacing={4} justifyContent='flex-start'>
+        <Stack direction='row' width='100%' spacing={4} alignItems='center' justifyContent='space-between'>
+          <Stack direction='row' spacing={4} height='80%' justifyContent='flex-start'>
             <IHCButtonRounded onClick={handleButtonClickAddPage} variant="contained">
               <Typography>
                 Add Instrument
@@ -226,7 +175,7 @@ export default function InstrumentManagerPanel(props) {
           }}
         />
         </Stack>
-        <ListGrid rows={filteredData} columns={columns} selection={handleCheckboxSelection}></ListGrid>
+        <IHCDataGrid rows={filteredData} columns={columns} selection={handleCheckboxSelection}></IHCDataGrid>
       </Stack>
   )
 
