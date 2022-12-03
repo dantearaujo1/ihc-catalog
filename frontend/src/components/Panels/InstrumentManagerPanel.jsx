@@ -68,8 +68,10 @@ export default function InstrumentManagerPanel(props) {
     setSelecteds(selectionModel)
     console.log(selectionModel);
   }
+
   const handleTextFieldFilter = (event) => {
     setTextFilter(event.target.value);
+
     const filtered = articleData.filter( (value) => {
       return (value.name.toLowerCase().includes(event.target.value.toString().toLowerCase()));
     } )
