@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {
   getSubCategories,
+  getSubCategoriesFull,
   getSubCategoriesByGroupName,
   getSubCategoriesByGroupId,
   getSubCategoryById,
@@ -21,6 +22,7 @@ router.post('/sub/add', createSubCategory);
 
 // Recieving all subcategories stored
 router.get('/sub/all', getSubCategories);
+router.get('/sub/allf', getSubCategoriesFull);
 // Recieving an subcategory by id
 router.get('/sub/:id', getSubCategoryById);
 router.get('/sub/n/:name', getSubCategoryByName);

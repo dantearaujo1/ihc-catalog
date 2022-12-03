@@ -52,7 +52,7 @@ const getSubCategoryById = async (req,res) => {
     }
     res.status(200).json(subcategory);
 
-  } catch {
+  } catch (error) {
      res.status(500).json({error:error});
   }
 }
@@ -94,6 +94,16 @@ const getSubCategoriesByGroupId = async (req,res) => {
 const getSubCategories = async (req, res) => {
   try {
     const subcategories = await SubCategory.find();
+    res.status(200).json(subcategories);
+
+  } catch (error) {
+     res.status(500).json({error:error});
+  }
+}
+
+const getSubCategoriesFull = async (req, res) => {
+  try {
+    const subcategories = await SubCategory.find().populate({path:'categoryID'});
     res.status(200).json(subcategories);
 
   } catch (error) {
@@ -269,5 +279,6 @@ module.exports.getSubCategoryByName = getSubCategoryByName;
 module.exports.getSubCategoriesByGroupName = getSubCategoriesByGroupName;
 module.exports.getSubCategoriesByGroupId  = getSubCategoriesByGroupId ;
 module.exports.getSubCategories = getSubCategories;
+module.exports.getSubCategoriesFull = getSubCategoriesFull;
 module.exports.patchSubCategory = patchSubCategory;
 module.exports.deleteSubCategory = deleteSubCategory;
