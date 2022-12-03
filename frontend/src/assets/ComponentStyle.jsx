@@ -28,6 +28,7 @@ const IHCSelect = styled((Select))( ( { theme } ) => ({
         // width: '200px',
         "& fieldset": {
           borderColor: theme.palette.effects.secondary.darker,
+          borderRadius: 50,
         },
         "&:hover fieldset": {
           borderColor: theme.palette.effects.secondary.lighter,
