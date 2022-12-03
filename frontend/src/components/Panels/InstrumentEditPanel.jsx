@@ -14,7 +14,7 @@ import { IHCTextField } from '../../assets/ComponentStyle'
 
 
 
-export default function InstrumentAddPanel(props) {
+export default function InstrumentEditPanel(props) {
 
   const [cat, setCat] = useState();
   const [sub, setSub] = useState();
