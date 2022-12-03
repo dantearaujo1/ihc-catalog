@@ -44,12 +44,13 @@ function NavigationHeader({data, show}) {
 
     navigate('/instrument_detail', { state: {article : article} });
   }
+
   // Handle pressing enter with a random search inside search bar
   const handleEnterSelection = (event) => {
-    if(event.keyCode === 13){
-      navigate('/instrument_detail', { state: { article: { Article: event.target, Categorys:[], Subcategorys:[]} } });
-
-    }
+    // if(event.keyCode === 13){
+    //   navigate('/instrument_detail', { state: { article: { Article: event.target, Categorys:[], Subcategorys:[]} } });
+    //
+    // }
   }
 
   return (
@@ -82,10 +83,11 @@ function NavigationHeader({data, show}) {
             <IHCAutocomplete
               size='small'
               id="search-by-instrument"
+              autoHighlight
               options={art?art:[]}
               getOptionLabel={(option) => option.name.toString()}
               onChange={handleClickSelection}
-              onKeyDown={handleEnterSelection}
+              // onKeyDown={handleEnterSelection}
               renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
               renderInput={(params) => (
                 <IHCTextField
