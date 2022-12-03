@@ -159,7 +159,7 @@ function Home() {
       <Stack
         direction="row"
         justifyContent="center"
-        sx={{ width: '100', flexWrap: "wrap", alignItems: "center", marginBottom: 10, paddingLeft: 14, paddingRight: 14 }}
+        sx={{ width: '100%', flexWrap: "wrap", alignItems: "center", marginBottom: 10, paddingLeft: 14, paddingRight: 14 }}
       >
         {cat ? cat.map((value) => {
           return (
