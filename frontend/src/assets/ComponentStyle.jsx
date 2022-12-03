@@ -13,10 +13,14 @@ import themeOptions from './themes'
 
 const theme = themeOptions;
 
-const IHCButtonRounded = styled((Button))( ( { theme } ) => ({
+const IHCButtonRounded = styled((Button))( ( { theme,variant } ) => ({
   borderRadius: 50,
-  backgroundColor: theme.palette.secondary.main,
   textTransform: "none",
+  ...(variant === 'text' && {
+  }),
+  ...(variant === 'contained' && {
+    backgroundColor: theme.palette.secondary.main,
+  }),
 }));
 
 const IHCSelect = styled((Select))( ( { theme } ) => ({
@@ -35,7 +39,19 @@ const IHCSelect = styled((Select))( ( { theme } ) => ({
 }));
 
 const IHCTextField = styled((TextField))( ( {theme} ) => ({
-  borderRadius: 50,
+  "& .MuiOutlinedInput-root": {
+    // width: '200px',
+    "& fieldset": {
+      borderColor: theme.palette.effects.secondary.darker,
+      borderRadius: 50,
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.effects.secondary.lighter,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor:  theme.palette.effects.primary.darker,
+    }
+  }
   // backgroundColor: "#000000",
   // color: "#000000",
   // "& .MuiOutlinedInput-root": {
