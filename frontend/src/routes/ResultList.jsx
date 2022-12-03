@@ -150,7 +150,7 @@ export default function ResultList() {
                 return value.category.selections.map( ( selections, idx ) => {
                   return (
                     <Stack key={selections._id}>
-                      <IHCButtonRounded onClick={()=>handleSubClick(selections)} variant="buttonSmall">
+                      <IHCButtonRounded onClick={()=>handleSubClick(selections)} variant="contained">
                         <Typography color="white">
                           {selections.name}
                         </Typography>
