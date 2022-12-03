@@ -36,7 +36,7 @@ const ArticleCard = (props) => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IHCButtonRounded onClick={handleClick} color="secondary" variant="contained" sx={{borderRadius: 10, ml:"auto", mr: 10, mb: 4 }}>
+            <IHCButtonRounded onClick={handleClick} variant="contained" sx={{borderRadius: 10, ml:"auto", mr: 10, mb: 4 }}>
               <Typography>Read more</Typography>
             </IHCButtonRounded>
           </CardActions>
