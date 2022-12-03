@@ -46,8 +46,8 @@ export default function TagSelect(props) {
 
   return (
     <div>
-      <FormControl size="medium" sx={{minWidth:250, mr: 2, mt: 4}}>
-        <InputLabel id="multi-label">{props.cat.name}</InputLabel>
+      <FormControl size="medium" sx={{width:'100%', minWidth:250, mr: 2, mt: 4}}>
+        <InputLabel id="multi-label">{props.cat?.name}</InputLabel>
           <IHCSelect
           size="lg"
           labelId="multi-label"
@@ -76,7 +76,7 @@ export default function TagSelect(props) {
             </Box>
           )}
         >
-          {data.map((item) => (
+          {data?.map((item) => (
             <MenuItem
               key={item._id}
               value={item}
