@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles'
 import NavigationHeader from '../components/Navigation/NavigationHeader'
 import Footer from '../components/Navigation/Footer'
 import NavigationBar from '../components/Navigation/NavigationBar'
+import MultiActionAreaCard from '../components/PageCard'
 import ArticleCard from '../components/ArticleCard'
 import GroupBadge from '../components/GroupBadge'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -58,14 +59,14 @@ const InstrumentDetail = () => {
             <FontAwesomeIcon  icon={faArrowLeftLong}/>
             <Typography ml={2}>Back</Typography>
           </IHCButtonRounded>
-          <Stack height="40%" spacing={3}>
+          <Stack mb={4} mt={4} height="100%" width="100%" spacing={3}>
                 <Typography variant="h4">You may also be Interessed in ...</Typography>
-                <Stack direction="row"  spacing={2}>
-                  <ArticleCard ml={2}/>
-                  <ArticleCard ml={2}/>
+                <Stack direction="row"  width="100%" alignItems='center' justifyContent='space-around' spacing={2}>
+                  <MultiActionAreaCard link="/result"></MultiActionAreaCard>
+                  <MultiActionAreaCard link="/result" img={"/about-teal.png"} title={"Know more"}  content={"If you want to know who build the website, who did the UI Design, this is the best place to find us! Check it Out"}></MultiActionAreaCard>
                 </Stack>
           </Stack>
-          </Stack>
+        </Stack>
       </Stack>
       <Footer></Footer>
     </Box>
