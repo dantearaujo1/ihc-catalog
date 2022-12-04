@@ -38,7 +38,7 @@ const ArticleCard = (props) => {
       setSubs(dataHeader[0]);
     }
     fetch_data();
-    props.matches(setFilterData);
+    props?.matches(setFilterData);
   }, [data] )
 
   const handleClick = async (e,value) => {
