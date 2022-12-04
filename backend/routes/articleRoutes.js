@@ -11,7 +11,8 @@ const {
   searchBySubcategories,
   populateGroup,
   getArticlesBySubcategoryName,
-  getArticleWithSubcategories
+  getArticleWithSubcategories,
+  getArticleFullData,
   // sendToDatabase,
 } = require('../controllers/articleController');
 
@@ -27,6 +28,7 @@ router.get('/group/g/a/sn/:sname', getArticlesBySubcategoryName);
 
 // Recieving an article by id
 router.get('/full/:id', getArticleWithSubcategories);
+router.get('/fulldata/:id', getArticleFullData);
 router.get('/id/:id', getArticleById);
 router.get('/name/:name', getArticleByName);
 

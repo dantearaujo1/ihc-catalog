@@ -354,6 +354,72 @@ const getArticleWithSubcategories = async (req, res) => {
   res.status(200).json(results);
 }
 
+const getArticleFullData = async (req, res) => {
+  const id = req.params.id;
+  const ID = ObjectId(id);
+  // const results = await Group.find({articleID: id}).populate({path:'articleID'}).populate({path:'subcategoryID', populate:{path:'categoryID'}})
+  //
+  // res.status(200).json(results);
+  const results = await Group.aggregate([
+    {
+      $match:{
+        articleID: ID
+      }
+    },
+    {
+      $lookup:{
+        from:'articles',
+        localField:'articleID',
+        foreignField:'_id',
+        as:'articleData'
+      }
+    },
+    {
+      $lookup:{
+        from:'subcategories',
+        localField:'subcategoryID',
+        foreignField:'_id',
+        as:'subcategoryData'
+      }
+    },
+    {
+      $unwind:"$articleData"
+    },
+    {
+      $unwind:"$subcategoryData"
+    },
+    {
+      $sort:{
+        "subcategoryData.categoryID": 1
+      }
+    },
+    {
+      $project:{ _id: 0, articleID: 0, subcategoryID: 0, __v: 0 }
+    },
+    {
+      $group: {
+        _id:"$articleData._id",
+        data: { $first:"$articleData" },
+        subcategories:{ $push:"$subcategoryData" },
+      }
+    },
+    {
+      $lookup:{
+        from:'categories',
+        localField:'subcategories.categoryID',
+        foreignField:'_id',
+        as:'categories'
+      }
+    },
+    {
+      $sort:{
+        "categories._id": 1,
+      }
+    },
+  ])
+  res.status(200).json(results);
+}
+
 module.exports.createArticle = createArticle;
 module.exports.getArticleById = getArticleById;
 module.exports.getArticleByName = getArticleByName;
@@ -366,4 +432,5 @@ module.exports.populateGroup = populateGroup;
 module.exports.searchBySubcategories = searchBySubcategories ;
 module.exports.sendGroupToDatabase = sendGroupToDatabase;
 module.exports.getArticleWithSubcategories = getArticleWithSubcategories;
+module.exports.getArticleFullData = getArticleFullData;
 
