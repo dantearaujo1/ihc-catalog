@@ -57,6 +57,7 @@ export default function TagSelect(props) {
           onChange={(event) => { handleChange(event);}}
           input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
           MenuProps={{
+            disablePortal: true,
             sx: {
               height: '30%',
             }
