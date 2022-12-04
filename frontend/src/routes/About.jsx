@@ -54,16 +54,63 @@ function About() {
     <Stack style={{ height: "100vh" }}>
       <NavigationHeader />
       <NavigationBar categories={cat} subcategories={sub} />
-      <Stack direction="row" mb={8} sx={{ alignItems: "center", marginTop: 4 }}>
-        <Image width="20%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../header-teal.png'></Image>
-        <Image width="20%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../header-teal.png'></Image>
-        <Image width="20%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../header-teal.png'></Image>
-        <Image width="20%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../header-teal.png'></Image>
-        <Image width="20%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../header-teal.png'></Image>
+      <Stack alignItems='center'>
+        <Stack mt={4} spacing={1} alignItems='center'>
+          <Typography variant='h1'>Our Team</Typography>
+          <Typography variant='h3'>We're a group of people who helped our HIC Teacher to build an online catalog! </Typography>
+          <Typography variant='h3'>We call ourselfs the Graúna Digital Team</Typography>
+        </Stack>
+        <Stack direction="row" mb={8} mt={8} width='100%' height='100%'>
+          <Stack spacing={3} height='100%' width='100%' alignItems='center'>
+            <Image height='auto' width="80%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../people/dan.png'></Image>
+            <Typography variant='h4' textAlign='center'>
+              Dante de Araújo
+            </Typography>
+            <Typography variant='h5' color='info.main' textAlign='center'>
+              Front and Back end Developer
+            </Typography>
+          </Stack>
+          <Stack spacing={3} height='100%' width='100%' alignItems='center'>
+              <Image height="auto" width="80%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../people/Luis.jpg'></Image>
+            <Typography variant='h4' textAlign='center'>
+              Luís Eduardo
+            </Typography>
+            <Typography variant='h5' color='info.main' textAlign='center'>
+              Documenter
+            </Typography>
+          </Stack>
+          <Stack spacing={3} height='100%' width='100%' alignItems='center'>
+            <Image height='auto' width="80%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../people/Drielle.jpg'></Image>
+            <Typography variant='h4' textAlign='center'>
+              Drielle Furtado
+            </Typography>
+            <Typography variant='h5' color='info.main' textAlign='center'>
+              Manager - Creative Leader - Designer
+            </Typography>
+          </Stack>
+          <Stack spacing={3} height='100%' width='100%' alignItems='center'>
+            <Image height='auto' width="80%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../people/Manoel.jpg'></Image>
+            <Typography variant='h4' textAlign='center'>
+              Manoel Costa
+            </Typography>
+            <Typography variant='h5' color='info.main' textAlign='center'>
+              Documenter
+            </Typography>
+          </Stack>
+          <Stack spacing={3} height='100%' width='100%' alignItems='center'>
+            <Image height='auto' width="80%" showLoading  style={{aspectRatio: 1/1}} sx={{borderRadius:50}} src='../../people/Max.jpg'></Image>
+            <Typography variant='h4' textAlign='center'>
+              Maxwell
+            </Typography>
+            <Typography variant='h5' color='info.main' textAlign='center'>
+              Developer - Requirements Planner
+            </Typography>
+          </Stack>
+        </Stack>
+        <Stack height="100%">
+        </Stack>
       </Stack>
-      <Stack height="100%">
-        <IHCFooter></IHCFooter>
-      </Stack>
+      <IHCFooter></IHCFooter>
     </Stack>
 
   );
