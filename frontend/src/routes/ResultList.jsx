@@ -133,8 +133,15 @@ export default function ResultList() {
   const setFilterFromChild = (newFilter) => {
     setFetching(true);
     setState(newFilter);
+    console.log(newFilter);
   }
 
+  const passFilter = (setData) => {
+    const value = filterState.flatMap( (selection, index) => {
+      return selection.category.selections;
+    } )
+    setData(value);
+  }
 
   return (
     <Stack>
@@ -166,7 +173,7 @@ export default function ResultList() {
           {!fetching?
               <Stack width="100%" minHeight="59.9vh" justifyContent="center" alignItems="flex-start">
                 { ( result?.length > 0 ) ? result?.slice( (page-1) * showQuantity, page * showQuantity).map( (article) => {
-                    return <ArticleCard key={article.Article._id} data={article}></ArticleCard>
+                    return <ArticleCard key={article.Article._id} data={article} matches={passFilter}></ArticleCard>
                   }
                 )
                   :
