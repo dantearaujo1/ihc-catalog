@@ -109,13 +109,13 @@ function Home() {
   }
 
   return (
-    <Stack style={{ height: "100vh" }}>
+    <Stack style={{ minHeight: "100vh" }}>
       <NavigationHeader />
       <NavigationBar categories={cat} subcategories={sub} />
       <Stack
         direction="row"
         width="80%"
-        minHeight="60vh"
+        minHeight="50vh"
         alignItems="center"
         justifyContent="space-around"
         sx={{ m: "auto" }}
@@ -124,31 +124,30 @@ function Home() {
           justifyContent="center"
           width="65%"
           alignItems="center"
+          spacing={4}
           sx={{ m: "auto" }}
         >
           <Typography
             variant="h1"
             color="text.primary"
-            sx={{ marginTop: 10 }}
           >
             Find your UX Evaluation Instrument
           </Typography>
           <Typography
             variant="h6"
-            sx={{ marginTop: 4 }}
             color="text.secondary"
           >
             Combine categories and find the best UX Evaluation Methods for your project
           </Typography>
         </Stack>
-        <Image width="auto" height="auto" sx={{marginTop: 10}} src="../../header-teal.png"/>
+        <Image width="auto" height="auto" src="../../header-teal.png"/>
       </Stack>
-      <Stack mb={1} sx={{ alignItems: "center", marginTop: 4 }}>
+      <Stack width='100%'  sx={{minHeight:70}} alignItems='center' justifyContent='center'>
         { ( selections.length > 0 ) ?
           <IHCButtonRounded
           variant="contained"
-          sx={{ minWidth: 160, minHeight: "3rem", width: 300, height: 80 }}
-          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+          sx={{width:'20%' ,  height:'auto', minHeight:50}}
+          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} beatFade  />}
           onClick={handleClick}
         >
           <Typography variant="buttonMedium">Search</Typography>
@@ -157,24 +156,30 @@ function Home() {
         }
       </Stack>
       <Stack
-        direction="row"
-        justifyContent="center"
-        sx={{ width: '100%', flexWrap: "wrap", alignItems: "center", marginBottom: 10, paddingLeft: 14, paddingRight: 14 }}
+        justifyContent='center'
+        alignItems='center'
+        sx={{ width: '100%', }}
+        pt={2}
+        pb={4}
       >
-        {cat ? cat.map((value) => {
-          return (
-            <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
-          )
-        })
-          : null
-        }
+        <Stack direction='row' flexWrap='wrap' width='65%' justifyContent='center' height='100%' spacing={2}>
+          {cat ? cat.map((value) => {
+            return (
+              <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
+            )
+          })
+            : null
+          }
+        </Stack>
       </Stack>
       <Stack
         direction="row"
         width="80%"
         alignItems="center"
         justifyContent="space-around"
-        sx={{ m: "auto", mb:13 }}
+        pt={4}
+        pb={4}
+        sx={{ m: "auto"}}
       >
         <MultiActionAreaCard link="/about"></MultiActionAreaCard>
         <MultiActionAreaCard link="/tutorial" img={"/about-teal.png"} title={"Know more"}  content={"If you want to know who build the website, who did the UI Design, this is the best place to find us! Check it Out"}></MultiActionAreaCard>
