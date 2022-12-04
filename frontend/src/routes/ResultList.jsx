@@ -144,8 +144,10 @@ export default function ResultList() {
         <SideFilter setParentData={setFilterFromChild}></SideFilter>
         <Stack alignItems="flex-start" ml={4} mt={4} width="80vw">
           <Stack direction="row" alignItems="center" spacing={2} width="100%" >
-            <Typography variant="h5">Searching results for: </Typography>
-            <Stack pt={2} pb={2} direction="row" spacing={2} flexWrap="wrap">
+            <Stack width="20%">
+              <Typography variant="h5">Searching results for: </Typography>
+            </Stack>
+            <Stack width='100%' direction="row" alignItems='space-evenly' gap={1} flexWrap="wrap">
               {filterState.map( (value) => {
                 return value.category.selections.map( ( selections, idx ) => {
                   return (
