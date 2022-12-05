@@ -1,0 +1,77 @@
+[
+  [
+    {"categoryName":"Ux Quality","name":"emotion"},
+    {"categoryName":"Ux Quality","name":"aesthetics"},
+    {"categoryName":"Ux Quality","name":"affect"},
+    {"categoryName":"Ux Quality","name":"generic user experience"},
+    {"categoryName":"Ux Quality","name":"hedonic and pragmatic"},
+    {"categoryName":"Ux Quality","name":"aspects of game experience"},
+    {"categoryName":"Ux Quality","name":"engagement"},
+    {"categoryName":"Ux Quality","name":"product creativity"},
+    {"categoryName":"Ux Quality","name":"flow"},
+    {"categoryName":"Ux Quality","name":"satisfaction"},
+    {"categoryName":"Ux Quality","name":"stress"},
+    {"categoryName":"Ux Quality","name":"fun"},
+    {"categoryName":"Ux Quality","name":"appraisal"},
+    {"categoryName":"Ux Quality","name":"trust"},
+    {"categoryName":"Ux Quality","name":"presence"},
+    {"categoryName":"Ux Quality","name":"intrinsic motivation"},
+    {"categoryName":"Ux Quality","name":"specific sets of ux qualities"},
+    {"categoryName":"Ux Quality","name":"feelings"},
+    {"categoryName":"Ux Quality","name":"mental effort"},
+    {"categoryName":"Ux Quality","name":"usability"},
+    {"categoryName":"Ux Quality","name":"behavior"},
+    {"categoryName":"Ux Quality","name":"human-robot trust"},
+    {"categoryName":"Ux Quality","name":"immersion"},
+    {"categoryName":"Ux Quality","name":"success"},
+    {"categoryName":"Ux Quality","name":"service experience"},
+    {"categoryName":"Ux Quality","name":"cybersickness"},
+    {"categoryName":"Ux Quality","name":"social presence"},
+    {"categoryName":"Ux Quality","name":"cognitive absorption"},
+    {"categoryName":"Ux Quality","name":"human-computer trust"},
+    {"categoryName":"Ux Quality","name":"perceived usability"}
+  ],
+  [
+    {"categoryName":"Type Of Approach","name":"quantitative"},
+    {"categoryName":"Type Of Approach","name":"qualitative"},
+    {"categoryName":"Type Of Approach","name":"quali-quantitative"}
+  ],
+  [
+    {"categoryName":"Application Domain","name":"application-independent"},
+    {"categoryName":"Application Domain","name":"intelligent systems, environments and objects"},
+    {"categoryName":"Application Domain","name":"online plataform"},
+    {"categoryName":"Application Domain","name":"audiovisual"},
+    {"categoryName":"Application Domain","name":"mobile"},
+    {"categoryName":"Application Domain","name":"games and virtual environments"},
+    {"categoryName":"Application Domain","name":"mobile devices"},
+    {"categoryName":"Application Domain","name":"other (laboratory experiments)"},
+    {"categoryName":"Application Domain","name":"hardware and robotics"},
+    {"categoryName":"Application Domain","name":"e-learning applications"}
+  ],
+  [
+    {"categoryName":"Type Of Instrument","name":"others (scale and two-dimensional diagram/ graph area)"},
+    {"categoryName":"Type Of Instrument","name":"post-test picture/object"},
+    {"categoryName":"Type Of Instrument","name":"scale / questionnaire"},
+    {"categoryName":"Type Of Instrument","name":"psychophysiology"},
+    {"categoryName":"Type Of Instrument","name":"two-dimensional diagrams/graph area"},
+    {"categoryName":"Type Of Instrument","name":"others (diary template)"},
+    {"categoryName":"Type Of Instrument","name":"software/equipment"},
+    {"categoryName":"Type Of Instrument","name":"others (observational checklist)"}
+  ],
+  [
+    {"categoryName":"Target Users","name":"all types of users"},
+    {"categoryName":"Target Users","name":"jornalists"},
+    {"categoryName":"Target Users","name":"consumers"},
+    {"categoryName":"Target Users","name":"children"},
+    {"categoryName":"Target Users","name":"role-specific (consumers)"},
+    {"categoryName":"Target Users","name":"customers"},
+    {"categoryName":"Target Users","name":"role-specific"},
+    {"categoryName":"Target Users","name":"people with disabilities"}
+  ],
+  [
+    {"categoryName":"framework","name":"human/user focus"},
+    {"categoryName":"framework","name":"product/artifact focus"},
+    {"categoryName":"framework","name":"user/artifact/environment relations"},
+    {"categoryName":"framework","name":"social nature of ux"}
+  ]
+]

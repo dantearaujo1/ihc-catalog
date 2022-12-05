@@ -1,0 +1,13 @@
+# Config files
+.git
+.gitignore
+.vscode/
+Dockerfile
+
+# Documentation
+LICENSE
+CHANGELOG.md
+README.md
+
+# Build files
+node_modules/
