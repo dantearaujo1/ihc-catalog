@@ -66,7 +66,9 @@ const IHCMenu = styled((Menu))( ( {theme} ) => ({
   // borderRadius: 50,
   // backgroundColor: theme.palette.background.default,
   // height: "30%",
-
+  "& .MuiTabs-flexContainer":{
+    backgroundColor: theme.palette.primary.main,
+  },
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
     backgroundColor: theme.palette.primary.dark,
   },

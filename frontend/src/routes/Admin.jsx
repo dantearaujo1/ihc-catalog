@@ -1,6 +1,6 @@
 import React from 'react';
-import {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import NavigationHeader from '../components/Navigation/NavigationHeader'
 
 import PropTypes from 'prop-types';
@@ -8,6 +8,10 @@ import Typography from '@mui/material/Typography'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
+
+import { useTheme } from '@mui/material/styles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 import SuggestionList from '../components/Navigation/SuggestionList'
 import InstrumentManager from '../components/Navigation/InstrumentManager'
@@ -57,9 +61,11 @@ function Admin() {
     setValue(newValue);
   }
 
+  const theme = useTheme()
+
   const refreshToken = async () => {
     // TODO: Remove all the url from here
-    const res = await fetch("api/v1/login/refresh", {credentials:'include'}).catch(
+    const res = await fetch("api/v1/login/refresh", { credentials: 'include' }).catch(
       err => console.log(err)
     );
     const data = await res.data;
@@ -67,7 +73,7 @@ function Admin() {
   }
 
   const sendRequest = async () => {
-    const res = await fetch("api/v1/login/user", {credentials:'include'} ).catch(
+    const res = await fetch("api/v1/login/user", { credentials: 'include' }).catch(
       err => console.log(err)
     );
     const data = await res.data;
@@ -87,7 +93,7 @@ function Admin() {
   //   return () => clearInterval(interval);
   // }, []);
 
-  return(
+  return (
     <div>
       <NavigationHeader show={false}></NavigationHeader>
       <div className="menu-container">
@@ -97,29 +103,28 @@ function Admin() {
         }} >
           <Tabs value={value} onChange={handleChange}
             sx={{
+              backgroundColor: 'primary.main',
               '& .MuiTab-textColorPrimary.Mui-selected': {
-                color:'secondary.light',
+                color: 'secondary.dark',
               },
               '& .MuiTab-textColorPrimary': {
-                color:'white',
+                color: 'white',
               },
-
             }}
             aria-label="nav tabs example"
             TabIndicatorProps={{
-            style:{
-              backgroundColor: '#00ddaa',
-            }
-
-          }}>
-            <Tab sx={{ml:12}} component="a" label="Suggestions"  {...a11yProps(0)}/>
-            <Tab component="a" label="Group Manager"  {...a11yProps(1)}/>
-            <Tab component="a" label="Instrument Manager"  {...a11yProps(2)}/>
+              style: {
+                backgroundColor: theme.palette.secondary.dark,
+              }
+            }}>
+            <Tab sx={{ ml: 12, mb: -1 }} component="a" label="Instrument Manager"  {...a11yProps(0)} />
+            <Tab sx={{ mb: -1 }} icon={<FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>} iconPosition="start" label={<Typography variant="buttonMedium">Suggestions</Typography>} {...a11yProps(1)} />
+            <Tab sx={{ mb: -1 }} component="a" label="Group Manager"  {...a11yProps(2)} />
           </Tabs>
-          </Box>
-        <TabPanel value={value} index={0}><SuggestionList></SuggestionList></TabPanel>
-        <TabPanel value={value} index={1}></TabPanel>
-        <TabPanel value={value} index={2}><InstrumentManager></InstrumentManager></TabPanel>
+        </Box>
+        <TabPanel value={value} index={0}><InstrumentManager></InstrumentManager></TabPanel>
+        <TabPanel value={value} index={1}><SuggestionList></SuggestionList></TabPanel>
+        <TabPanel value={value} index={2}></TabPanel>
       </div>
     </div>
   );
