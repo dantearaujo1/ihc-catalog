@@ -40,7 +40,6 @@ function NavigationHeader({data, show}) {
   const handleClickSelection = async (event, value) => {
     const fetching = await fetch("/api/v1/article/id/"+value._id);
     const article = await fetching.json();
-
     navigate('/instrument_detail', { state: {article : article} });
   }
 
