@@ -9,6 +9,8 @@ import Alert from '@mui/material/Alert'
 
 import SubManagerPanel from '../Panels/SubManagerPanel';
 import SubAddPanel from '../Panels/SubAddPanel';
+import SubEditPanel from '../Panels/SubEditPanel';
+import ConfirmDialog from '../ConfirmDialog'
 
 
 
@@ -18,6 +20,9 @@ export default function SubcategoriesManager() {
   const [editPage,setEditPage] = useState(false);
   const [snack,setSnack] = useState(false);
   const [snackData,setSnackData] = useState();
+  const [editData,setEditData] = useState();
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [confirmOperation, setConfirmOperation] = useState(false);
 
   const handleCloseSnack = (event, reason) => {
     if ( reason === 'clickaway' ){
@@ -26,11 +31,43 @@ export default function SubcategoriesManager() {
     setSnack(false);
   }
 
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  }
+
+  const handleDelete = async () => {
+
+    const data = {
+      id:editData._id
+    }
+    const result = await fetch('/api/v1/article/sub/d',
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+
+    const toJson = await result.json();
+    setSnackData(
+      {
+        title:toJson.message
+      }
+    );
+    setSnack(true);
+  }
+
   return(
     <Stack width="100vw" alignItems='center' justifyContent='center'>
-      {addPage?<SubAddPanel pageHandler={setAddPage} snackHandler={setSnack}/>:<SubManagerPanel showPanel={[setAddPage,setEditPage]}/> }
+      <ConfirmDialog doit={handleDelete} open={dialogOpen} handler={handleCloseDialog}></ConfirmDialog>
+      {
+        addPage?<SubAddPanel pageHandler={setAddPage} snackHandler={[setSnack,setSnackData]}/>
+        :editPage?<SubEditPanel snackHandler={[setSnack,setSnackData]} dataRef={editData} pageHandler={setEditPage}/>
+        :<SubManagerPanel dataHandler={setEditData} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
+      }
       {snack?
-        <Snackbar open={snack} autoHideDuration={6000} message="Added!" onClose={handleCloseSnack}/>
+        <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>
       :
         null
       }

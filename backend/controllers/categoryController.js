@@ -1,5 +1,6 @@
 
 const {SubCategory, Category}  = require('../models/Category');
+const { Group }  = require('../models/Group');
 const json = require('../dataa.json');
 
 const createSubCategory = async (req,res) => {
@@ -17,7 +18,7 @@ const createSubCategory = async (req,res) => {
 
   try {
     await SubCategory.create(subcategory);
-    res.status(201).json({message: 'SubCategory successfully stored!'});
+    res.status(201).json({message: 'Subcategory successfully stored!'});
 
   } catch (error) {
      res.status(500).json({error:error});
@@ -125,7 +126,7 @@ const patchSubCategory = async (req,res) => {
     if ( updatedSubCategory.matchedCount === 0 ){
       res.status(422).json({message:"SubCategory not found for update!"})
     }
-    res.status(200).json(updatedSubCategory);
+    res.status(200).json({message:"Subcategory patched!", data:updatedSubCategory});
 
   } catch {
      res.status(500).json({error:error});
@@ -133,18 +134,19 @@ const patchSubCategory = async (req,res) => {
 }
 
 const deleteSubCategory = async (req,res) => {
-  const id = req.params.id;
-  const subcategory = await SubCategory.findOne({_id: id});
-  if(!subcategory){
-    res.status(422).json({message: "SubCategory not found for delete!"});
-    return;
-  }
+  const {id} = req.body
   try {
+    const subcategory = await SubCategory.findOne({_id: id});
+    if(!subcategory){
+      res.status(422).json({message: "Subcategory not found for delete!"});
+      return;
+    }
     await SubCategory.deleteOne({_id:id});
-    res.status(200).json({message:'SubCategory removed successfully!'});
+    const count = await Group.deleteMany({subcategoryID:id})
+    res.status(200).json({message:'Subcategory removed successfully!', referencesCountDeleted: count});
 
-  } catch {
-     res.status(500).json({error:error});
+  } catch (err) {
+     res.status(500).json({error:err});
   }
 }
 

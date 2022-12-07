@@ -9,7 +9,7 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const createArticle = async (req,res) => {
 
-  const {name, reference, year, main, general} = req.body;
+  const {name, reference, year, main, general, subs} = req.body;
   const article =  {
     name,
     reference,
@@ -18,14 +18,26 @@ const createArticle = async (req,res) => {
     general,
   }
 
-  if(!name || !year || !reference) {
+  if(!name || !year ) {
     return res.status(422).json({error: 'Fill mandatory fields!'})
-    return;
   }
 
   try {
-    await Article.create(article);
-    return res.status(201).json({message: 'Article successfully stored!'});
+    const art = await Article.create(article);
+    if(art){
+      subs.map(async (value, index) => {
+        if(value !== ''){
+          const group = await Group.create({articleID:art._id, subcategoryID:value});
+          if( !group ){
+            await Article.deleteOne({_id:art._id});
+            return res.status(422).json({message: 'Error Storing Group, But article created and than deleted'});
+          }
+        }
+
+      } );
+      return res.status(201).json({data:art, message: 'Article successfully stored!'});
+    }
+    return res.status(422).json({error: 'Could not create any article'})
 
   } catch (error) {
      return res.status(500).json({error:error});
@@ -134,8 +146,7 @@ const getArticlesBySubcategoryName = async (req, res) => {
 }
 
 const patchArticle = async (req,res) => {
-  const id = req.params.id;
-  const {name, reference, year, main, general} = req.body;
+  const {_id, name, reference, year, main, general, subs, olds} = req.body;
   const article =  {
     name,
     reference,
@@ -146,32 +157,59 @@ const patchArticle = async (req,res) => {
 
   try {
 
-    const updatedArticle = await Article.updateOne({ _id:id }, article);
+    const updatedArticle = await Article.updateOne({ _id:_id }, article);
     if ( updatedArticle.matchedCount === 0 ){
       return res.status(422).json({message:"Article not found for update!"})
     }
-    return res.status(200).json(updatedArticle);
+    const updateGroups = async (id, subs, olds) => {
+      for (let index = 0; index < subs.length; index++) {
+        const sub = subs[index];
+        const old = olds[index];
+        if( sub !== old  && old !== ''){
+          const group = await Group.updateOne({articleID:id,subcategoryID:old},{subcategoryID:sub});
+          if(!group){
+            console.log(group);
+          }
+          else{
+            console.log("Didn't found group");
+          }
+        }
+        if( sub !== old  && old === ''){
+          const group = await Group.create({articleID:id,subcategoryID:sub});
+          if(group){
+            console.log(group);
+          }
+          else{
+            console.log("Couldn't create a group");
+          }
+        }
+      }
+    }
+    await updateGroups(_id, subs, olds);
+    return res.status(200).json({data:updatedArticle, message:"Article has been updated!"});
 
-  } catch {
-     return res.status(500).json({error:error});
+  } catch (err){
+     return res.status(500).json({error:err});
   }
 }
 
 // Needs to delete every GROUP that contains the article id
 // in the field articleID of group
 const deleteArticle = async (req,res) => {
-  const id = req.params.id;
-  const article = await Article.findOne({_id: id});
-  if(!article){
-    res.status(422).json({message: "Article not found for delete!"});
-    return;
-  }
-  try {
-    await Article.deleteOne({_id:id});
-    return res.status(200).json({message:'Article removed successfully!'});
+  const { id } = req.body
 
-  } catch {
-     return res.status(500).json({error:error});
+  try {
+    const article = await Article.findOne({_id: id});
+    if(!article){
+      res.status(422).json({message: "Article not found for delete!"});
+      return;
+    }
+    await Article.deleteOne({_id:id});
+    const count = await Group.deleteMany({articleID:id})
+    return res.status(200).json({message:'Article removed successfully!', referencesCountDeleted: count});
+
+  } catch (err){
+     return res.status(500).json({error:err});
   }
 }
 

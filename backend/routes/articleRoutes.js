@@ -33,10 +33,10 @@ router.get('/id/:id', getArticleById);
 router.get('/name/:name', getArticleByName);
 
 // Updating our articles data (PUT -- Update all the article, PATCH update part of an article)
-router.patch('/:id', patchArticle);
+router.patch('/p/', patchArticle);
 
 // Delete an article by id
-router.delete('/:id', deleteArticle);
+router.delete('/d/', deleteArticle);
 module.exports = router;
 
 // WARN: This is for sending from local to remoteDatabase

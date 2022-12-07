@@ -61,9 +61,9 @@ export default function SubManagerPanel(props) {
   const handleButtonClickEditPage = () => {
       props.showPanel[1](true);
   }
+
   const handleCheckboxSelection = (selectionModel, details) => {
     setSelecteds(selectionModel)
-    console.log(selectionModel);
   }
   const handleTextFieldFilter = (event) => {
     setTextFilter(event.target.value);
@@ -73,13 +73,15 @@ export default function SubManagerPanel(props) {
     setFilteredData(filtered);
   }
 
-  const handleRowAddIconClick = (e,params) => {
+  const handleRowEditIconClick = (e,params) => {
     e.stopPropagation();
-    console.log(params);
+    props.showPanel[1](true);
+    props.dataHandler(params.row);
   }
   const handleRowDeleteIconClick = (e,params) => {
     e.stopPropagation();
-    console.log(params);
+    props.showDialog(true);
+    props.dataHandler(params.row);
   }
 
   const columns = [
@@ -115,7 +117,7 @@ export default function SubManagerPanel(props) {
       renderCell: (params) => {
         return(
           <Stack direction="row">
-            <IconButton onClick={(e) => {handleRowAddIconClick(e,params)}}>
+            <IconButton onClick={(e) => {handleRowEditIconClick(e,params)}}>
               <Typography variant="h6" color="black">
                 <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
               </Typography>

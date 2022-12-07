@@ -11,7 +11,6 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 
 
-import TagSelect from '../Filter/TagSelect'
 import { IHCButtonRounded } from '../../assets/ComponentStyle'
 import { IHCTextField } from '../../assets/ComponentStyle'
 import { IHCSelect } from '../../assets/ComponentStyle'
@@ -22,6 +21,7 @@ export default function SubAddPanel(props) {
 
   const [cat, setCat] = useState();
   const [categorySelection, setCategorySelection] = useState('');
+  const [subName, setSubName] = useState('');
 
   const getCategories = async () => {
     const categories = await fetch('/api/v1/article/cat/all');
@@ -44,35 +44,60 @@ export default function SubAddPanel(props) {
     props.pageHandler(false);
   }
 
-  const handleAddButton = () => {
-    props.pageHandler(false);
-    props.snackHandler(true);
+  const handleAddButton = async () => {
+    if(subName !== ''){
+      let subcategory =  {
+        name:subName,
+        categoryID:categorySelection._id
+      }
+
+      const result = await fetch('/api/v1/article/sub/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subcategory)
+      })
+
+      const toJson = await result.json();
+      props.pageHandler(false);
+      props.snackHandler[1](
+        {
+          title:toJson.message
+        }
+      );
+      props.snackHandler[0](true);
+    }
   }
 
-  const handleDropSelection = (event) => {
+  const handleOnChangeSelection = (event) => {
     setCategorySelection(event.target.value)
   }
 
   return(
-    <Stack width='80%' height='100%' alignItems='flex-start' spacing={4} justifyContent='center'>
+    <Stack width='80%' height='100%' alignItems='center' spacing={4} justifyContent='center'>
       <Typography variant="h3"> Add Category Panel</Typography>
-      <Paper width='100%' sx={{height:'100%'}} elevation={8}>
-        <Grid container p={5}  height='100%' spacing={4}>
+      <Paper width='auto' sx={{height:'100%'}} elevation={8}>
+        <Grid container p={5}  width='100%' height='100%' spacing={4}>
           <Grid item xs={8}>
-            <IHCTextField id='sublb' label='Category' sx={{width:'100%'}}></IHCTextField>
+            <FormControl sx={{width:"100%"}}>
+              <InputLabel id="sublb" ></InputLabel>
+              <IHCTextField id='sublb'  label='Category' value={subName} onChange={(event) => setSubName(event.target.value)} sx={{width:'100%'}}></IHCTextField>
+            </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl sx={{width:"100%"}}>
-              <InputLabel id="groupSelect" >Group</InputLabel>
+            <FormControl size="large" sx={{width:"100%"}}>
+              <InputLabel id="gsel">Group</InputLabel>
               <IHCSelect
-                labelId="groupSelect"
                 label="Group"
+                labelId="gsel"
                 id="groupSelect"
                 value={categorySelection}
-                onChange={handleDropSelection}
+                onChange={handleOnChangeSelection}
+                sx={{width:'100%', minWidth:300}}
               >
                 {cat?.map( (value) => {
-                  return <MenuItem value={value}>{value.name}</MenuItem>
+                  return <MenuItem key={value._id} value={value}>{value.name}</MenuItem>
                 } )}
               </IHCSelect>
             </FormControl>

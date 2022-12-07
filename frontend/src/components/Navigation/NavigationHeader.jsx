@@ -37,7 +37,6 @@ function NavigationHeader({data, show}) {
     }
   }, [] )
 
-
   const handleClickSelection = async (event, value) => {
     const fetching = await fetch("/api/v1/article/id/"+value._id);
     const article = await fetching.json();
@@ -93,6 +92,11 @@ function NavigationHeader({data, show}) {
                 <IHCTextField
                   {...params}
                   label="Search"
+                  sx={{
+                    '& label.Mui-focused': {
+                      color: 'black'
+                    },
+                  }}
                     InputProps={{
                       ...params.InputProps,
                       endAdornment: (

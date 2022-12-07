@@ -6,19 +6,28 @@ import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
 
-
-import TagSelect from '../Filter/TagSelect'
 import { IHCButtonRounded } from '../../assets/ComponentStyle'
 import { IHCTextField } from '../../assets/ComponentStyle'
+import { IHCSelect } from '../../assets/ComponentStyle'
 
 
 
 export default function InstrumentAddPanel(props) {
 
   const [cat, setCat] = useState();
-  const [sub, setSub] = useState();
-  const [selections, setSelection] = useState([])
+  const [selections, setSelection] = useState()
+  const [options, setOptions] = useState([])
+  const [instrument, setInstrument] = useState({
+    name:'',
+    year:'',
+    reference:'',
+    main:'',
+    general:'',
+  })
 
   const getCategories = async () => {
     const categories = await fetch('/api/v1/article/cat/all');
@@ -28,6 +37,7 @@ export default function InstrumentAddPanel(props) {
     })
 
     setCat(ordered);
+    setSelection(new Array(ordered.length).fill(''));
   }
 
   const getSubcategories = async () => {
@@ -36,7 +46,22 @@ export default function InstrumentAddPanel(props) {
     const ordered = toJson.sort((a, b) => {
       return (b.name < a.name ? 1 : b.name > a.name ? -1 : 0);
     })
-    setSub(ordered);
+
+    let arr = new Array(cat?.lenght).fill([]);
+    let fillArray = []
+    for (let index = 0; index < cat?.length; index++) {
+      const cats = cat[index];
+      fillArray = []
+      for (let idx = 0; idx < ordered.length; idx++) {
+        const subs = ordered[idx];
+        if(subs.categoryID === cats._id){
+          fillArray.push(subs);
+          arr[index] = fillArray;
+        }
+      }
+    }
+
+    setOptions(arr);
   }
 
   useEffect(() => {
@@ -52,47 +77,64 @@ export default function InstrumentAddPanel(props) {
     props.pageHandler(false);
   }
 
-  const handleAddButton = () => {
+  const handleAddButton = async () => {
+    const b = {
+      ...instrument,
+      subs:selections
+    }
+
+    const postData = {
+      method: 'POST',
+      headers:{
+        'Accepts':'application/json',
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(b)
+    }
+    const result = await fetch('/api/v1/article', postData)
+    const article = await result.json();
+
     props.pageHandler(false);
-    props.snackHandler(true);
+    props.snackHandler[1]({
+      title:article.message
+    })
+    props.snackHandler[0](true);
   }
 
-  const handleFilterCategory = (value , del) => {
-    if(del){
-      let newArr = [...selections];
-      let shouldCreateNew = true;
-      newArr.map((obj, idx) => {
-        if (obj.category.id === value.category.id) {
-          obj.category.selections = value.category.selections;
-          if(value.category.selections.length === 0){
-            newArr.splice(idx,1);
-          }
-          shouldCreateNew = false;
-        }
-      })
-      if (shouldCreateNew){
-        setSelection(prev =>[...prev, value])
-        console.log(value);
-        return
-      }
-      setSelection(newArr);
-        console.log(newArr);
-      return
-    }
+  const handleOnChangeSelection = (event, idx) => {
     let newArr = [...selections];
-    let shouldCreateNew = true;
-    newArr.map((obj) => {
-      if (obj.category.id === value.category.id) {
-        obj.category.selections = value.category.selections;
-        shouldCreateNew = false;
-      }
+    newArr[idx] = event.target.value;
+    setSelection(newArr);
+  }
+  const handleOnChangeName = (event) => {
+    setInstrument({
+      ...instrument,
+      name:event.target.value
     })
-    if (shouldCreateNew) {
-      setSelection(prev => [...prev, value]);
-    }
-    else {
-      setSelection(newArr);
-    }
+  }
+  const handleOnChangeYear = (event) => {
+    setInstrument({
+      ...instrument,
+      year:event.target.value
+    })
+  }
+  const handleOnChangeReference = (event) => {
+    setInstrument({
+      ...instrument,
+      reference:event.target.value
+    })
+  }
+  const handleOnChangeMain = (event) => {
+    setInstrument({
+      ...instrument,
+      main:event.target.value
+    })
+  }
+  const handleOnChangeGeneral = (event) => {
+    setInstrument({
+      ...instrument,
+      general:event.target.value
+    })
   }
 
   return(
@@ -101,20 +143,36 @@ export default function InstrumentAddPanel(props) {
       <Paper width='100%' sx={{height:'100%'}} elevation={8}>
         <Grid container p={5}  height='100%' spacing={4}>
           <Grid item xs={8}>
-            <IHCTextField id='namelb' required label='Instrument Name' sx={{width:'100%'}}></IHCTextField>
+            <IHCTextField id='namelb' onChange={handleOnChangeName} value={instrument.name} required label='Instrument Name' sx={{width:'100%'}}></IHCTextField>
           </Grid>
           <Grid item xs={4}>
-            <IHCTextField id='namelb' label='Year' sx={{width:'100%'}}></IHCTextField>
+            <IHCTextField id='namelb' onChange={handleOnChangeYear} number value={instrument.year} required label='Year' sx={{width:'100%'}}></IHCTextField>
           </Grid>
           <Grid item xs={12}>
-            <IHCTextField id='namelb' label='Reference' sx={{width:'100%'}}></IHCTextField>
+            <IHCTextField id='namelb' value={instrument.reference} onChange={handleOnChangeReference} label='Reference' sx={{width:'100%'}}></IHCTextField>
           </Grid>
 
 
-        {cat ? cat.map((value) => {
+        {cat ? cat.map((value, index) => {
           return (
-          <Grid item xs={4}>
-            <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
+          <Grid item key={value._id} xs={4}>
+            <FormControl size="large" sx={{width:"100%"}}>
+              <InputLabel id={value._id}>{value.name}</InputLabel>
+              <IHCSelect
+                label={value.name}
+                labelId={value._id}
+                value={selections[index]}
+                onChange={(e) => handleOnChangeSelection(e,index)}
+                sx={{width:'100%'}}
+              >
+                {options[index]?.map( (subcategory, idx) => {
+                      return (
+                        <MenuItem key={subcategory._id} value={subcategory._id}>{subcategory.name}</MenuItem>
+                      )
+                } )
+                }
+              </IHCSelect>
+            </FormControl>
           </Grid>
           )
         })
@@ -123,10 +181,10 @@ export default function InstrumentAddPanel(props) {
 
 
           <Grid item xs={6}>
-            <IHCTextField multiline rows={6} id='mainlb' label='Main Idea' sx={{width:'100%'}}></IHCTextField>
+            <IHCTextField multiline onChange={handleOnChangeMain} rows={6} value={instrument.main} id='mainlb' label='Main Idea' sx={{width:'100%'}}></IHCTextField>
           </Grid>
           <Grid item xs={6}>
-            <IHCTextField multiline rows={6} id='generallb' label='General Procedure' sx={{width:'100%'}}></IHCTextField>
+            <IHCTextField multiline rows={6} id='generallb' onChange={handleOnChangeGeneral} value={instrument.general} label='General Procedure' sx={{width:'100%'}}></IHCTextField>
           </Grid>
           <Grid item xs={8}>
           </Grid>
@@ -141,9 +199,3 @@ export default function InstrumentAddPanel(props) {
     </Stack>
   )
 }
-      <Stack
-        direction="row"
-        justifyContent="center"
-        sx={{ width: '100%', flexWrap: "wrap", alignItems: "center", marginBottom: 10, paddingLeft: 14, paddingRight: 14 }}
-      >
-      </Stack>

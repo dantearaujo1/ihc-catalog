@@ -162,10 +162,10 @@ function Home() {
         pt={2}
         pb={4}
       >
-        <Stack direction='row' flexWrap='wrap' width='65%' justifyContent='center' height='100%' spacing={2}>
+        <Stack direction='row' flexWrap='wrap' width='80%' justifyContent='center' height='100%' gap={2.5}>
           {cat ? cat.map((value) => {
             return (
-              <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
+                <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
             )
           })
             : null

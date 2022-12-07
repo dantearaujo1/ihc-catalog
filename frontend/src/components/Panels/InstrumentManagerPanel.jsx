@@ -78,13 +78,16 @@ export default function InstrumentManagerPanel(props) {
     setFilteredData(filtered);
   }
 
-  const handleRowAddIconClick = (e,params) => {
+  const handleRowEditIconClick = (e,params) => {
     e.stopPropagation();
-    console.log(params);
+    props.showPanel[1](true);
+    props.dataHandler(params.row);
+    console.log(params.row);
   }
   const handleRowDeleteIconClick = (e,params) => {
     e.stopPropagation();
-    console.log(params);
+    props.showDialog(true);
+    props.dataHandler(params.row);
   }
 
   const columns = [
@@ -126,7 +129,7 @@ export default function InstrumentManagerPanel(props) {
       renderCell: (params) => {
         return(
           <Stack direction="row">
-            <IconButton onClick={(e) => {handleRowAddIconClick(e,params)}}>
+            <IconButton onClick={(e) => {handleRowEditIconClick(e,params)}}>
               <Typography variant="h6" color="black">
                 <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
               </Typography>

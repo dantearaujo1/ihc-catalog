@@ -9,6 +9,8 @@ import Alert from '@mui/material/Alert'
 
 import InstrumentManagerPanel from '../Panels/InstrumentManagerPanel';
 import InstrumentAddPanel from '../Panels/InstrumentAddPanel';
+import InstrumentEditPanel from '../Panels/InstrumentEditPanel';
+import ConfirmDialog from '../ConfirmDialog'
 
 
 
@@ -20,6 +22,9 @@ export default function InstrumentManager() {
   const [editPage,setEditPage] = useState(false);
   const [snack,setSnack] = useState(false);
   const [snackData,setSnackData] = useState();
+  const [editData,setEditData] = useState();
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [confirmOperation, setConfirmOperation] = useState(false);
 
   const handleCloseSnack = (event, reason) => {
     if ( reason === 'clickaway' ){
@@ -28,11 +33,43 @@ export default function InstrumentManager() {
     setSnack(false);
   }
 
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  }
+
+  const handleDelete = async () => {
+
+    const data = {
+      id:editData._id
+    }
+    const result = await fetch('/api/v1/article/d/',
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+
+    const toJson = await result.json();
+    setSnackData(
+      {
+        title:toJson.message
+      }
+    );
+    setSnack(true);
+  }
+
   return(
     <Stack width="100vw" alignItems='center' justifyContent='center'>
-      {addPage?<InstrumentAddPanel pageHandler={setAddPage} snackHandler={setSnack}/>:<InstrumentManagerPanel showPanel={[setAddPage,setEditPage]}/> }
+      <ConfirmDialog doit={handleDelete} open={dialogOpen} handler={handleCloseDialog}></ConfirmDialog>
+      {
+        addPage?<InstrumentAddPanel pageHandler={setAddPage} snackHandler={[ setSnack,setSnackData ]}/>
+        :editPage?<InstrumentEditPanel dataRef={editData} pageHandler={setEditPage} snackHandler={[setSnack,setSnackData]}/>
+        :<InstrumentManagerPanel dataHandler={setEditData} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
+      }
       {snack?
-        <Snackbar open={snack} autoHideDuration={6000} message="Added!" onClose={handleCloseSnack}/>
+        <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>
       :
         null
       }

@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 import { IHCOutlinedInput } from '../../assets/ComponentStyle';
 import Box from '@mui/material/Box';
-import Select from '@mui/material/Select';
 import { IHCSelect } from '../../assets/ComponentStyle';
 import Chip from '@mui/material/Chip';
 import InputLabel from '@mui/material/InputLabel';
@@ -46,7 +45,7 @@ export default function TagSelect(props) {
 
   return (
     <div>
-      <FormControl size="medium" sx={{minWidth:250, mr: 2, mt: 4}}>
+      <FormControl size="large" sx={{width:'100%', minWidth:250}}>
         <InputLabel id="multi-label">{props.cat?.name}</InputLabel>
           <IHCSelect
           size="lg"
