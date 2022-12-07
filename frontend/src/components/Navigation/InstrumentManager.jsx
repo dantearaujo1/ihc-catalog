@@ -59,7 +59,7 @@ export default function InstrumentManager() {
       }
     );
     setSnack(true);
-    setShouldRefresh(true);
+    setShouldRefresh( (prevState) => !prevState );
   }
 
   return(

@@ -56,6 +56,7 @@ export default function SubcategoriesManager() {
       }
     );
     setSnack(true);
+    setShouldRefresh( (prevState) => !prevState );
   }
 
   return(
