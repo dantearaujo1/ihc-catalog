@@ -9,13 +9,14 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const createArticle = async (req,res) => {
 
-  const {name, reference, year, main, general, subs} = req.body;
+  const {name, reference, year, main, general, link, subs} = req.body;
   const article =  {
     name,
     reference,
     year,
     main,
     general,
+    link,
   }
 
   if(!name || !year ) {
@@ -146,13 +147,14 @@ const getArticlesBySubcategoryName = async (req, res) => {
 }
 
 const patchArticle = async (req,res) => {
-  const {_id, name, reference, year, main, general, subs, olds} = req.body;
+  const {_id, name, reference, year, main, general, link, subs, olds} = req.body;
   const article =  {
     name,
     reference,
     year,
     main,
     general,
+    link,
   }
 
   try {
