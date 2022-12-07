@@ -189,9 +189,13 @@ function InstrumentAddModal() {
           </Stack>
         </Modal>
 
-      <IHCButtonRounded onClick={handleOpen} sx={{backgroundColor:'secondary.main'}}  variant="contained" >
-        <FontAwesomeIcon size="1x" icon={faLightbulb} beatFade />
-        <Typography variant="button" color="white" ml={2}> Leave a Suggestion </Typography>
+      <IHCButtonRounded onClick={handleOpen} sx={{backgroundColor:'transparent', border:"2px solid", borderColor:'secondary.main'}}  variant="filled" >
+          <Typography  mr={1} variant="button" color="secondary.main">
+            <FontAwesomeIcon size="1x" icon={faLightbulb} beatFade />
+          </Typography>
+          <Typography variant="button" color="secondary.main">
+            Leave a Suggestion
+          </Typography>
       </IHCButtonRounded>
       </Stack>
     </Stack>
