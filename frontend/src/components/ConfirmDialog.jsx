@@ -29,12 +29,12 @@ export default function ConfirmDialog({open, handler, doit}){
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-           Click Ok to delete
+           This will delete all your data!
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <IHCButtonRounded onClick={handleOk}>Ok</IHCButtonRounded>
           <IHCButtonRounded onClick={handleClose}>Cancel</IHCButtonRounded>
+          <IHCButtonRounded variant='contained' onClick={handleOk}>Ok</IHCButtonRounded>
         </DialogActions>
       </Dialog>
     </div>
