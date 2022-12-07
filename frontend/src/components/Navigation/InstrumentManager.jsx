@@ -97,7 +97,7 @@ export default function InstrumentManager() {
       {
         addPage?<InstrumentAddPanel setRefresh={setShouldRefresh} pageHandler={setAddPage} snackHandler={[ setSnack,setSnackData ]}/>
         :editPage?<InstrumentEditPanel setRefresh={setShouldRefresh} dataRef={editData} pageHandler={setEditPage} snackHandler={[setSnack,setSnackData]}/>
-        :<InstrumentManagerPanel dataHandler={setEditData} setRefresh={setShouldRefresh} setDorefresh={shouldRefresh} showDialog={setDialogOpen} showManyDialog={setDialogManyOpen} showPanel={[setAddPage,setEditPage]}/>
+        :<InstrumentManagerPanel dataHandler={setEditData} setRefresh={setShouldRefresh} refresh={shouldRefresh} showDialog={setDialogOpen} showManyDialog={setDialogManyOpen} showPanel={[setAddPage,setEditPage]}/>
       }
       {snack?
         <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>

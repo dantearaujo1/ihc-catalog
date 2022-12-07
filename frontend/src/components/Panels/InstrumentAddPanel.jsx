@@ -101,12 +101,12 @@ export default function InstrumentAddPanel(props) {
     const result = await fetch('/api/v1/article', postData)
     const article = await result.json();
 
+    props.setRefresh( (prevState) => !prevState );
     props.pageHandler(false);
     props.snackHandler[1]({
       title:article.message
     })
     props.snackHandler[0](true);
-    props.setRefresh( (prevState) => !prevState );
   }
 
   const handleOnChangeSelection = (event, idx) => {

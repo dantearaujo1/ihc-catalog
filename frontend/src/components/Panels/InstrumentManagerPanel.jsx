@@ -42,6 +42,7 @@ export default function InstrumentManagerPanel(props) {
         year:value.year,
         main:value.main,
         general:value.general,
+        link:value.link,
       }
       return article;
     })
