@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import Modal from "@mui/material/Modal";
 import { IHCButtonRounded } from "../../assets/ComponentStyle";
+import { IHCTextField } from "../../assets/ComponentStyle";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -21,10 +23,56 @@ const theme = themeOptions;
 function InstrumentAddModal() {
   const [open, setOpen] = useState(false);
   const [openThanks, setOpenThanks] = useState(false);
+  const [suggestion, setSuggestion] = useState( {
+    name:'',
+    email:'',
+    link:'',
+    description:'',
+  } )
   const handleOpen = () => setOpen(true);
+
+  const handleFormChangeName = (event) => {
+    setSuggestion({
+      ...suggestion,
+      name:event.target.value
+    })
+  }
+  const handleFormChangeEmail = (event) => {
+    setSuggestion({
+      ...suggestion,
+      email:event.target.value
+    })
+  }
+  const handleFormChangeLink = (event) => {
+    setSuggestion({
+      ...suggestion,
+      link:event.target.value
+    })
+  }
+  const handleFormChangeDescription = (event) => {
+    setSuggestion({
+      ...suggestion,
+      description:event.target.value
+    })
+  }
   const handleClose = () => setOpen(false);
   const handleOpenThanks = () => {setOpenThanks(true); setOpen(false);};
   const handleCloseThanks = () => setOpenThanks(false);
+  const sendSuggestion = async (req, res) =>{
+    const method = {
+      method: 'POST',
+      headers: {
+        'Accept':'application/json',
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(suggestion)
+    }
+    const fetching = await fetch('/api/v1/suggestion/', method);
+    const result = await fetching.json();
+    console.log(result);
+
+    handleOpenThanks();
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -33,208 +81,120 @@ function InstrumentAddModal() {
   }, [openThanks]);
 
   return (
-    <Box>
-      <Box
-        sx={{
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
-          right: 32,
-          bottom: 98
-        }}
-      >
-
-      <Modal open={openThanks} onClose={handleCloseThanks} width="100%">
-        <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            height={1}
-            position="absolute"
-            width="100%"
-          >
-              <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="space-between"
+    <Stack  alignItems="center" justifyContent="center">
+      <Stack justifyContent="center" alignItems="center" sx={{ position: "fixed", right: 32, bottom: 80 }} >
+        <Modal open={openThanks} onClose={handleCloseThanks} width="100%">
+          <Stack alignItems="center" height="100%" justifyContent="center" >
+            <Stack
               alignItems="center"
               gap="2rem"
-              border="2px solid black"
-              width="472px"
-              paddingTop="2rem"
-              paddingBottom="2rem"
+              width="30%"
+              p={4}
+              spacing={3}
               borderRadius="25px"
               backgroundColor="background.default"
               boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
             >
-              <Image width="156px" src="../../../sent-form-teal2.png"></Image>
+              <Image fit='scale-down' width="60%" height="60%" src="../../../sent-form-teal2.png"></Image>
               <Typography
+                  variant="h4"
                   textAlign="center"
-                  fontWeight={700}
-                  sx={{
-                    fontSize: "40px !important",
-                    fontFamily: "cabinet grotesk",
-                    color: "secondary.main"
-
-                  }}
+                  color="secondary.main"
                   >Thank you for your suggestion!</Typography>
               <Typography
+                  variant="body1"
+                  color="text.secondary"
                   textAlign="center"
-                  fontWeight={400}
+                >We will evaluate the suggested instrument soon in order to add it to our catalog.</Typography>
+            </Stack>
+          </Stack>
+        </Modal>
+
+        <Modal style={{display:'flex', alignItems:"center", justifyContent:"center"}} open={open} onClose={handleClose} width="100%" height="100%">
+          <Stack p={4} sx={{borderRadius:10}} backgroundColor="background.default" >
+              <Stack flexDirection="column" alignItems="center" justifyContent="center" width="100%" gap="15px">
+              <Stack width="70%">
+                <Typography variant="h3" textAlign="center"
                   sx={{
-                    fontSize: "16px !important",
-                    fontFamily: "cabinet grotesk"
-
-                  }}
-               >We will evaluate the suggested instrument soon in order to add it to our catalog.</Typography>
-            </Box>
-          </Box>
-      </Modal>
-
-      <Modal open={open} onClose={handleClose} width="100%">
-        <Stack
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height={1}
-          position="absolute"
-          width="100%"
-        >
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
-            gap="2rem"
-            width="100%"
-            paddingTop="2rem"
-            paddingBottom="2rem"
-            borderRadius="25px"
-            backgroundColor="background.default"
-            boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-          >
-
-            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" gap="15px">
-              <Box display="flex" flexDirection="row">
-                <Typography
-                  textAlign="justify"
-                  fontSize="24px"
-                  fontWeight={700}
-                  sx={{
-                    fontFamily: "cabinet grotesk",
                     [`& span`]: {
                       color: "secondary.main"
                     }
                   }}
-                >Didn't find what you're looking for? <span>Leave your suggestion.</span></Typography>
-              </Box>
+                >Didn't find what you're looking for? <span>Leave your suggestion.</span>
+              </Typography>
+              </Stack>
 
-              <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%">
-                <TextField
-                  required
-                  label="E-mail"
-                  sx={{
-                    width: "75%",
-                    mb: "10px",
-                    [`& fieldset`]:{
-                      border: "2px solid",
-                      borderColor: "secondary.main",
-                      borderRadius: "50px",
-                    }
-                  }}
-                >
-                </TextField>
-                <TextField
-                  required
-                  label="Instrument name"
-                  sx={{
-                    width: "75%",
-                    mb: "10px",
-                    [`& fieldset`]:{
-                      border: "2px solid",
-                      borderColor: "secondary.main",
-                      borderRadius: "50px",
-                    }
-                  }}
-                >
-                </TextField>
-                <TextField
-                  required
-                  label="Reference link"
-                  rows={1}
-                  multiline
-                  sx={{
-                    width: "75%",
-                    mb: "10px",
-                    [`& fieldset`]:{
-                      border: "2px solid",
-                      borderColor: "secondary.main",
-                      borderRadius: "50px",
-                    }
-                  }}
-                >
-                </TextField>
-                <TextField
-                  required
-                  label="Description"
-                  rows={2}
-                  multiline
-                  sx={{
-                    width: "75%",
-                    mb: "10px",
-                    [`& fieldset`]:{
-                      border: "2px solid",
-                      borderColor: "secondary.main",
-                      borderRadius: "20px",
-                    }
-                  }}
-                >
-                </TextField>
-              </Box>
-            </Box>
+                <Stack spacing={3} flexDirection="column" alignItems="center" justifyContent="center" width="100%">
+                  <IHCTextField
+                    required
+                    sx={{width:"100%"}}
+                    label="E-mail"
+                    value={suggestion?.email}
+                    onChange={handleFormChangeEmail}
+                  >
+                  </IHCTextField>
+                  <IHCTextField
+                    required
+                    sx={{width:"100%"}}
+                    label="Instrument name"
+                    value={suggestion?.name}
+                    onChange={handleFormChangeName}
+                  >
+                  </IHCTextField>
+                  <IHCTextField
+                    required
+                    sx={{width:"100%"}}
+                    label="Reference link"
+                    rows={1}
+                    value={suggestion?.link}
+                    onChange={handleFormChangeLink}
+                    multiline
+                  >
+                  </IHCTextField>
+                  <IHCTextField
+                    required
+                    sx={{
+                      width:"100%",
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderRadius: 6,
+                        },
+                      },
+                    }}
+                    label="Description"
+                    value={suggestion?.description}
+                    rows={2}
+                    multiline
+                    onChange={handleFormChangeDescription}
+                  >
+                  </IHCTextField>
+                </Stack>
 
-            <Box
-              display="flex"
-              justifyContent="flex-end"
-              alignItems="center"
-              width="90%"
-            >
-              <IHCButtonRounded
-                onClick={handleClose}
-                variant="contained"
-                sx={{
-                  borderRadius: "50px",
-                  margin: "10px",
-                  color: "#000",
-                  backgroundColor: "#fff",
-                  boxShadow: "none"
-                }}
+              <Stack
+                direction='row'
+                justifyContent="flex-end"
+                alignItems="center"
+                width="100%"
+                mt={8}
+                spacing={4}
               >
-                <Typography color="button.text.light">Cancel</Typography>
-              </IHCButtonRounded>
-              <IHCButtonRounded
-                variant="contained"
-                onClick={handleOpenThanks}
-                sx={{
-                  borderRadius: "50px",
-                  margin: "10px",
-                }}
-              >
-                <Typography color="button.text.light">Send</Typography>
-
-
-              </IHCButtonRounded>
-            </Box>
-          </Box>
-        </Stack>
-      </Modal>
+                <IHCButtonRounded onClick={handleClose} variant="text" >
+                  <Typography variant="button" color="secondary">Cancel</Typography>
+                </IHCButtonRounded>
+                <IHCButtonRounded variant="contained" onClick={sendSuggestion} >
+                  <Typography variant="button">Send</Typography>
+                </IHCButtonRounded>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Modal>
 
       <IHCButtonRounded onClick={handleOpen} variant="contained" >
         <FontAwesomeIcon size="1x" icon={faLightbulb} beatFade />
         <Typography color="white" ml={3}> Leave a Suggestion </Typography>
       </IHCButtonRounded>
-      </Box>
-    </Box>
+      </Stack>
+    </Stack>
   );
 }
 
