@@ -12,7 +12,7 @@ import InstrumentDetail from "./InstrumentDetail";
 
 function AppRoutes(){
    return(
-       <BrowserRouter>
+       <BrowserRouter forceRefresh>
             <Routes>
               <Route element={ <Login/> }  path="/admin" exact />
               <Route element={ <Home/> }  path="/" exact />
