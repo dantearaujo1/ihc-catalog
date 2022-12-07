@@ -143,7 +143,7 @@ function Home() {
         <Image width="auto" height="auto" src="../../header-teal.png"/>
       </Stack>
       <Stack width='100%'  sx={{minHeight:70}} alignItems='center' justifyContent='center'>
-        { ( selections.length > 0 ) ?
+        {/* { ( selections.length > 0 ) ? */}
           <IHCButtonRounded
           variant="contained"
           sx={{width:'20%' ,  height:'auto', minHeight:50}}
@@ -152,8 +152,8 @@ function Home() {
         >
           <Typography variant="buttonMedium">Search</Typography>
         </IHCButtonRounded>
-        :null
-        }
+        {/* :null */}
+        {/* } */}
       </Stack>
       <Stack
         justifyContent='center'
@@ -162,7 +162,7 @@ function Home() {
         pt={2}
         pb={4}
       >
-        <Stack direction='row' flexWrap='wrap' width='80%' justifyContent='center' height='100%' gap={2.5}>
+        <Stack direction='row' flexWrap='wrap' width='70%' justifyContent='center' height='100%' gap={2.5}>
           {cat ? cat.map((value) => {
             return (
                 <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>

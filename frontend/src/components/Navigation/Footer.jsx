@@ -28,7 +28,7 @@ const IHCFooter = () => {
                 HCI Catalog
             </Typography>
             <Typography color="white"  variant="body2">
-                Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+                Aiming to help fill in the gap of choose the right methods to evaluate user evaluation aspects, we present in an interactive way a result of a systematic snowballing procedure conducted to investigate the characteristics of the UX evaluation instruments that have been proposed and used by HCI community in the last years
             </Typography>
             <Typography color="white"  variant="caption">
                 Copyright @ 2022. All rights reserved.
@@ -41,18 +41,13 @@ const IHCFooter = () => {
               </Link>
             </Typography>
             <Typography color="white" variant="body2">
-              <Link href="/" underline="hover" color="inherit">
+              <Link href="/about" underline="hover" color="inherit">
                 About
               </Link>
             </Typography>
             <Typography color="white" variant="body2">
-              <Link href="/" underline="hover" color="inherit" sx={{textAlign:"left"}}>
-                FAQ
-              </Link>
-            </Typography>
-            <Typography color="white"  variant="body2">
-              <Link href="/" underline="hover" textAlign="left" color="inherit">
-                Contact
+              <Link href="/tutorial" underline="hover" color="inherit" sx={{textAlign:"left"}}>
+                Tutorial
               </Link>
             </Typography>
 
