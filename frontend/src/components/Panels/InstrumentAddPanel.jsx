@@ -27,6 +27,7 @@ export default function InstrumentAddPanel(props) {
     reference:'',
     main:'',
     general:'',
+    link:'',
   })
 
   const getCategories = async () => {
@@ -124,6 +125,12 @@ export default function InstrumentAddPanel(props) {
       year:event.target.value
     })
   }
+  const handleOnChangeLink = (event) => {
+    setInstrument({
+      ...instrument,
+      link:event.target.value
+    })
+  }
   const handleOnChangeReference = (event) => {
     setInstrument({
       ...instrument,
@@ -157,7 +164,9 @@ export default function InstrumentAddPanel(props) {
           <Grid item xs={12}>
             <IHCTextField id='namelb' value={instrument.reference} onChange={handleOnChangeReference} label='Reference' sx={{width:'100%'}}></IHCTextField>
           </Grid>
-
+          <Grid item xs={12}>
+            <IHCTextField multiline onChange={handleOnChangeLink} value={instrument.link} id='linklb' label='Link' sx={{width:'100%'}}></IHCTextField>
+          </Grid>
 
         {cat ? cat.map((value, index) => {
           return (
@@ -184,7 +193,6 @@ export default function InstrumentAddPanel(props) {
         })
           : null
         }
-
 
           <Grid item xs={6}>
             <IHCTextField multiline onChange={handleOnChangeMain} rows={6} value={instrument.main} id='mainlb' label='Main Idea' sx={{width:'100%'}}></IHCTextField>
