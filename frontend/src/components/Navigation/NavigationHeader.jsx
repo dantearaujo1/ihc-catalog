@@ -93,7 +93,8 @@ function NavigationHeader({data, show}) {
                   label={<Typography variant="button">Search</Typography>}
                   sx={{
                     '& label.Mui-focused': {
-                      color: 'black'
+                      color: 'white',
+                      top:-10
                     },
                   }}
                     InputProps={{
