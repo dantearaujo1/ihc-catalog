@@ -11,7 +11,7 @@ import SuggestionManagerPanel from '../Panels/SuggestionManagerPanel';
 import InstrumentAddPanel from '../Panels/InstrumentAddPanel';
 import InstrumentEditPanel from '../Panels/InstrumentEditPanel';
 import SuggestionDialogView from '../SuggestionDialogView'
-import ConfirmDialog from '../ConfirmDialog'
+import IHCConfirmDialog from '../IHCConfirmDialog'
 
 
 export default function SuggestionManager() {
@@ -143,9 +143,9 @@ export default function SuggestionManager() {
 
   return(
     <Stack width="100vw" alignItems='center' justifyContent='center'>
-      {approve?<ConfirmDialog doit={handleManyApproval} open={dialogManyOpen} handler={handleCloseManyDialog}/>:<ConfirmDialog doit={handleManyDisapproval} open={dialogManyOpen} handler={handleCloseManyDialog}/>}
+      {approve?<IHCConfirmDialog dataTitle={"Are you sure?"} dataContent={"This will approve all the selecteds"} doit={handleManyApproval} open={dialogManyOpen} handler={handleCloseManyDialog}/>:<IHCConfirmDialog dataTitle={"Are you sure?"} dataContent={"This will disapprove all the selecteds"} doit={handleManyDisapproval} open={dialogManyOpen} handler={handleCloseManyDialog}/>}
       <SuggestionDialogView info={showData}  open={dialogOpen} handler={handleCloseDialog}></SuggestionDialogView>
-      <SuggestionManagerPanel dataHandler={[setShowData,setApprove]} refresh={shouldRefresh} showManyDialog={setDialogManyOpen} showDialog={setDialogOpen}/>
+      <SuggestionManagerPanel functionHandler={[handleApproval,handleDisapproval]} dataHandler={[setShowData,setApprove]} refresh={shouldRefresh} showManyDialog={setDialogManyOpen} showDialog={setDialogOpen}/>
       {snack && <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>}
     </Stack>
   )

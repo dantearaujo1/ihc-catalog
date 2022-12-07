@@ -78,13 +78,15 @@ export default function SuggestionManagerPanel(props) {
   // TODO: Only update our row instead of all the data from the database
   const handleDisapproveRowClick = async (e,params) => {
     e.stopPropagation();
-    props.dataHandler[2](params.row);
+    props.dataHandler[0](params.row);
+    await props.functionHandler[1](params.row);
     await getSuggestions();
   }
 
   const handleApproveRowClick = async (e,params) => {
     e.stopPropagation();
-    props.dataHandler[1](params.row);
+    props.dataHandler[0](params.row);
+    await props.functionHandler[0](params.row);
     await getSuggestions();
   }
   const handleLookMoreRowClick = (e,params) => {
