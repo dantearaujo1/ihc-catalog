@@ -91,11 +91,7 @@ function Admin() {
     <div>
       <NavigationHeader show={false}></NavigationHeader>
       <div className="menu-container">
-        <Stack sx={{
-          width: '100%',
-          backgroundColor: 'primary.main',
-          pl:6
-        }} >
+        <Stack sx={{ width: '100%', backgroundColor: 'primary.main', pl:6 }} >
           <Tabs value={value} onChange={handleChange}
             sx={{
               '& .MuiTab-textColorPrimary.Mui-selected': {
