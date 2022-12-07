@@ -86,7 +86,7 @@ function NavigationHeader({data, show}) {
               getOptionLabel={(option) => option.name.toString()}
               onChange={handleClickSelection}
               // onKeyDown={handleEnterSelection}
-              renderOption={(props,option,state) => {props.key = option._id; return <li {...props}>{option.name}</li>;}}
+              renderOption={(props,option,state) => {props.key = option._id; return <li {...props}><Typography variant="button">{option.name}</Typography></li>;}}
               renderInput={(params) => (
                 <IHCTextField
                   {...params}
