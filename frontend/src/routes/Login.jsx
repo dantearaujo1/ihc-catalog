@@ -25,9 +25,6 @@ function Login() {
   const [error, setError] = useState([false,false,false]);
 
 
-  const handleClickClose = () => {
-    setOpen(false);
-  }
   const handleClickBack = () => {
     navigate("/");
 
