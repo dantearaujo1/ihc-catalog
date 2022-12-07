@@ -16,6 +16,10 @@ const signin = async ( req, res, next ) => {
     res.status(422).json({error: 'Username or email is mandatory!',code:1})
     return;
   }
+  if(!password) {
+    res.status(422).json({error: 'Password not filled!',code:3})
+    return;
+  }
 
   try {
     const userValid = await UserDB.findOne({email:identifier});
