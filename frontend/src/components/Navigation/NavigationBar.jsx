@@ -92,64 +92,67 @@ export default function NavigationBar(props) {
       minHeight={77}
       direction="row"
       width="100%"
-      borderColor="primary.dark"
+      height="100%"
       alignItems="center"
       justifyContent="space-evenly"
       backgroundColor="primary.main"
     >
-      {cats?cats.map((cat, index) => {
-        return (
-        <Stack key={cat._id}  alignItems="center">
-          <Button sx={{textTransform:"none"}} onClick={(event) => handleMenuClick(event, cat._id, index)}>
-            <Typography variant="h5" color="white">
-                {
-                  open[index]?
-                    ( <FontAwesomeIcon  color={theme.palette.effects.primary.lighter} icon={faAngleDown} bounce></FontAwesomeIcon>)
-                  :
-                    ( <FontAwesomeIcon  color={theme.palette.white} icon={faAngleRight}></FontAwesomeIcon>)
-                } {(cat.name)}
-            </Typography>
-          </Button>
-        <IHCMenu
-          variant="menu"
-          anchorEl={anchorEl}
-          elevation={0}
-          sx={{height: "30%"}}
-          PaperProps={{
-            sx: {
-              backgroundColor: "background.default",
-              borderTopLeftRadius:0,
-              borderTopRightRadius:0,
-              borderBottomRightRadius:16,
-              borderBottomLeftRadius:16,
-              borderTop:0,
-              boxShadow:8,
-              mt: 2,
-              width: '25%',
-            }
-          }}
-          open={open[index]?open[index]:false}
-          onClose={() => handleClose(index)}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal:"center"
-          }}
-          transformOrigin={{
-            horizontal:"center",
-            vertical:"top"
-          }}
-        >
-        {menuItem?menuItem.map( (sub) => {
+      <Stack  direction="row" width="100%" ml={16} mr={16} alignItems="space-evenly" justifyContent="center">
+
+        {cats?cats.map((cat, index) => {
           return (
-            <MenuItem key={sub._id} sx={{justifyContent:"left"}} onClick={() => {handleItemClick(sub, index)}}>
-              <Typography variant="body2">{ sub.name }</Typography>
-            </MenuItem>
+          <Stack key={cat._id}  height="100%" width="100%" alignItems="center">
+            <Button sx={{textTransform:"none", height:"auto"}}  onClick={(event) => handleMenuClick(event, cat._id, index)}>
+              <Typography variant="h5" color="white">
+                  {
+                    open[index]?
+                      ( <FontAwesomeIcon  color={theme.palette.effects.primary.lighter} icon={faAngleDown} bounce></FontAwesomeIcon>)
+                    :
+                      ( <FontAwesomeIcon  color={theme.palette.white} icon={faAngleRight}></FontAwesomeIcon>)
+                  } {(cat.name)}
+              </Typography>
+            </Button>
+          <IHCMenu
+            variant="menu"
+            anchorEl={anchorEl}
+            elevation={0}
+            sx={{height: "30%"}}
+            PaperProps={{
+              sx: {
+                backgroundColor: "background.default",
+                borderTopLeftRadius:0,
+                borderTopRightRadius:0,
+                borderBottomRightRadius:16,
+                borderBottomLeftRadius:16,
+                borderTop:0,
+                boxShadow:8,
+                mt: 2,
+                width: '25%',
+              }
+            }}
+            open={open[index]?open[index]:false}
+            onClose={() => handleClose(index)}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal:"center"
+            }}
+            transformOrigin={{
+              horizontal:"center",
+              vertical:"top"
+            }}
+          >
+          {menuItem?menuItem.map( (sub) => {
+            return (
+              <MenuItem key={sub._id} sx={{justifyContent:"left"}} onClick={() => {handleItemClick(sub, index)}}>
+                <Typography variant="body2">{ sub.name }</Typography>
+              </MenuItem>
+            )
+          } ):null}
+          </IHCMenu>
+          </Stack>
           )
-        } ):null}
-        </IHCMenu>
-        </Stack>
-        )
-      }):null}
+        }):null}
+      </Stack>
     </Stack>
   )
 }
