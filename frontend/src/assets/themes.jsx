@@ -149,7 +149,6 @@ let themeOptions = createTheme({
       fontWeight: 500,
       fontSize: "1.14rem",
       fontStyle: "normal",
-      textTransform: "uppercase",
     },
     subtitle2:{
       fontFamily: "Roboto",
