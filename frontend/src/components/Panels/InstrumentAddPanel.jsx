@@ -19,7 +19,7 @@ import { IHCSelect } from '../../assets/ComponentStyle'
 export default function InstrumentAddPanel(props) {
 
   const [cat, setCat] = useState();
-  const [selections, setSelection] = useState()
+  const [selections, setSelection] = useState(['','','','','',''])
   const [options, setOptions] = useState([])
   const [instrument, setInstrument] = useState({
     name:'',
@@ -37,7 +37,6 @@ export default function InstrumentAddPanel(props) {
     })
 
     setCat(ordered);
-    setSelection(new Array(ordered.length).fill(''));
   }
 
   const getSubcategories = async () => {
@@ -47,7 +46,7 @@ export default function InstrumentAddPanel(props) {
       return (b.name < a.name ? 1 : b.name > a.name ? -1 : 0);
     })
 
-    let arr = new Array(cat?.lenght).fill([]);
+    let arr = new Array(cat?.length).fill([]);
     let fillArray = []
     for (let index = 0; index < cat?.length; index++) {
       const cats = cat[index];
@@ -67,11 +66,18 @@ export default function InstrumentAddPanel(props) {
   useEffect(() => {
     const fetch_data = async () => {
       await getCategories();
-      await getSubcategories();
 
     };
     fetch_data().catch(console.error);
   }, []);
+
+  useEffect(() => {
+    const fetch_data = async () => {
+      await getSubcategories();
+
+    };
+    fetch_data().catch(console.error);
+  }, [cat]);
 
   const handleCancelButton = () => {
     props.pageHandler(false);
