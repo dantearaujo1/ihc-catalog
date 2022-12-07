@@ -10,7 +10,6 @@ const createSuggestion = async (req,res) => {
     link,
     description,
     status:'Not checked',
-    sentDate: Date.now,
   }
 
   if(!name || !email || !link || !description ) {
@@ -18,7 +17,7 @@ const createSuggestion = async (req,res) => {
   }
 
   try {
-    const sug = await Suggestion.create();
+    const sug = await Suggestion.create(suggestion);
     if(sug){
       return res.status(201).json({data:sug, message: 'Suggestion has been sent!'});
     }
