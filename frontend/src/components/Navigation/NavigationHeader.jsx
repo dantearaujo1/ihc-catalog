@@ -90,7 +90,7 @@ function NavigationHeader({data, show}) {
               renderInput={(params) => (
                 <IHCTextField
                   {...params}
-                  label="Search"
+                  label={<Typography variant="button">Search</Typography>}
                   sx={{
                     '& label.Mui-focused': {
                       color: 'black'

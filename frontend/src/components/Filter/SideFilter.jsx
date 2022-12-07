@@ -100,7 +100,7 @@ const CategoryFilterMenu = (props) => {
                 return (
                   <ListItem key={sub._id}>
                     <Checkbox color="secondary" checked={selecteds[index]} onChange={ () => {handleCheck(index)} }></Checkbox>
-                    <ListItemText primary={sub.name} />
+                    <ListItemText primaryTypographyProps={{variant:"button"}} primary={sub.name} />
                   </ListItem>
                 )
               })

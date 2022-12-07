@@ -7,6 +7,7 @@ import Chip from '@mui/material/Chip';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -46,7 +47,7 @@ export default function TagSelect(props) {
   return (
     <div>
       <FormControl size="large" sx={{width:'100%', minWidth:250}}>
-        <InputLabel id="multi-label">{props.cat?.name}</InputLabel>
+        <InputLabel id="multi-label"><Typography variant="body2">{props.cat?.name}</Typography></InputLabel>
           <IHCSelect
           size="lg"
           labelId="multi-label"

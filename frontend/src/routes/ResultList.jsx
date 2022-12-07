@@ -160,7 +160,7 @@ export default function ResultList() {
                   return (
                     <Stack key={selections._id}>
                       <IHCButtonRounded onClick={()=>handleSubClick(selections)} variant="contained">
-                        <Typography color="white">
+                        <Typography variant="button" color="white">
                           {selections.name}
                         </Typography>
                       </IHCButtonRounded>
@@ -171,7 +171,7 @@ export default function ResultList() {
             </Stack>
           </Stack>
           {!fetching?
-              <Stack width="100%" minHeight="59.9vh" justifyContent="center" alignItems="flex-start">
+              <Stack width="100%" minHeight="59.9vh" justifyContent="flex-start" alignItems="flex-start">
                 { ( result?.length > 0 ) ? result?.slice( (page-1) * showQuantity, page * showQuantity).map( (article) => {
                     return <ArticleCard key={article.Article._id} data={article} matches={passFilter}></ArticleCard>
                   }
