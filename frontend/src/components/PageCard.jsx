@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
@@ -26,21 +27,25 @@ export default function MultiActionAreaCard(props) {
       navigate(0);
   }
   return (
-    <Card sx={{ maxWidth: 500, minWidth: 200 }}>
+    <Card elevation={8} sx={{ borderRadius: 7, maxWidth: 500, minWidth: 400 }}>
       <CardActionArea>
+      {props.showImg &&
         <CardMedia
           component="img"
           image={img?img:"/helper-teal.png"}
           alt={alt?alt:"Tutorial Image representation"}
-          style={{minHeight:0, height:"100%", width:"100%"}}
+          style={{minHeight:200, height:"100%", width:"100%"}}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title?title:"How to use it?"}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {content?content:"If you're struggling with our website applicattion enter here to see some of the actions we can do for you and how to find the best instrument for you"}
-          </Typography>
+      }
+        <CardContent sx={{minHeight:"150px"}}>
+          <Stack mt={2} spacing={1}>
+            <Typography gutterBottom variant="h5" component="div">
+              {title?title:"How to use it?"}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {content?content:"If you're struggling with our website applicattion enter here to see some of the actions we can do for you and how to find the best instrument for you"}
+            </Typography>
+          </Stack>
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ml:1, mb:2}}>
