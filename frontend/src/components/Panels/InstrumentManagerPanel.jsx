@@ -66,7 +66,6 @@ export default function InstrumentManagerPanel(props) {
   }
 
   const handleButtonClickRemoveSelecteds = async () => {
-    console.log(selecteds);
     props.dataHandler(selecteds);
     props.showManyDialog(true);
   }
