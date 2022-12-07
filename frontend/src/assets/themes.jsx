@@ -115,6 +115,7 @@ let themeOptions = createTheme({
       fontWeight: 500,
       fontSize: "1rem",
       fontStyle: "normal",
+      textTransform: "none",
     },
     buttonSmall:{
       fontFamily: "Roboto",
