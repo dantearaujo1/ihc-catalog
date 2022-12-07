@@ -74,11 +74,11 @@ export default function SubEditPanel(props) {
 
       const toJson = await result.json();
       // console.log(toJson);
-      console.log(subcategory);
       props.pageHandler(false);
       props.snackHandler[1]({
         title:toJson.message
       });
+      props.setRefresh( (prevState) => !prevState );
       props.snackHandler[0](true);
     }
   }

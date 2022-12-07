@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+
 import { useTheme } from '@mui/material/styles';
 
 import Typography from '@mui/material/Typography'
@@ -24,7 +25,7 @@ export default function InstrumentManager() {
   const [snackData,setSnackData] = useState();
   const [editData,setEditData] = useState();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [confirmOperation, setConfirmOperation] = useState(false);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const handleCloseSnack = (event, reason) => {
     if ( reason === 'clickaway' ){
@@ -58,15 +59,16 @@ export default function InstrumentManager() {
       }
     );
     setSnack(true);
+    setShouldRefresh(true);
   }
 
   return(
     <Stack width="100vw" alignItems='center' justifyContent='center'>
       <ConfirmDialog doit={handleDelete} open={dialogOpen} handler={handleCloseDialog}></ConfirmDialog>
       {
-        addPage?<InstrumentAddPanel pageHandler={setAddPage} snackHandler={[ setSnack,setSnackData ]}/>
-        :editPage?<InstrumentEditPanel dataRef={editData} pageHandler={setEditPage} snackHandler={[setSnack,setSnackData]}/>
-        :<InstrumentManagerPanel dataHandler={setEditData} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
+        addPage?<InstrumentAddPanel setRefresh={setShouldRefresh} pageHandler={setAddPage} snackHandler={[ setSnack,setSnackData ]}/>
+        :editPage?<InstrumentEditPanel setRefresh={setShouldRefresh} dataRef={editData} pageHandler={setEditPage} snackHandler={[setSnack,setSnackData]}/>
+        :<InstrumentManagerPanel dataHandler={setEditData} setRefresh={setShouldRefresh} refresh={shouldRefresh} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
       }
       {snack?
         <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>

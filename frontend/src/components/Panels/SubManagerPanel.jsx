@@ -49,7 +49,7 @@ export default function SubManagerPanel(props) {
       await getSubs();
     }
     fetch_data();
-  }, [] )
+  }, [props.refresh] )
 
   useEffect( () => {
     setFilteredData(subcategoriesData);
@@ -82,6 +82,7 @@ export default function SubManagerPanel(props) {
     e.stopPropagation();
     props.showDialog(true);
     props.dataHandler(params.row);
+    props.setRefresh( (prevState) => !prevState );
   }
 
   const columns = [

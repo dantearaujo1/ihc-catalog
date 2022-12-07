@@ -67,6 +67,7 @@ export default function SubAddPanel(props) {
         }
       );
       props.snackHandler[0](true);
+      props.setRefresh( (prevState) => !prevState );
     }
   }
 

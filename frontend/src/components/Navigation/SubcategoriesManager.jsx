@@ -22,7 +22,7 @@ export default function SubcategoriesManager() {
   const [snackData,setSnackData] = useState();
   const [editData,setEditData] = useState();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [confirmOperation, setConfirmOperation] = useState(false);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const handleCloseSnack = (event, reason) => {
     if ( reason === 'clickaway' ){
@@ -62,9 +62,9 @@ export default function SubcategoriesManager() {
     <Stack width="100vw" alignItems='center' justifyContent='center'>
       <ConfirmDialog doit={handleDelete} open={dialogOpen} handler={handleCloseDialog}></ConfirmDialog>
       {
-        addPage?<SubAddPanel pageHandler={setAddPage} snackHandler={[setSnack,setSnackData]}/>
-        :editPage?<SubEditPanel snackHandler={[setSnack,setSnackData]} dataRef={editData} pageHandler={setEditPage}/>
-        :<SubManagerPanel dataHandler={setEditData} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
+        addPage?<SubAddPanel setRefresh={setShouldRefresh} pageHandler={setAddPage} snackHandler={[setSnack,setSnackData]}/>
+        :editPage?<SubEditPanel setRefresh={setShouldRefresh} snackHandler={[setSnack,setSnackData]} dataRef={editData} pageHandler={setEditPage}/>
+        :<SubManagerPanel setRefresh={setShouldRefresh} refresh={shouldRefresh} dataHandler={setEditData} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
       }
       {snack?
         <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>

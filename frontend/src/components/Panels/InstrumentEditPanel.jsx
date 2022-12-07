@@ -121,8 +121,8 @@ export default function InstrumentAddPanel(props) {
     }
     const fetching = await fetch('/api/v1/article/p/', patchData)
     const result = await fetching.json();
-    console.log(result);
 
+    props.setRefresh( (prevState) => !prevState );
     props.pageHandler(false);
     props.snackHandler[1]({
       title:result.message

@@ -106,6 +106,7 @@ export default function InstrumentAddPanel(props) {
       title:article.message
     })
     props.snackHandler[0](true);
+    props.setRefresh( (prevState) => !prevState );
   }
 
   const handleOnChangeSelection = (event, idx) => {

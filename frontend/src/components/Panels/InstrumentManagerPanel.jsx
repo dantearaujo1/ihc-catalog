@@ -24,6 +24,7 @@ export default function InstrumentManagerPanel(props) {
   const [articleData, setArticleData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [textFilter, setTextFilter] = useState();
+  const [shouldUpdate, setShouldUpdate] = useState(false);
 
   const getArticles = async () => {
     const articles = await fetch("/api/v1/article/");
@@ -52,7 +53,9 @@ export default function InstrumentManagerPanel(props) {
       await getArticles();
     }
     fetch_data();
-  }, [] )
+  }, [props.refresh] )
+
+
 
   useEffect( () => {
     setFilteredData(articleData);
@@ -61,9 +64,9 @@ export default function InstrumentManagerPanel(props) {
   const handleButtonClickAddPage = () => {
       props.showPanel[0](true);
   }
-  const handleButtonClickEditPage = () => {
-      props.showPanel[1](true);
-  }
+  // const handleButtonClickEditPage = () => {
+  //     props.showPanel[1](true);
+  // }
   const handleCheckboxSelection = (selectionModel, details) => {
     setSelecteds(selectionModel)
     console.log(selectionModel);
@@ -82,12 +85,12 @@ export default function InstrumentManagerPanel(props) {
     e.stopPropagation();
     props.showPanel[1](true);
     props.dataHandler(params.row);
-    console.log(params.row);
   }
   const handleRowDeleteIconClick = (e,params) => {
     e.stopPropagation();
     props.showDialog(true);
     props.dataHandler(params.row);
+    props.setRefresh( (prevState) => !prevState );
   }
 
   const columns = [
