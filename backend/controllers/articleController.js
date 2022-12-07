@@ -478,6 +478,63 @@ const getArticleFullData = async (req, res) => {
   ])
   res.status(200).json(results);
 }
+const getSameSubsInArticles = async (req, res) => {
+  const list = req.body;
+  let ids = [];
+
+
+  const subs = await SubCategory.aggregate([{
+
+      $match:{
+        name: {$in:list}
+      },
+    }
+  ])
+  if(!subs){
+    res.status(422).json({message:"Not found"});
+  }
+  ids = subs.map( (sub) => {  {
+    return sub._id
+  } } )
+
+  const results = await Group.aggregate([
+    {
+      $match:{
+        subcategoryID: { $in: ids }
+      }
+    },
+    {
+      $group: {
+        _id:"$articleID",
+        subcategories:{ $push:"$subcategoryData" },
+        matches: {$sum: 1},
+      },
+    },
+    {
+      $sort:{
+        "matches": -1,
+      }
+    },
+    {
+      $limit:5
+    },
+  ])
+
+  if(results.length === 1){
+    return res.status(422).json({message: "Just This one!"});
+  }
+  if(results.length === 2){
+    return res.status(202).json(results[1]);
+  }
+
+  const article1 = await Article.findOne({_id:results[1]._id});
+  const article2 = await Article.findOne({_id:results[2]._id});
+  const data = {
+    article1,
+    article2
+  }
+  res.status(200).json(data);
+}
 
 module.exports.createArticle = createArticle;
 module.exports.getArticleById = getArticleById;
@@ -493,4 +550,5 @@ module.exports.sendGroupToDatabase = sendGroupToDatabase;
 module.exports.getArticleWithSubcategories = getArticleWithSubcategories;
 module.exports.getArticleFullData = getArticleFullData;
 module.exports.deleteManyArticle = deleteManyArticle;
+module.exports.getSameSubsInArticles = getSameSubsInArticles;
 

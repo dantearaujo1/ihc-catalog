@@ -35,7 +35,7 @@ const IHCSelect = styled((Select))( ( { theme } ) => ({
         },
         "&.Mui-focused fieldset": {
           borderColor:  theme.palette.effects.primary.darker,
-        }
+        },
       }
 }));
 
@@ -52,7 +52,7 @@ const IHCTextField = styled((TextField))( ( {theme} ) => ({
     "&.Mui-focused fieldset": {
       borderColor:  theme.palette.effects.primary.darker,
     }
-  }
+  },
   // backgroundColor: "#000000",
   // color: "#000000",
   // "& .MuiOutlinedInput-root": {

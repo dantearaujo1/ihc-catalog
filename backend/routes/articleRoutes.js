@@ -14,6 +14,7 @@ const {
   getArticlesBySubcategoryName,
   getArticleWithSubcategories,
   getArticleFullData,
+  getSameSubsInArticles,
   // sendToDatabase,
 } = require('../controllers/articleController');
 
@@ -21,6 +22,7 @@ const {
 // TODO: we need to add a group to the article and their categories
 // TODO: we need to add main idea property and general procedure
 router.post('/', createArticle);
+router.post('/same', getSameSubsInArticles);
 
 // Recieving all articles stored
 router.get('/', getArticles);

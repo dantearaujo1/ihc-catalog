@@ -12,6 +12,7 @@ import NavigationHeader from '../components/Navigation/NavigationHeader'
 import Footer from '../components/Navigation/Footer'
 import NavigationBar from '../components/Navigation/NavigationBar'
 import MultiActionAreaCard from '../components/PageCard'
+import { ArticleActionCard } from '../components/PageCard'
 import ArticleCard from '../components/ArticleCard'
 import GroupBadge from '../components/GroupBadge'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,11 +25,32 @@ const InstrumentDetail = () => {
   const location = useLocation();
   const theme = useTheme();
   const [data,setData] = useState(location.state.article);
+  const [one,setOne] = useState();
+  const [two,setTwo] = useState();
 
   useEffect( () => {
      setData(location.state.article);
     console.log(data);
   }, [location.state] )
+
+  useEffect( () => {
+    const fetch_data = async () => {
+      const fetching = await fetch('/api/v1/article/same', {
+        method:'POST',
+        headers:{
+          'AcceptType':'application/json',
+          'Content-Type':'application/json',
+        },
+        body: JSON.stringify(data.Subcategorys)
+      })
+
+      const result = await fetching.json();
+      setOne(result.article1);
+      setTwo(result.article2);
+    }
+    fetch_data();
+  }, [data] )
+
 
 
   return (
@@ -72,8 +94,8 @@ const InstrumentDetail = () => {
           <Stack mb={16} mt={4} height="100%" width="100%" spacing={8}>
                 <Typography variant="h4">You may also be Interessed in ...</Typography>
                 <Stack direction="row"  width="100%" alignItems='center' justifyContent='flex-start' spacing={2}>
-                  <MultiActionAreaCard link="/result" title={"Other Article II"} content={"Check this other article"}></MultiActionAreaCard>
-                  <MultiActionAreaCard link="/result" title={"Other Article I"} content={"Check this suggested article"}></MultiActionAreaCard>
+                  <ArticleActionCard link={one?._id} title={one?.name} data={one} content={one?.reference}></ArticleActionCard>
+                  <ArticleActionCard link={two?._id} title={two?.name} data={two} content={two?.reference}></ArticleActionCard>
                 </Stack>
           </Stack>
         </Stack>
