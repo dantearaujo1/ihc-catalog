@@ -181,8 +181,8 @@ function Home() {
         pb={4}
         sx={{ m: "auto"}}
       >
-        <MultiActionAreaCard link="/tutorial"/>
-        <MultiActionAreaCard link="/about" img={"/about-teal.png"} title={"Know more"}  content={"If you want to know who build the website, who did the UI Design, this is the best place to find us! Check it Out"}/>
+        <MultiActionAreaCard showImg link="/tutorial"/>
+        <MultiActionAreaCard showImg link="/about" img={"/about-teal.png"} title={"Know more"}  content={"If you want to know who build the website, who did the UI Design, this is the best place to find us! Check it Out"}/>
       </Stack>
       <InstrumentAddModal></InstrumentAddModal>
       <Stack height="100%">

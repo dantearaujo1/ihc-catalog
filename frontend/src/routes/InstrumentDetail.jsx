@@ -69,11 +69,11 @@ const InstrumentDetail = () => {
             <FontAwesomeIcon  icon={faArrowLeftLong}/>
             <Typography ml={2}>Back</Typography>
           </IHCButtonRounded>
-          <Stack mb={4} mt={4} height="100%" width="100%" spacing={3}>
+          <Stack mb={16} mt={4} height="100%" width="100%" spacing={8}>
                 <Typography variant="h4">You may also be Interessed in ...</Typography>
-                <Stack direction="row"  width="100%" alignItems='center' justifyContent='space-around' spacing={2}>
-                  <MultiActionAreaCard link="/result"></MultiActionAreaCard>
-                  <MultiActionAreaCard link="/result" img={"/about-teal.png"} title={"Know more"}  content={"If you want to know who build the website, who did the UI Design, this is the best place to find us! Check it Out"}></MultiActionAreaCard>
+                <Stack direction="row"  width="100%" alignItems='center' justifyContent='flex-start' spacing={2}>
+                  <MultiActionAreaCard link="/result" title={"Other Article II"} content={"Check this other article"}></MultiActionAreaCard>
+                  <MultiActionAreaCard link="/result" title={"Other Article I"} content={"Check this suggested article"}></MultiActionAreaCard>
                 </Stack>
           </Stack>
         </Stack>
