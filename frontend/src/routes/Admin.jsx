@@ -1,6 +1,5 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom';
 import NavigationHeader from '../components/Navigation/NavigationHeader'
 
 import PropTypes from 'prop-types';
@@ -8,8 +7,9 @@ import Typography from '@mui/material/Typography'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
 
-import SuggestionList from '../components/Navigation/SuggestionList'
+import SuggestionManager from '../components/Navigation/SuggestionManager'
 import InstrumentManager from '../components/Navigation/InstrumentManager'
 import SubcategoriesManager from '../components/Navigation/SubcategoriesManager'
 
@@ -92,9 +92,10 @@ function Admin() {
     <div>
       <NavigationHeader show={false}></NavigationHeader>
       <div className="menu-container">
-        <Box sx={{
+        <Stack sx={{
           width: '100%',
           backgroundColor: 'primary.main',
+          pl:6
         }} >
           <Tabs value={value} onChange={handleChange}
             sx={{
@@ -113,14 +114,14 @@ function Admin() {
             }
 
           }}>
-            <Tab sx={{ml:12}} component="a" label="Suggestions"  {...a11yProps(0)}/>
-            <Tab component="a" label="Group Manager"  {...a11yProps(1)}/>
-            <Tab component="a" label="Instrument Manager"  {...a11yProps(2)}/>
+            <Tab sx={{ml:12}} component="a" label="Subcategory Manager"  {...a11yProps(1)}/>
+            <Tab component="a" label="Instrument Manager"  {...a11yProps(0)}/>
+            <Tab component="a" label="Suggestion List"  {...a11yProps(2)}/>
           </Tabs>
-          </Box>
-        <TabPanel value={value} index={0}><SuggestionList></SuggestionList></TabPanel>
-        <TabPanel value={value} index={1}><SubcategoriesManager></SubcategoriesManager></TabPanel>
-        <TabPanel value={value} index={2}><InstrumentManager></InstrumentManager></TabPanel>
+          </Stack>
+        <TabPanel value={value} index={0}><SubcategoriesManager></SubcategoriesManager></TabPanel>
+        <TabPanel value={value} index={1}><InstrumentManager></InstrumentManager></TabPanel>
+        <TabPanel value={value} index={2}><SuggestionManager></SuggestionManager></TabPanel>
       </div>
     </div>
   );
