@@ -21,6 +21,9 @@ const articleSchema = new mongoose.Schema({
   general: {
     type:String,
   },
+  link: {
+    type:String,
+  },
 })
 
 const Article = mongoose.model('Article', articleSchema)
