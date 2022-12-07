@@ -4,11 +4,12 @@ import Stack from '@mui/material/Stack'
 import { IHCButtonRounded } from '../assets/ComponentStyle'
 import Typography from '@mui/material/Typography'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 
 const GroupBadge = ({category, subcategory}) => {
   const [data, setData] = useState({});
-  const navigate= useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = async () => {
     const split = data.subcategory.split('/');
@@ -26,7 +27,7 @@ const GroupBadge = ({category, subcategory}) => {
 
   useEffect( () => {
     setData({category:category, subcategory:subcategory});
-  }, [] )
+  }, [location.key] )
 
   return (
     <Stack spacing={1} mt={4} width="auto">
