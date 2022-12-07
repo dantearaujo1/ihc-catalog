@@ -23,7 +23,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [forgot, setForgot] = useState(false);
-  const [error, setError] = useState([false,false,false]);
+  const [error, setError] = useState([false,false,false,false]);
 
 
   const handleClickBack = () => {
@@ -50,7 +50,7 @@ function Login() {
     console.log(json);
 
     if(json.error){
-      let errors = [...error];
+      let errors = [false,false,false,false];
       errors[json.code] = true;
       setError(errors);
     }
@@ -83,7 +83,7 @@ function Login() {
                   label={<Typography variant="button">Email Address</Typography>}
                   name="email"
                   autoComplete="email"
-                  error={error[0]?error[0]:error[1]}
+                  error={error[0]?error[0]:error[1]?error[1]:error[2]}
                   helperText={error[0]?"User not found!":error[1]?"Fill user email!":""}
                   autoFocus
                 />
@@ -96,8 +96,8 @@ function Login() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  error={error[2]?error[2]:error[1]}
-                  helperText={error[2]?"Wrong password!":error[1]?"Fill with your password!":""}
+                  error={error[2]?error[2]:error[1]?error[1]:error[3]}
+                  helperText={error[2]?"Invalid Authentication!":error[1]?"Fill your password":"Fill your password"}
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" sx={{ ml:0.3, borderRadius:50 }} color="secondary" />}
