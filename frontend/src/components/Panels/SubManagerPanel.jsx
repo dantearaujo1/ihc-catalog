@@ -49,6 +49,13 @@ export default function SubManagerPanel(props) {
       await getSubs();
     }
     fetch_data();
+  }, [] )
+
+  useEffect( () => {
+    const fetch_data = async () => {
+      await getSubs();
+    }
+    fetch_data();
   }, [props.refresh] )
 
   useEffect( () => {
@@ -80,9 +87,9 @@ export default function SubManagerPanel(props) {
   }
   const handleRowDeleteIconClick = (e,params) => {
     e.stopPropagation();
-    props.showDialog(true);
-    props.dataHandler(params.row);
     props.setRefresh( (prevState) => !prevState );
+    props.dataHandler(params.row);
+    props.showDialog(true);
   }
 
   const columns = [
