@@ -6,13 +6,14 @@ import { IHCButtonRounded } from "../assets/ComponentStyle";
 
 import Image from "mui-image"
 
-import TextField from "@mui/material/TextField";
+import { IHCTextField } from "../assets/ComponentStyle";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
@@ -70,28 +71,28 @@ function Login() {
       <Stack height="auto" width="100%" justifyContent="center">
         <Container  component="main"  maxWidth="sm">
           {!forgot?
-            <Stack sx={{ padding: 3, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "white", borderRadius: 3, }} >
+            <Paper elevation={8}  sx={{ padding: 3, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "white", borderRadius: 3, }} >
               <Typography variant="h3">Enter Administrator Area</Typography>
-              <Typography color="text.light">Go <Link href="/" color="primary">back</Link> if you are not an administrator</Typography>
+              <Typography variant="body2" color="text.light">Go <Link href="/" color="primary">back</Link> if you are not an administrator</Typography>
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 4 }}>
-                <TextField
+                <IHCTextField
                   margin="normal"
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label={<Typography variant="button">Email Address</Typography>}
                   name="email"
                   autoComplete="email"
                   error={error[0]?error[0]:error[1]}
                   helperText={error[0]?"User not found!":error[1]?"Fill user email!":""}
                   autoFocus
                 />
-                <TextField
+                <IHCTextField
                   margin="normal"
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label={<Typography variant="button">Password</Typography>}
                   type="password"
                   id="password"
                   autoComplete="current-password"
@@ -100,7 +101,7 @@ function Login() {
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" sx={{ ml:0.3, borderRadius:50 }} color="secondary" />}
-                  label={ <Typography color="secondary.dark">Remember me</Typography> }
+                  label={ <Typography variant="inputLabel" color="secondary.dark">Remember me</Typography> }
                 />
                 <IHCButtonRounded
                   type="submit"
@@ -112,23 +113,23 @@ function Login() {
                 </IHCButtonRounded>
                 <Grid container >
                   <Grid item xs={12} textAlign="center" >
-                    <Link href="#" onClick={ () => setForgot(!forgot) } variant="body2">
+                    <Link variant="inputLabel" underline='hover' color="secondary" href="#" onClick={ () => setForgot(!forgot) }>
                       Forgot password?
                     </Link>
                   </Grid>
                 </Grid>
               </Box>
-            </Stack>
+            </Paper>
           :
             <Stack sx={{ padding: 3, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "white", borderRadius: 3, }} >
               <Typography textAlign="center" variant="h5">Enter your email address so we can send an reset password link</Typography>
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 4 }}>
-                <TextField
+                <IHCTextField
                   margin="normal"
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label={<Typography variant="button">Email</Typography>}
                   name="email"
                   autoComplete="email"
                   autoFocus
@@ -140,7 +141,9 @@ function Login() {
                   onClick={ () => setForgot(!forgot) }
                   sx={{ mt: 3, mb: 2, borderRadius: 50}}
                 >
-                  Send password reset!
+                  <Typography variant="button">
+                    Send password reset!
+                  </Typography>
                 </IHCButtonRounded>
               </Box>
             </Stack>
