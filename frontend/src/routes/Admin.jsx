@@ -73,7 +73,6 @@ function Admin() {
     );
     const data = await res.data;
     return data;
-
   }
 
   // useEffect(() => {
