@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Stack from '@mui/material/Stack'
 import { IHCButtonRounded } from '../assets/ComponentStyle'
 import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 
@@ -22,7 +23,12 @@ const InstrumentDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
-  const data = location.state.article;
+  const [data,setData] = useState(location.state.article);
+
+  useEffect( () => {
+     setData(location.state.article);
+    console.log(data);
+  }, [location.state] )
 
 
   return (
@@ -45,6 +51,10 @@ const InstrumentDetail = () => {
                 <Stack mt={3} >
                   <Typography variant="h6" color={theme.palette.primary.light} sx={{fontWeight:"bold"}}>Reference</Typography>
                   <Typography variant="p" mt={2}>{data?data.Article.reference:"Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis."}</Typography>
+                </Stack>
+                <Stack mt={3} >
+                  <Typography variant="h6" color={theme.palette.primary.light} sx={{fontWeight:"bold"}}>Link</Typography>
+                  <Link variant="p" href={data.Article.link?data.Article.link:"/#"} mt={2}>{data.Article.link?data.Article.link:"link"}</Link>
                 </Stack>
               </Stack>
               <Stack  width="50%" height="auto" mt={5} pl={2} >
