@@ -82,6 +82,38 @@ function NavigationHeader({data, show}) {
               size='small'
               id="search-by-instrument"
               autoHighlight
+              ListboxProps={{
+              sx:{
+                  // "& li:nth-child(even)": { backgroundColor: "#CCC" },
+                  // "& li:nth-child(odd)": { backgroundColor: "#FFF" }
+                  "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+                    backgroundColor: theme.palette.scrollbar.light,
+                    borderRadius: 8,
+                  },
+                  "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+                    borderRadius: 8,
+                    backgroundColor: theme.palette.scrollbar.dark,
+                    minHeight: 24,
+                    // border: "3px solid",
+                    // borderColor: theme.palette.secondary.dark,
+                  },
+                  "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+                    backgroundColor: theme.palette.text.primary,
+                    // borderColor: theme.palette.primary.dark,
+                  },
+                  "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+                    backgroundColor: theme.palette.text.primary,
+                    borderColor: theme.palette.scrollbar.light,
+                  },
+                  "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+                    backgroundColor: theme.palette.text.primary,
+                    borderColor: theme.palette.scrollbar.light,
+                  },
+                  "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+                    backgroundColor: theme.palette.scrollbar.light,
+                  },
+              }
+              }}
               options={art?art:[]}
               getOptionLabel={(option) => option.name.toString()}
               onChange={handleClickSelection}

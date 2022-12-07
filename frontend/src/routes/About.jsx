@@ -118,7 +118,7 @@ function About() {
           <Stack spacing={3} height='100%' width='100%' alignItems='center'>
             <Image height='auto' width="80%" showLoading style={{ aspectRatio: 1 / 1 }} sx={{ borderRadius: 50 }} src='../../people/Max.jpg'></Image>
             <Typography variant='subtitle1' textAlign='center'>
-              Maxwell
+              Maxwell Martins
             </Typography>
             <Typography variant='subtitle1' color='info.main' textAlign='center'>
               Developer - Requirements Planner
