@@ -8,13 +8,20 @@ import Typography from '@mui/material/Typography';
 import { IHCButtonRounded } from '../assets/ComponentStyle';
 
 
-export default function ConfirmDialog({open, handler, doit}){
+export default function IHCConfirmDialog({open, handler, doit, dataTitle, dataContent}){
 
   const [data, setData] = useState( {
     title:'Are you sure you want to delete?',
     content:'This will delete all your data!',
   })
 
+  useEffect( () => {
+    const obj = {
+      title:dataTitle,
+      content:dataContent
+    }
+    setData(obj);
+  }, [dataTitle, dataContent] );
 
   const handleClose = () => {
     handler();
