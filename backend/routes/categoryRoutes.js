@@ -9,6 +9,7 @@ const {
   createSubCategory,
   patchSubCategory,
   deleteSubCategory,
+  deleteManySubcategories,
   getCategories,
   getCategoryByName,
   getCategoryById,
@@ -30,10 +31,11 @@ router.get('/sub/n/:name', getSubCategoryByName);
 router.get('/sub/c/name/:name', getSubCategoriesByGroupName);
 router.get('/sub/c/id/:id', getSubCategoriesByGroupId);
 // Updating our subcategories data (PUT -- Update all the subcategory, PATCH update part of an subcategory)
-router.patch('/sub/p/:id', patchSubCategory)
+router.patch('/sub/p/:id', patchSubCategory);
 
 // Delete
-router.delete('/sub/d', deleteSubCategory)
+router.delete('/sub/d', deleteSubCategory);
+router.delete('/sub/ds', deleteManySubcategories);
 
 // Category api
 router.get('/cat/all', getCategories); // GetAllCategories

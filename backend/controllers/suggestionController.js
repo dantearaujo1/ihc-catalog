@@ -105,9 +105,63 @@ const createOne = async (req,res) => {
   }
 }
 
+const deleteManySuggestions = async (req,res) => {
+  const list = req.body.map( (value) => {  {
+    return new ObjectId(value);
+  } } )
+
+  try {
+    const query = await Suggestion.deleteMany({_id: {$in: list}});
+
+    if(!query){
+      return res.status(422).json({message:"Error, couldn't delete suggestions, id not found"});
+    }
+    return res.status(202).json({message: "All suggestions deleted!", groupsDeleted: query2.deletedCount, articlesDelete: query.deletedCount });
+
+  } catch (err){
+     return res.status(500).json({error:err});
+  }
+}
+
+const disapproveManySuggestions = async (req,res) => {
+  const list = req.body.map( (value) => {
+    return new ObjectId(value);
+  } );
+
+  try {
+    const sug = await Suggestion.updateMany({_id:{$in:list}},{status:"Disapproved", updatedAt: Date.now});
+    if(sug){
+      return res.status(201).json({data:sug, message: 'Suggestions disapproved!'});
+    }
+    return res.status(422).json({error: 'Error disapproving suggestions'})
+
+  } catch (error) {
+     return res.status(500).json({error:error});
+  }
+}
+const approveManySuggestions = async (req,res) => {
+  const list = req.body.map( (value) => {
+    return new ObjectId(value);
+  } );
+
+  try {
+    const sug = await Suggestion.updateMany({_id:{$in:list}},{status:"Approved", updatedAt: Date.now});
+    if(sug){
+      return res.status(201).json({data:sug, message: 'Suggestions approved!'});
+    }
+    return res.status(422).json({error: 'Error approving suggestions'})
+
+  } catch (error) {
+     return res.status(500).json({error:error});
+  }
+}
+
 
 module.exports.getAllSuggestions = getAllSuggestions;
 module.exports.createSuggestion = createSuggestion;
 module.exports.disapproveSuggestion = disapproveSuggestion;
+module.exports.disapproveManySuggestions = disapproveManySuggestions;
+module.exports.approveManySuggestions = approveManySuggestions;
 module.exports.approveSuggestion = approveSuggestion;
 module.exports.createOne = createOne;
+module.exports.deleteManySuggestions = deleteManySuggestions;

@@ -64,12 +64,14 @@ export default function InstrumentManagerPanel(props) {
   const handleButtonClickAddPage = () => {
       props.showPanel[0](true);
   }
-  // const handleButtonClickEditPage = () => {
-  //     props.showPanel[1](true);
-  // }
+
+  const handleButtonClickRemoveSelecteds = async () => {
+    console.log(selecteds);
+    props.dataHandler(selecteds);
+    props.showManyDialog(true);
+  }
   const handleCheckboxSelection = (selectionModel, details) => {
     setSelecteds(selectionModel)
-    console.log(selectionModel);
   }
 
   const handleTextFieldFilter = (event) => {
@@ -162,7 +164,8 @@ export default function InstrumentManagerPanel(props) {
               </Typography>
             </IHCButtonRounded>
             {(selecteds.length > 0) ?
-                <IHCButtonRounded variant="contained" color='error' sx={{backgroundColor:'error.light'}}>
+                <IHCButtonRounded onClick={handleButtonClickRemoveSelecteds} variant="contained" color='error' sx={{backgroundColor:'error.light'}}>
+
                   <Typography>
                     Remove Selecteds
                   </Typography>

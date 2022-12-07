@@ -42,18 +42,28 @@ export default function SuggestionManagerPanel(props) {
   }, [] )
 
   useEffect( () => {
+    const fetch_data = async () => {
+      await getSuggestions();
+    }
+    fetch_data();
+  }, [props.refresh] )
+
+  useEffect( () => {
     setFilteredData(suggestionList);
   }, [suggestionList] )
 
   const handleApproveSelectedsClick = () => {
-      // props.showPanel[0](true);
+    props.dataHandler[0](selecteds);
+    props.dataHandler[1](true);
+    props.showManyDialog(true);
   }
   const handleDisapproveSelectedsClick = () => {
-      // props.showPanel[1](true);
+    props.dataHandler[0](selecteds);
+    props.dataHandler[1](false);
+    props.showManyDialog(true);
   }
   const handleCheckboxSelection = (selectionModel, details) => {
     setSelecteds(selectionModel)
-    console.log(selectionModel);
   }
 
   const handleTextFieldFilter = (event) => {

@@ -1,6 +1,8 @@
 
 const {SubCategory, Category}  = require('../models/Category');
 const { Group }  = require('../models/Group');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 const json = require('../dataa.json');
 
 const createSubCategory = async (req,res) => {
@@ -149,6 +151,27 @@ const deleteSubCategory = async (req,res) => {
      res.status(500).json({error:err});
   }
 }
+const deleteManySubcategories = async (req,res) => {
+  const list = req.body.map( (value) => {  {
+    return new ObjectId(value);
+  } } )
+
+  try {
+    const query = await SubCategory.deleteMany({_id: {$in: list}});
+
+    if(!query){
+      return res.status(422).json({message:"Error, couldn't delete references"});
+    }
+    const query2 = await Group.deleteMany({subcategoryID: {$in:list}});
+    if (!query2){
+      return res.status(422).json({message:"Error, couldn't delete articles"});
+    }
+    return res.status(202).json({message: "All subs deleted and their refference too", groupsDeleted: query2.deletedCount, articlesDelete: query.deletedCount });
+
+  } catch (err){
+     return res.status(500).json({error:err});
+  }
+}
 
 // Send Local data to the database
 // const sendToDatabase =  () => {
@@ -284,3 +307,4 @@ module.exports.getSubCategories = getSubCategories;
 module.exports.getSubCategoriesFull = getSubCategoriesFull;
 module.exports.patchSubCategory = patchSubCategory;
 module.exports.deleteSubCategory = deleteSubCategory;
+module.exports.deleteManySubcategories = deleteManySubcategories;

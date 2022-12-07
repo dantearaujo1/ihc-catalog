@@ -193,8 +193,6 @@ const patchArticle = async (req,res) => {
   }
 }
 
-// Needs to delete every GROUP that contains the article id
-// in the field articleID of group
 const deleteArticle = async (req,res) => {
   const { id } = req.body
 
@@ -207,6 +205,27 @@ const deleteArticle = async (req,res) => {
     await Article.deleteOne({_id:id});
     const count = await Group.deleteMany({articleID:id})
     return res.status(200).json({message:'Article removed successfully!', referencesCountDeleted: count});
+
+  } catch (err){
+     return res.status(500).json({error:err});
+  }
+}
+const deleteManyArticle = async (req,res) => {
+  const list = req.body.map( (value, index) => {  {
+    return new ObjectId(value);
+  } } )
+
+  try {
+    const query = await Article.deleteMany({_id: {$in: list}});
+
+    if(!query){
+      return res.status(422).json({message:"Error, couldn't delete references"});
+    }
+    const query2 = await Group.deleteMany({articleID: {$in:list}});
+    if (!query2){
+      return res.status(422).json({message:"Error, couldn't delete articles"});
+    }
+    return res.status(202).json({message: "All articles deleted and their refference too", groupsDeleted: query2.deletedCount, articlesDelete: query.deletedCount });
 
   } catch (err){
      return res.status(500).json({error:err});
@@ -471,4 +490,5 @@ module.exports.searchBySubcategories = searchBySubcategories ;
 module.exports.sendGroupToDatabase = sendGroupToDatabase;
 module.exports.getArticleWithSubcategories = getArticleWithSubcategories;
 module.exports.getArticleFullData = getArticleFullData;
+module.exports.deleteManyArticle = deleteManyArticle;
 

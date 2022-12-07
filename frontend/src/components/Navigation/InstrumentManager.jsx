@@ -25,6 +25,7 @@ export default function InstrumentManager() {
   const [snackData,setSnackData] = useState();
   const [editData,setEditData] = useState();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogManyOpen, setDialogManyOpen] = useState(false);
   const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const handleCloseSnack = (event, reason) => {
@@ -37,6 +38,34 @@ export default function InstrumentManager() {
   const handleCloseDialog = () => {
     setDialogOpen(false);
   }
+  const handleCloseManyDialog = () => {
+    setDialogManyOpen(false);
+  }
+  const handleDeleteManyDialog = async () => {
+    setDialogManyOpen(false);
+    const list = editData
+    console.log(list);
+    const method = {
+      method: 'DELETE',
+      headers:{
+        'Accepts':'application/json',
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(list)
+    }
+    const fetching = await fetch('/api/v1/article/ds/', method);
+    const result = await fetching.json();
+    console.log(result);
+
+    setSnackData(
+      {
+        title:result.message
+      }
+    );
+    setSnack(true);
+    setShouldRefresh( (prevState) => !prevState );
+  }
+
 
   const handleDelete = async () => {
 
@@ -64,11 +93,11 @@ export default function InstrumentManager() {
 
   return(
     <Stack width="100vw" alignItems='center' justifyContent='center'>
-      <ConfirmDialog doit={handleDelete} open={dialogOpen} handler={handleCloseDialog}></ConfirmDialog>
+      {dialogManyOpen?<ConfirmDialog doit={handleDeleteManyDialog} open={dialogManyOpen} handler={handleCloseManyDialog}/>:<ConfirmDialog doit={handleDelete} open={dialogOpen} handler={handleCloseDialog}/>}
       {
         addPage?<InstrumentAddPanel setRefresh={setShouldRefresh} pageHandler={setAddPage} snackHandler={[ setSnack,setSnackData ]}/>
         :editPage?<InstrumentEditPanel setRefresh={setShouldRefresh} dataRef={editData} pageHandler={setEditPage} snackHandler={[setSnack,setSnackData]}/>
-        :<InstrumentManagerPanel dataHandler={setEditData} setRefresh={setShouldRefresh} refresh={shouldRefresh} showDialog={setDialogOpen} showPanel={[setAddPage,setEditPage]}/>
+        :<InstrumentManagerPanel dataHandler={setEditData} setRefresh={setShouldRefresh} setDorefresh={shouldRefresh} showDialog={setDialogOpen} showManyDialog={setDialogManyOpen} showPanel={[setAddPage,setEditPage]}/>
       }
       {snack?
         <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>

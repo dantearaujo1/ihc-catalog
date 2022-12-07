@@ -11,6 +11,7 @@ import SuggestionManagerPanel from '../Panels/SuggestionManagerPanel';
 import InstrumentAddPanel from '../Panels/InstrumentAddPanel';
 import InstrumentEditPanel from '../Panels/InstrumentEditPanel';
 import SuggestionDialogView from '../SuggestionDialogView'
+import ConfirmDialog from '../ConfirmDialog'
 
 
 export default function SuggestionManager() {
@@ -19,6 +20,9 @@ export default function SuggestionManager() {
   const [snackData,setSnackData] = useState();
   const [showData,setShowData] = useState();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [approve, setApprove] = useState(false);
+  const [dialogManyOpen, setDialogManyOpen] = useState(false);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const handleCloseSnack = (event, reason) => {
     if ( reason === 'clickaway' ){
@@ -29,6 +33,55 @@ export default function SuggestionManager() {
 
   const handleCloseDialog = () => {
     setDialogOpen(false);
+  }
+  const handleCloseManyDialog = () => {
+    setDialogManyOpen(false);
+  }
+  const handleManyDisapproval = async () => {
+    const list = showData;
+    console.log(list);
+
+    const result = await fetch('/api/v1/suggestion/p/ds',
+    {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(list),
+    })
+
+    const toJson = await result.json();
+    console.log(toJson);
+    setSnackData(
+      {
+        title:toJson.message
+      }
+    );
+    setSnack(true);
+    setShouldRefresh( (prevState) => !prevState );
+  }
+  const handleManyApproval = async () => {
+    const list = showData;
+    console.log(list);
+
+    const result = await fetch('/api/v1/suggestion/p/as',
+    {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(list),
+    })
+
+    const toJson = await result.json();
+    console.log(toJson);
+    setSnackData(
+      {
+        title:toJson.message
+      }
+    );
+    setSnack(true);
+    setShouldRefresh( (prevState) => !prevState );
   }
 
   const handleDisapproval = async (data) => {
@@ -90,8 +143,9 @@ export default function SuggestionManager() {
 
   return(
     <Stack width="100vw" alignItems='center' justifyContent='center'>
+      {approve?<ConfirmDialog doit={handleManyApproval} open={dialogManyOpen} handler={handleCloseManyDialog}/>:<ConfirmDialog doit={handleManyDisapproval} open={dialogManyOpen} handler={handleCloseManyDialog}/>}
       <SuggestionDialogView info={showData}  open={dialogOpen} handler={handleCloseDialog}></SuggestionDialogView>
-      <SuggestionManagerPanel dataHandler={[setShowData,handleApproval,handleDisapproval]} showDialog={setDialogOpen}/>
+      <SuggestionManagerPanel dataHandler={[setShowData,setApprove]} refresh={shouldRefresh} showManyDialog={setDialogManyOpen} showDialog={setDialogOpen}/>
       {snack && <Snackbar open={snack} autoHideDuration={6000} message={snackData?.title} onClose={handleCloseSnack}/>}
     </Stack>
   )

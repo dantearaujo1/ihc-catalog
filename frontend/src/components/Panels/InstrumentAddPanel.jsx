@@ -163,7 +163,7 @@ export default function InstrumentAddPanel(props) {
             <IHCTextField id='namelb' onChange={handleOnChangeYear} number value={instrument.year} required label='Year' sx={{width:'100%'}}></IHCTextField>
           </Grid>
           <Grid item xs={12}>
-            <IHCTextField id='namelb' value={instrument.reference} onChange={handleOnChangeReference} label='Reference' sx={{width:'100%'}}></IHCTextField>
+            <IHCTextField id='namelb' value={instrument.reference} onChange={handleOnChangeReference} required label='Reference' sx={{width:'100%'}}></IHCTextField>
           </Grid>
           <Grid item xs={12}>
             <IHCTextField multiline onChange={handleOnChangeLink} value={instrument.link} id='linklb' label='Link' sx={{width:'100%'}}></IHCTextField>

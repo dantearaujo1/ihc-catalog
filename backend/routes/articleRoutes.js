@@ -7,6 +7,7 @@ const {
   getArticlesBySubcategory,
   patchArticle,
   deleteArticle,
+  deleteManyArticle,
   sendGroupToDatabase,
   searchBySubcategories,
   populateGroup,
@@ -37,6 +38,7 @@ router.patch('/p/', patchArticle);
 
 // Delete an article by id
 router.delete('/d/', deleteArticle);
+router.delete('/ds/', deleteManyArticle);
 module.exports = router;
 
 // WARN: This is for sending from local to remoteDatabase
