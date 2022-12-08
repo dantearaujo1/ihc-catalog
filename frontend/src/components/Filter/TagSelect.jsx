@@ -47,7 +47,17 @@ export default function TagSelect(props) {
   return (
     <div>
       <FormControl size="large" sx={{width:'100%', minWidth:250}}>
-        <InputLabel id="multi-label"><Typography variant="body2">{props.cat?.name}</Typography></InputLabel>
+        <InputLabel
+          sx={{
+            "&.Mui-focused": {
+              color:"secondary.main",
+            },
+          }}
+          id="multi-label"
+        >
+          <Typography variant="body2">{props.cat?.name}</Typography>
+
+        </InputLabel>
           <IHCSelect
           size="lg"
           labelId="multi-label"
@@ -55,7 +65,8 @@ export default function TagSelect(props) {
           multiple
           value={selected}
           onChange={(event) => { handleChange(event);}}
-          input={<IHCOutlinedInput id="select-multiple-chip" label="multi-select" />}
+          input={<IHCOutlinedInput id="select-multiple-chip" label={props.cat?.name} />}
+          inputProps={{color:'#ff0000'}}
           MenuProps={{
             disablePortal: true,
             sx: {
