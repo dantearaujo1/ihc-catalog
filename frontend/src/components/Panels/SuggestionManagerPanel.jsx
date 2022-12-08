@@ -174,12 +174,12 @@ export default function SuggestionManagerPanel(props) {
             {(selecteds.length > 0) ?
           <Stack direction='row' spacing={4} height='80%' justifyContent='flex-start'>
             <IHCButtonRounded sx={{backgroundColor:'success.main'}} onClick={handleApproveSelectedsClick} variant="contained">
-              <Typography>
+              <Typography variant="button">
                 Approve Selecteds
               </Typography>
             </IHCButtonRounded>
             <IHCButtonRounded sx={{backgroundColor:'error.light'}} onClick={handleDisapproveSelectedsClick} color='error' variant="contained">
-              <Typography>
+              <Typography variant="button">
                 Disapprove Selecteds
               </Typography>
             </IHCButtonRounded>

@@ -148,13 +148,13 @@ export default function SubManagerPanel(props) {
         <Stack direction='row' width='100%' spacing={4} alignItems='center' justifyContent='space-between'>
           <Stack direction='row' spacing={4} height='80%' justifyContent='flex-start'>
             <IHCButtonRounded onClick={handleButtonClickAddPage} variant="contained">
-              <Typography>
+              <Typography variant="button">
                 Add Subcategory
               </Typography>
             </IHCButtonRounded>
             {(selecteds.length > 0) ?
                 <IHCButtonRounded onClick={handleButtonClickRemoveSelecteds} variant="contained" color='error' sx={{backgroundColor:'error.light'}}>
-                  <Typography>
+                  <Typography variant="button">
                     Remove Selecteds
                   </Typography>
                 </IHCButtonRounded>
