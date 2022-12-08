@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 import { IHCButtonRounded } from "../assets/ComponentStyle"
 
@@ -113,6 +114,41 @@ function Home() {
       <NavigationHeader />
       <NavigationBar categories={cat} subcategories={sub} />
       <Stack
+        justifyContent='center'
+        alignItems='center'
+        mt={2}
+        mb={2}
+        sx={{ width: '100%', minHeight: "350px" }}
+      >
+        {/* <Stack direction='row' flexWrap='wrap' width='70%' justifyContent='center' height='100%' gap={2.5}> */}
+        <Grid width="80%" container alignItems="center" justifyContent="center" columnGap={2} rowGap={4}>
+
+          {cat ? cat.map((value, index) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3} xl={2.5}>
+                <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
+              </Grid>
+            )
+          })
+            : null
+          }
+        {/* </Stack> */}
+        </Grid>
+      </Stack>
+      <Stack width='100%'  sx={{minHeight:70}} alignItems='center' justifyContent='center'>
+        {/* { ( selections.length > 0 ) ? */}
+          <IHCButtonRounded
+          variant="contained"
+          sx={{width:'20%' ,  height:'auto', minHeight:50}}
+          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} beatFade  />}
+          onClick={handleClick}
+        >
+          <Typography variant="buttonMedium">Search</Typography>
+        </IHCButtonRounded>
+        {/* :null */}
+        {/* } */}
+      </Stack>
+      <Stack
         direction="row"
         width="80%"
         minHeight="50vh"
@@ -141,36 +177,6 @@ function Home() {
           </Typography>
         </Stack>
         <Image width="auto" height="auto" src="../../header-teal.png"/>
-      </Stack>
-      <Stack width='100%'  sx={{minHeight:70}} alignItems='center' justifyContent='center'>
-        {/* { ( selections.length > 0 ) ? */}
-          <IHCButtonRounded
-          variant="contained"
-          sx={{width:'20%' ,  height:'auto', minHeight:50}}
-          startIcon={<FontAwesomeIcon icon={faMagnifyingGlass} beatFade  />}
-          onClick={handleClick}
-        >
-          <Typography variant="buttonMedium">Search</Typography>
-        </IHCButtonRounded>
-        {/* :null */}
-        {/* } */}
-      </Stack>
-      <Stack
-        justifyContent='center'
-        alignItems='center'
-        sx={{ width: '100%', }}
-        pt={2}
-        pb={4}
-      >
-        <Stack direction='row' flexWrap='wrap' width='70%' justifyContent='center' height='100%' gap={2.5}>
-          {cat ? cat.map((value) => {
-            return (
-                <TagSelect key={value._id} handler={handleFilterCategory} data={(sub) ? sub.filter((obj) => { return (value._id === obj.categoryID) ? obj : null }) : []} cat={value}></TagSelect>
-            )
-          })
-            : null
-          }
-        </Stack>
       </Stack>
       <Stack
         direction="row"
