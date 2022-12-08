@@ -122,7 +122,7 @@ function NavigationHeader({data, show}) {
               renderInput={(params) => (
                 <IHCTextField
                   {...params}
-                  label={<Typography variant="button">Search</Typography>}
+                  label={<Typography variant="button">Search by Instrument Name</Typography>}
                   sx={{
                     '& label.Mui-focused': {
                       color: 'white',
