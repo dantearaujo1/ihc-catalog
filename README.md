@@ -67,40 +67,44 @@ meios de avaliar a experiência do usuário.
 
 |  Código                           |  Descrição                                                              |  Codificação    | Status    |
 |  ----------------------------     |  --------------------------                                             |  ---------      | --------- |
-|  RF001                            |  Autenticação(admin)                                                    |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/userController.js#L6-L53)     | Concluído
-|  RF002                            |  Sugestão de novos instrumentos(usuário)                                |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L5-L29)     | Iniciado
-|  RF003                            |  Filtragem de conteúdos por categorias(usuário)                         |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L104-L147)     | Iniciado
-|  RF004                            |  Ferramenta de busca por palavras chaves(usuário)                       |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L94-L102)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Navigation/NavigationHeader.jsx#L17-L29)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Navigation/NavigationHeader.jsx#L81-L140)     | Concluído
-|  RF005                            |  Aprovar sugestões(admin)                                               |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L31-L53)     | Não iniciado
-|  RF006                            |  Reprovar sugestões(admin)                                              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L54-L76)     | Não iniciado
-|  RF007                            |  Visualizar instrumentos aprovados ou reprovados(admin)                 |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/SuggestionManagerPanel.jsx#L21-L205)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L78-L90)     | Não iniciado
-|  RF008                            |  Adição de subcategorias(admin)                                         |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L8-L29)     | Não iniciado
-|  RF009                            |  Remoção de subcategorias(admin)                                        |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L138-L153)     | Não iniciado
-|  RF010                            |  Edição de subcategorias(admin)                                         |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L117-L136)     | Não iniciado
-|  RF011                            |  Mostrar lista de resultados na busca(usuário)                          |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/InstrumentDetail.jsx#L1-L108)     | Concluído
-|  RF012                            |  Mostrar formulário de sugestão(usuário)                                |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Modals/InstrumentAdd.jsx)     | Concluído
-|  RF013                            |  Mostrar lista de resultados filtrados(usuário)                         |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/ResultList.jsx)     | Concluído
-|  RF014                            |  Pesquisar por categorias específicas(usuário)                          |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Navigation/NavigationBar.jsx)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L97-L105)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L223-L230)     | Concluído
-|  RF015                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/ResultList.jsx)     | Concluído
-|  RF016                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/Tutorial.jsx)     | Concluído
-|  RF017                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/About.jsx)     | Concluído
-|  RF018                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/Login.jsx)     | Concluído
-|  RF019                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/InstrumentManagerPanel.jsx)     | Concluído
-|  RF020                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/InstrumentAddPanel.jsx)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L10-L47)     | Concluído
-|  RF021                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/InstrumentEditPanel.jsx)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L149-L196)     | Concluído
-|  RF022                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L198-L235)     | Concluído
-|  RF023                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código]()     | Concluído
-|  RF024                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Filter/SideFilter.jsx)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/ResultList.jsx#L133-L151)     | Concluído
-|  RF025                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/InstrumentDetail.jsx#L36-L52)[código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/PageCard.jsx#L67-L120)     | Concluído
+|  RF001                            |  Autenticação(admin)                                                    |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/userController.js#L6-L53)     | Não concluído
+|  RF002                            |  Sugestão de novos instrumentos(usuário)                                |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L5-L29)     | Concluido
+|  RF003                            |  Filtragem de conteúdos por categorias(usuário)                         |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L104-L147)     | Concluído
+|  RF004                            |  Ferramenta de busca por palavras chaves(usuário)                       |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L94-L102) [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Navigation/NavigationHeader.jsx#L17-L29) [fronend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Navigation/NavigationHeader.jsx#L81-L140)     | Concluído
+|  RF005                            |  Aprovar sugestões(admin)                                               |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L31-L53)     | Concluído
+|  RF006                            |  Reprovar sugestões(admin)                                              |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L54-L76)     | Concluído
+|  RF007                            |  Visualizar instrumentos aprovados ou reprovados(admin)                 |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/SuggestionManagerPanel.jsx#L21-L205) [código](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/suggestionController.js#L78-L90)     | Concluído
+|  RF008                            |  Adição de subcategorias(admin)                                         |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L8-L29)     | Concluído
+|  RF009                            |  Remoção de subcategorias(admin)                                        |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L138-L153)     | Concluído
+|  RF010                            |  Edição de subcategorias(admin)                                         |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L117-L136)     | Concluído
+|  RF011                            |  Mostrar lista de resultados na busca(usuário)                          |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/InstrumentDetail.jsx#L1-L108)     | Concluído
+|  RF012                            |  Mostrar formulário de sugestão(usuário)                                |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Modals/InstrumentAdd.jsx)     | Concluído
+|  RF013                            |  Mostrar lista de resultados filtrados(usuário)                         |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/ResultList.jsx)     | Concluído
+|  RF014                            |  Pesquisar por categorias específicas(usuário)                          |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Navigation/NavigationBar.jsx)  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L97-L105) [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/categoryController.js#L223-L230)     | Concluído
+|  RF015                            |  Mostrar subcategorias da pesquisa por categorias(usuário)              |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/ResultList.jsx)     | Concluído
+|  RF016                            |  Mostrar página de explicação da aplicação (usuário)                    |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/Tutorial.jsx)     | Concluído
+|  RF017                            |  Mostrar página de saiba mais (usuário)                                 |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/About.jsx)     | Concluído
+|  RF018                            |  Mostrar página de login (admin)                                        |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/Login.jsx)     | Concluído
+|  RF019                            |  Mostrar página de gerenciamento de instrumentos (admin)                |  [fronted](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/InstrumentManagerPanel.jsx)     | Concluído
+|  RF020                            |  Adição de Instrumentos (admin)                                         |  [fronend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/InstrumentAddPanel.jsx) [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L10-L47)     | Concluído
+|  RF021                            |  Edição de Instrumentos (admin)                                         |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Panels/InstrumentEditPanel.jsx)  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L149-L196)     | Concluído
+|  RF022                            |  Remoção de Instrumentos (admin)                                        |  [backend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/backend/controllers/articleController.js#L198-L235)     | Concluído
+|  RF023                            |  Filtrar instrumentos na página de gerenciamento de insturmentos        |  [MUI DataGrid](https://mui.com/pt/x/api/data-grid/data-grid/)     | Concluído
+|  RF024                            |  Editar Filtros na página de resultados da busca (usuário)              |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/Filter/SideFilter.jsx) [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/ResultList.jsx#L133-L151)     | Concluído
+|  RF025                            |  Selecionar outras páginas de resultados ((usuário)              |  [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/routes/InstrumentDetail.jsx#L36-L52) [frontend](https://github.com/dantearaujo1/ihc-catalog/blob/0200b848e767d8c68193803aff424c5a22d59563/frontend/src/components/PageCard.jsx#L67-L120)     | Concluído
 
 ### Instruções
 
 
 1. Clone o projeto em uma pasta de sua preferência.
-2. Acesse a branch develop, é nela que encontram-se os arquivos necessários para rodar a aplicação
+2. Acesse a branch develop, é nela que encontram-se os arquivos atuais em desenvolvimento necessários para rodar a aplicação
+3. Agora é possível usar nossa primeira realease que ja está na própria branch
+   master
 
 ```git
 git clone https://github.com/dantearaujo1/ihc-catalog && cd ihc-catalog
+
+# Optional
 git checkout develop
 ```
 
@@ -140,6 +144,22 @@ docker run -dp 5173:5173 ihc
 npm install
 ```
 
+* [OBS] Caso fique preso na instalação, aperte CTRL-C para cancelar e use o
+commando npm install em cada pasta dentro da raiz nessa ordem:
+* [OBS] Esse é um bug que acontece em algumas versões do node quando se tenta
+dar npm install em subpastas das pastas que o comando rodou primeiramente.
+
+```NodeJS
+cd frontend
+npm install
+cd ..
+cd backend
+npm install
+cd ..
+npm install
+```
+
+
 * Espere a instalação terminar e poderá rodá-la com o seguinte comando:
 
 ```NodeJS
@@ -153,7 +173,6 @@ npm run dev
 ### Estrutura de Pastas
 
 ```bash.
-.
 |-- .dockerignore
 |-- .gitignore
 |-- Dockerfile
@@ -165,26 +184,48 @@ npm run dev
 |   |-- controllers
 |   |   |-- articleController.js
 |   |   |-- categoryController.js
+|   |   |-- suggestionController.js
 |   |   `-- userController.js
 |   |-- dataa.json
 |   |-- models
 |   |   |-- Article.js
 |   |   |-- Category.js
 |   |   |-- Group.js
+|   |   |-- Suggestion.js
 |   |   `-- User.js
 |   |-- package-lock.json
 |   |-- package.json
 |   |-- routes
 |   |   |-- articleRoutes.js
 |   |   |-- categoryRoutes.js
-|   |   `-- loginRoutes.js
+|   |   |-- loginRoutes.js
+|   |   `-- suggestionRoutes.js
 |   |-- sanitized_data.json
 |   `-- scratch.js
+|-- dist
+|   `-- runWindows.bat
 |-- frontend
 |   |-- index.html
 |   |-- package-lock.json
 |   |-- package.json
 |   |-- public
+|   |   |-- about-teal.png
+|   |   |-- header-teal.png
+|   |   |-- helper-1.png
+|   |   |-- helper-2.png
+|   |   |-- helper-3.png
+|   |   |-- helper-4.png
+|   |   |-- helper-teal.png
+|   |   |-- login-purple.png
+|   |   |-- logo-grauna.svg
+|   |   |-- people
+|   |   |   |-- Drielle.jpg
+|   |   |   |-- Luis.jpg
+|   |   |   |-- Manoel.jpg
+|   |   |   |-- Max.jpg
+|   |   |   `-- dan.png
+|   |   |-- result-not-found-teal.png
+|   |   |-- sent-form-teal2.png
 |   |   `-- vite.svg
 |   |-- src
 |   |   |-- App.css
@@ -195,31 +236,53 @@ npm run dev
 |   |   |   `-- themes.jsx
 |   |   |-- components
 |   |   |   |-- ArticleCard.jsx
+|   |   |   |-- ConfirmDialog.jsx
 |   |   |   |-- Filter
+|   |   |   |   |-- SideFilter.jsx
 |   |   |   |   `-- TagSelect.jsx
 |   |   |   |-- GroupBadge.jsx
+|   |   |   |-- IHCConfirmDialog.jsx
+|   |   |   |-- IHCDataGrid.jsx
 |   |   |   |-- Modals
 |   |   |   |   `-- InstrumentAdd.jsx
-|   |   |   `-- Navigation
-|   |   |       |-- InstrumentManager.jsx
-|   |   |       |-- NavigationBar.jsx
-|   |   |       |-- NavigationHeader.jsx
-|   |   |       `-- SuggestionList.jsx
+|   |   |   |-- Navigation
+|   |   |   |   |-- Footer.jsx
+|   |   |   |   |-- InstrumentManager.jsx
+|   |   |   |   |-- NavigationBar.jsx
+|   |   |   |   |-- NavigationHeader.jsx
+|   |   |   |   |-- SubcategoriesManager.jsx
+|   |   |   |   |-- SuggestionList.jsx
+|   |   |   |   `-- SuggestionManager.jsx
+|   |   |   |-- PageCard.jsx
+|   |   |   |-- Panels
+|   |   |   |   |-- InstrumentAddPanel.jsx
+|   |   |   |   |-- InstrumentEditPanel.jsx
+|   |   |   |   |-- InstrumentManagerPanel.jsx
+|   |   |   |   |-- SubAddPanel.jsx
+|   |   |   |   |-- SubEditPanel.jsx
+|   |   |   |   |-- SubManagerPanel.jsx
+|   |   |   |   `-- SuggestionManagerPanel.jsx
+|   |   |   |-- ResultNotFound.jsx
+|   |   |   `-- SuggestionDialogView.jsx
 |   |   |-- index.css
 |   |   |-- main.jsx
-|   |   `-- routes
-|   |       |-- Admin.jsx
-|   |       |-- Home.jsx
-|   |       |-- InstrumentDetail.jsx
-|   |       |-- Login.jsx
-|   |       |-- ResultList.jsx
-|   |       `-- routes.jsx
+|   |   |-- routes
+|   |   |   |-- About.jsx
+|   |   |   |-- Admin.jsx
+|   |   |   |-- Home.jsx
+|   |   |   |-- InstrumentDetail.jsx
+|   |   |   |-- Login.jsx
+|   |   |   |-- ResultList.jsx
+|   |   |   |-- Tutorial.jsx
+|   |   |   `-- routes.jsx
+|   |   `-- services
 |   `-- vite.config.js
 |-- logs
 |-- package-lock.json
 |-- package.json
 |-- scrathfile.json
 `-- todo.norg
+
 
 ```
 
