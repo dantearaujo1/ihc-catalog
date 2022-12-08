@@ -120,7 +120,6 @@ function Home() {
         mb={2}
         sx={{ width: '100%', minHeight: "350px" }}
       >
-        {/* <Stack direction='row' flexWrap='wrap' width='70%' justifyContent='center' height='100%' gap={2.5}> */}
         <Grid width="80%" container alignItems="center" justifyContent="center" columnGap={2} rowGap={4}>
 
           {cat ? cat.map((value, index) => {
@@ -132,7 +131,6 @@ function Home() {
           })
             : null
           }
-        {/* </Stack> */}
         </Grid>
       </Stack>
       <Stack width='100%'  sx={{minHeight:70}} alignItems='center' justifyContent='center'>
