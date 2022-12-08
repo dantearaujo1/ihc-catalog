@@ -24,19 +24,44 @@ const IHCButtonRounded = styled((Button))( ( { theme,variant } ) => ({
 }));
 
 const IHCSelect = styled((Select))( ( { theme } ) => ({
-      "&.MuiOutlinedInput-root": {
-        // width: '200px',
-        "& fieldset": {
-          borderColor: theme.palette.effects.secondary.darker,
-          borderRadius: 50,
-        },
-        "&:hover fieldset": {
-          borderColor: theme.palette.effects.secondary.lighter,
-        },
-        "&.Mui-focused fieldset": {
-          borderColor:  theme.palette.effects.primary.darker,
-        },
-      }
+
+  "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+    backgroundColor: theme.palette.scrollbar.light,
+    borderRadius: 8,
+  },
+  "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+    borderRadius: 8,
+    backgroundColor: theme.palette.scrollbar.dark,
+    minHeight: 24,
+  },
+  "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+    backgroundColor: theme.palette.text.primary,
+    // borderColor: theme.palette.primary.dark,
+  },
+  "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+    backgroundColor: theme.palette.text.primary,
+    borderColor: theme.palette.scrollbar.light,
+  },
+  "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+    backgroundColor: theme.palette.text.primary,
+    borderColor: theme.palette.scrollbar.light,
+  },
+  "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+    backgroundColor: theme.palette.scrollbar.light,
+  },
+
+  "&.MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: theme.palette.effects.secondary.darker,
+      borderRadius: 50,
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.effects.secondary.lighter,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor:  theme.palette.effects.primary.darker,
+    },
+  },
 }));
 
 const IHCTextField = styled((TextField))( ( {theme} ) => ({
@@ -53,11 +78,6 @@ const IHCTextField = styled((TextField))( ( {theme} ) => ({
       borderColor:  theme.palette.effects.primary.darker,
     }
   },
-  // backgroundColor: "#000000",
-  // color: "#000000",
-  // "& .MuiOutlinedInput-root": {
-  //   borderRadius: 50,
-  // },
 }))
 
 const IHCAutocomplete = styled((Autocomplete))( ( {theme} ) => ({
@@ -68,7 +88,6 @@ const IHCAutocomplete = styled((Autocomplete))( ( {theme} ) => ({
   },
   "&:hover": {
     // borderRadius: "50px",
-    // backgroundColor: theme.palette.background.default,
   },
 }))
 
@@ -96,9 +115,6 @@ const IHCOutlinedInput = styled((OutlinedInput))( ( {theme} ) => ({
 }))
 
 const IHCMenu = styled((Menu))( ( {theme} ) => ({
-  // borderRadius: 50,
-  // backgroundColor: theme.palette.background.default,
-  // height: "30%",
 
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
     backgroundColor: theme.palette.scrollbar.light,
@@ -129,9 +145,6 @@ const IHCMenu = styled((Menu))( ( {theme} ) => ({
 }))
 
 const IHCList = styled((List))( ( {theme} ) => ({
-  // borderRadius: 50,
-  // backgroundColor: theme.palette.background.default,
-  // height: "30%",
 
   "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
     backgroundColor: theme.palette.scrollbar.light,
@@ -141,20 +154,15 @@ const IHCList = styled((List))( ( {theme} ) => ({
     borderRadius: 8,
     backgroundColor: theme.palette.scrollbar.dark,
     minHeight: 24,
-    // border: "3px solid",
-    // borderColor: theme.palette.secondary.dark,
   },
   "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
     backgroundColor: theme.palette.text.primary
-    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
     backgroundColor: theme.palette.text.primary
-    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
     backgroundColor: theme.palette.text.primary
-    // borderColor: theme.palette.primary.dark,
   },
   "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
     backgroundColor: theme.palette.scrollbar.light,
