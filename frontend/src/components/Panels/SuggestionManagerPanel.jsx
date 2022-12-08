@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";;
 import {
   faSearch,
   faCheck,
+  faCircleInfo,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -154,7 +155,7 @@ export default function SuggestionManagerPanel(props) {
             </IconButton>
             <IconButton onClick={(e) => {handleLookMoreRowClick(e,params)}}>
               <Typography variant="h6" color="black">
-                <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faCircleInfo}></FontAwesomeIcon>
               </Typography>
             </IconButton>
           </Stack>
@@ -170,21 +171,21 @@ export default function SuggestionManagerPanel(props) {
   return (
       <Stack alignItems='center'>
         <Stack direction='row' width='100%' spacing={4} alignItems='center' justifyContent='space-between'>
+            {(selecteds.length > 0) ?
           <Stack direction='row' spacing={4} height='80%' justifyContent='flex-start'>
             <IHCButtonRounded sx={{backgroundColor:'success.main'}} onClick={handleApproveSelectedsClick} variant="contained">
               <Typography>
                 Approve Selecteds
               </Typography>
             </IHCButtonRounded>
-            {(selecteds.length > 0) ?
             <IHCButtonRounded sx={{backgroundColor:'error.light'}} onClick={handleDisapproveSelectedsClick} color='error' variant="contained">
               <Typography>
                 Disapprove Selecteds
               </Typography>
             </IHCButtonRounded>
+          </Stack>
                 :null
             }
-          </Stack>
         <IHCTextField
           sx={{width:'40%'}}
           value={textFilter}

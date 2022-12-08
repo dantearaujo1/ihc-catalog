@@ -54,7 +54,7 @@ const IHCFooter = () => {
         </Stack>
         <Stack direction="row" spacing={ 4 } justifyContent="center" width="100%" >
             <Typography color="white" variant="h7">
-              <Link target="_blank" href="https://www.instagram.com.br/celulamultimidia/?igshid=YmMyMTA2M2Y%3D" rel="noreferrer" underline="hover" color="inherit">
+              <Link target="_blank" href="https://www.instagram.com.br/celulamultimidia/" rel="noreferrer" underline="hover" color="inherit">
                 <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
               </Link>
             </Typography>

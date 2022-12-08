@@ -67,7 +67,7 @@ export default function TagSelect(props) {
               {selected.map((value) => (
                 <Chip
                   key={value._id}
-                  label={value.name}
+                  label={<Typography variant="body2">{value.name}</Typography>}
                   clickable
                   deleteIcon={<FontAwesomeIcon onMouseDown={(e) => e.stopPropagation()} icon={faCircleXmark}/>}
                   onDelete={(e) => {handleDelete(e,value)}}
