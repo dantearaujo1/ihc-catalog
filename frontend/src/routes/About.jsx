@@ -74,6 +74,13 @@ function About() {
           </Typography>
         </Stack>
         <Stack mt={8} spacing={1} alignItems='center'>
+          <Image height='auto' width="50%" showLoading style={{ aspectRatio: 1 / 1 }} sx={{ borderRadius: 50 }} src='../../people/boss.jpg'></Image>
+          <Typography variant='h2'>Ticianne Darin</Typography>
+          <Typography variant='subtitle1' color='info.main' textAlign='center'>
+            Client - Teacher - Creator of Catalog
+          </Typography>
+        </Stack>
+        <Stack mt={8} spacing={1} alignItems='center'>
           <Typography variant='h2'>Our Team</Typography>
           <Typography variant='subtitle1'>We're a group of people who helped our HIC Teacher to build an online catalog! </Typography>
           <Typography variant='subtitle1'>We call ourselfs the Graúna Digital</Typography>
