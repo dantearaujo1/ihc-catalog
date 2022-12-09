@@ -35,6 +35,13 @@ const signin = async ( req, res, next ) => {
         const token = jwt.sign({id: userValid._id},process.env.JWT_SECRET, {
           expiresIn: "60s",
         });
+        // const token = await userValid.generateAuthtoken();
+        console.log(token);
+
+
+        if(req.cookies[`${userValid}._id`]){
+          req.cookies[`${userValid}._id`] = ""
+        }
         res.cookie(String(userValid._id), token, {
           path: "/",
           expires: new Date(Date.now() + 1000 * 60),
@@ -93,7 +100,7 @@ const signup = async (req, res) => {
 // confirmation password, if not, send error message, else, create a user
 const verifyToken = (req,res,next) => {
   const cookies = req.headers.cookie;
-  const token = cookies.split("=")[1];
+  const token = cookies.split("=")[2];
   if (!token){
     return res.status(404).json({message: "No token found"});
   }
@@ -124,7 +131,7 @@ const getUser = async (req, res, next) => {
 
 const refreshToken = (req, res, next) => {
   const cookies = req.headers.cookie;
-  const prevToken = cookies.split("=")[1];
+  const prevToken = cookies.split("=")[2];
   if (!prevToken){
     return res.status(400).json({message:"Couldn't find token"});
   }
@@ -140,6 +147,8 @@ const refreshToken = (req, res, next) => {
       expiresIn: "60s"
     });
 
+    console.log("Regenerated Token \n", token)
+
     res.cookie(String(user.id), token, {
       path: "/",
       expires: new Date(Date.now() + 1000 * 60),
@@ -152,8 +161,28 @@ const refreshToken = (req, res, next) => {
 
   });
 }
+
+const logout = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const prevToken = cookies.split("=")[2];
+  if (!prevToken){
+    return res.status(400).json({message:"Couldn't find token"});
+  }
+  jwt.verify(String(prevToken), process.env.JWT_SECRET, (err, user) => {
+    if ( err ) {
+      return res.status(403).json({message: "Authentication failed"});
+    }
+
+    res.clearCookie(`${user.id}`);
+    req.cookies[`${user.id}`] = "";
+    return res.status(200).json({message: "Successfully Logged Out"});
+  });
+
+
+}
 exports.signin = signin;
 exports.signup = signup;
+exports.logout = logout;
 exports.verifyToken = verifyToken;
 exports.refreshToken = refreshToken;
 exports.getUser = getUser;

@@ -34,7 +34,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const result = {
+    const userInfo = {
       identifier: data?.get("email"),
       password: data?.get("password"),
     }
@@ -43,10 +43,11 @@ function Login() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(result)
+      body: JSON.stringify(userInfo)
     };
-    const okay = await fetch('/api/v1/login/signin',options);
-    const json = await okay.json();
+    const res = await fetch('/api/v1/login/signin',options);
+    const json = await res.json();
+
     console.log(json);
 
     if(json.error){
@@ -55,6 +56,7 @@ function Login() {
       setError(errors);
     }
     if(json.user){
+      localStorage.setItem("usersdatatoken", json.token)
       navigate("/admin_dboard");
     }
   };
