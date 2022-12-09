@@ -1,0 +1,92 @@
+* Project
+
+  Name: IHC-CATALOG
+  [Github]{https://github.com/dantearaujo1/ihc-catalog}
+  [Local Database]{@ backend/dataa.json }
+
+
+* Questions
+
+
+* Bugs
+
+  - [x] Correct TAG inside Select [HomePage]. It should increase our select size with multiple options
+  - [x] Correct Search Bar Select [HomePage]. It should not work as a Tag Selection
+  - [ ] Store Result List to go back if needed
+  - [ ] When selecting search bar item, endAdornment comes closer to the text
+        it should be fixed
+  - [ ] Search Bar works only in [ Homepage ]
+    This is because backendapi are not being fetched in other pages and
+  currently we don't have a global store to pass to another routes
+  - [ ] NavigationBar should feedback when one menu is selected
+
+* Tasks
+
+** Frontend Tasks
+   - [x] Title should send to Home page wth click
+   - [-] Create Components
+   -- [x] Create Screen Components
+   --- [x] Create List Results Screen
+   --- [x] Create Article Description Screen
+   -- [x] Create Modal Components
+   -- [ ] Create Tab Components
+   --- [ ] Instrument Manager
+   --- [ ] Group Manager
+   --- [ ] Suggestion List
+   ---- [ ] Create ListItem Component
+   ---- [ ] Handle rejection and approval of an item
+   ---- [ ] Handle more than one rejection and approval
+   ---- [ ] Create a Component that can be used by other tabs
+
+   - [x] Fix
+   -- [x] Center Autocomplete in NavigationHeader
+   -- [x] Remove locker and add path to admin route
+   --- [x] Admin route now is /admin and dashboard is /admin_dboard
+
+
+
+** Backend Tasks
+   - [-] Create API
+   -- [-] Define Models
+   --- [x] Article Model
+   --- [x] Groups Model
+   --- [x] Categories Model
+   --- [x] SubCategories Model
+   --- [ ] Admin Model
+
+
+ * Models
+** Article:
+
+   @code javascript
+   const article = {
+     name: "",
+     year: number,
+     reference: "",
+     main_idea: "",
+     general_procedure: "",
+   }
+   @end
+
+** Groups:
+
+   @code javascript
+   const group = {
+     name: "",
+     categoryID: RefOBJID,
+     subcategoryID: RefOBJID,
+   }
+   @end
+
+** Categories:
+
+   @code javascript
+   const categories = {
+     name: "",
+     color: "",
+   }
+   const subCategories = {
+     name: "",
+     categoryID: RefOBJID,
+   }
+   @end

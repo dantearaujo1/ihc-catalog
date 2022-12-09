@@ -1,0 +1,24 @@
+{
+  "name": "ihc-catalog",
+  "version": "1.0.0",
+  "description": "Web Application Catalog for IHC Avaliation Instruments with additional features. Project for Human-Computer Interaction (IHC) course of  Digital Media Systems (SMD)  program at Universidade Federal do Ceará (UFC)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\" ",
+    "devdock": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run devdock\" ",
+    "postinstall": "npm --prefix ./frontend install && npm --prefix ./backend install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dantearaujo1/ihc-catalog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dantearaujo1/ihc-catalog/issues"
+  },
+  "homepage": "https://github.com/dantearaujo1/ihc-catalog#readme",
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
+}
