@@ -76,7 +76,7 @@ const InstrumentDetail = () => {
                 </Stack>
                 <Stack mt={3} >
                   <Typography variant="h5" color={theme.palette.primary.light}>Link</Typography>
-                  <Link variant="body2" href={data.Article.link?data.Article.link:"/#"} mt={2}>{data.Article.link?data.Article.link:"link"}</Link>
+                  <Link variant="body2" target="_blank" href={data.Article.link?data.Article.link:"/#"} mt={2}>{data.Article.link?data.Article.link:"link"}</Link>
                 </Stack>
               </Stack>
               <Stack  width="50%" height="auto" mt={5} pl={2} >
