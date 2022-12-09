@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import NavigationHeader from '../components/Navigation/NavigationHeader'
+import { useNavigate } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography'
@@ -61,13 +62,13 @@ function Admin() {
   const [logged, setLogged] = useState(false);
   const [user, setUser] = useState({});
   const [firstRender, setFirstRender] = useState(true);
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   }
 
   const refreshToken = async () => {
-    // TODO: Remove all the url from here
     const res = await fetch("api/v1/login/refresh", {credentials:'include'}).catch(
       err => console.log(err)
     );
@@ -83,22 +84,24 @@ function Admin() {
     return data;
   }
 
-  // useEffect(() => {
-  //   if(firstRender) {
-  //     setFirstRender((prev)!firstRender);
-  //     sendRequest().then((data) => setUser(data.user));
-  //   }
-  //   let interval = setInterval(() => {
-  //     refreshToken().then(data=>setUser(data.user))
-  //   }, 1000 * 35);
-  //
-  //   return () => clearInterval(interval);
-  // }, []);
+
+  useEffect(() => {
+    if(firstRender) {
+      setFirstRender((prev) => !firstRender);
+      sendRequest().then( (data) => setUser(data) ).then( () => {setLogged(true)});
+    }
+    let interval = setInterval(() => {
+      refreshToken().then(data=>setUser(data))
+    }, 1000 * 50);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return(
     <div>
       <NavigationHeader show={false}></NavigationHeader>
-      <Box className="menu-container">
+      { logged &&
+        <Box className="menu-container">
         <Stack sx={{ width: '100%', backgroundColor: 'text.primary', pl:6 }} >
           <Tabs value={value} onChange={handleChange}
             sx={{
@@ -126,7 +129,8 @@ function Admin() {
         <TabPanel value={value} index={1}><InstrumentManager></InstrumentManager></TabPanel>
         <TabPanel value={value} index={2}><SuggestionManager></SuggestionManager></TabPanel>
       </Box>
-    </div>
+        }
+        </div>
   );
 }
 
