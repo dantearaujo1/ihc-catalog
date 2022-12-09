@@ -116,9 +116,8 @@ function Home() {
       <Stack
         justifyContent='center'
         alignItems='center'
-        mt={2}
-        mb={2}
-        sx={{ width: '100%', minHeight: "350px" }}
+        mt={8}
+        sx={{ width: '100%', minHeight: "200px" }}
       >
         <Grid width="80%" container alignItems="center" justifyContent="center" columnGap={2} rowGap={4}>
 
